@@ -1,6 +1,6 @@
-site_name: Cloud Native Remote Sensing with Python
-site_description: A comprehensive guide to XArray, STAC, Dask, Zarr, and XEE for cloud-based remote sensing applications
-site_author: Cloud Native Remote Sensing Course
+site_name: Open GIS - Python-based Cloud Native Geospatial Analysis
+site_description: A comprehensive guide to XArray, STAC, Dask, Zarr, and XEE for open-source, patent-friendly, cloud-based remote sensing.
+site_author: Open Geospatial Hub
 
 theme:
   name: material
@@ -44,8 +44,8 @@ theme:
   icon:
     repo: fontawesome/brands/github
 
-repo_name: Cloud Native Remote Sensing
-repo_url: https://github.com/yourusername/cloud-native-remote-sensing
+repo_name: Open GIS Cloud Native Remote Sensing
+repo_url: https://github.com/pulakeshpradhan/cloudgis
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -89,7 +89,7 @@ extra_javascript:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/yourusername/cloud-native-remote-sensing
+      link: https://github.com/pulakeshpradhan/cloudgis
     - icon: fontawesome/brands/python
       link: https://www.python.org/
   analytics:
