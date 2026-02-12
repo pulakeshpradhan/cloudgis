@@ -1,0 +1,1386 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Google Colab Basics &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/getting-started/colab-basics';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="XArray Basics" href="../fundamentals/xarray-basics.html" />
+    <link rel="prev" title="Setup Environment" href="setup.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup Environment</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../processing/spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/getting-started/colab-basics.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/getting-started/colab-basics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/getting-started/colab-basics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Google Colab Basics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-your-first-notebook">Creating Your First Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-code">Running Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-management">Package Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-additional-packages">Installing Additional Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-installed-packages">Checking Installed Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-management">Data Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-directories">Creating Directories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-data">Downloading Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-data">Reading Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-drive-integration">Google Drive Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mounting-google-drive">Mounting Google Drive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-drive-files">Working with Drive Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unmounting-drive">Unmounting Drive</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-management">Runtime Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-types">Runtime Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-resources">Checking Resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#session-limits">Session Limits</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magic-commands">Magic Commands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">Matplotlib</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-plots">Interactive Plots</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forms-and-widgets">Forms and Widgets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sharing-notebooks">Sharing Notebooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-to-github">Save to GitHub</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#share-link">Share Link</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-notebook">Download Notebook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-frequently">1. Save Frequently</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-version-control">2. Use Version Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organize-code">3. Organize Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clear-outputs">4. Clear Outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restart-runtime">5. Restart Runtime</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-large-datasets">Working with Large Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming-data">Streaming Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-dask">Using Dask</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-dask-dashboard-in-colab">Viewing Dask Dashboard in Colab</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-features">Advanced Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-acceleration">GPU Acceleration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-processing">Parallel Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-snippets">Custom Snippets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-workflow">Example Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-reference-card">Quick Reference Card</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="google-colab-basics">
+<h1>Google Colab Basics<a class="headerlink" href="#google-colab-basics" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/">Google Colab</a> is a hosted Jupyter notebook environment that allows anyone to run Python code via a web browser. It provides free computation and data storage that can be utilized by your Python code.</p>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<section id="creating-your-first-notebook">
+<h3>Creating Your First Notebook<a class="headerlink" href="#creating-your-first-notebook" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Visit <a class="reference external" href="https://colab.research.google.com/">colab.research.google.com</a></p></li>
+<li><p>Sign in with your Google account</p></li>
+<li><p>Click <strong>File → New Notebook</strong></p></li>
+</ol>
+</section>
+<section id="running-code">
+<h3>Running Code<a class="headerlink" href="#running-code" title="Link to this heading">#</a></h3>
+<p>You can click the <strong>+Code</strong> button to create a new cell and enter a block of code. To run the code, click the <strong>Run Code</strong> button next to the cell, or press <code class="docutils literal notranslate"><span class="pre">Shift+Enter</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(&#39;Hello, Cloud Native Remote Sensing!&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="package-management">
+<h2>Package Management<a class="headerlink" href="#package-management" title="Link to this heading">#</a></h2>
+<p>Colab comes pre-installed with many Python packages. You can use a package by simply importing it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+</pre></div>
+</div>
+</div>
+</div>
+<section id="installing-additional-packages">
+<h3>Installing Additional Packages<a class="headerlink" href="#installing-additional-packages" title="Link to this heading">#</a></h3>
+<p>If you want to install packages not included by default, use <code class="docutils literal notranslate"><span class="pre">!pip</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!pip install rioxarray odc-stac pystac-client
+</pre></div>
+</div>
+</div>
+</div>
+<p>!!! tip “Suppress Installation Output”
+Use <code class="docutils literal notranslate"><span class="pre">%%capture</span></code> to hide installation messages:
+<code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160; <span class="pre">%%capture</span>&#160;&#160;&#160;&#160; <span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">rioxarray</span> <span class="pre">odc-stac</span> <span class="pre">pystac-client</span>&#160;&#160;&#160;&#160; </code></p>
+</section>
+<section id="checking-installed-packages">
+<h3>Checking Installed Packages<a class="headerlink" href="#checking-installed-packages" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># List all packages
+!pip list
+
+# Check specific package version
+!pip show xarray
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="data-management">
+<h2>Data Management<a class="headerlink" href="#data-management" title="Link to this heading">#</a></h2>
+<p>Colab provides 100GB of disk space along with your notebook. This can be used to store your data, intermediate outputs, and results.</p>
+<section id="creating-directories">
+<h3>Creating Directories<a class="headerlink" href="#creating-directories" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import os
+
+data_folder = &#39;data&#39;
+output_folder = &#39;output&#39;
+
+if not os.path.exists(data_folder):
+    os.mkdir(data_folder)
+if not os.path.exists(output_folder):
+    os.mkdir(output_folder)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="downloading-data">
+<h3>Downloading Data<a class="headerlink" href="#downloading-data" title="Link to this heading">#</a></h3>
+<p>Helper function to download files from URLs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import requests
+
+def download(url, folder=&#39;data&#39;):
+    filename = os.path.join(folder, os.path.basename(url))
+    if not os.path.exists(filename):
+        with requests.get(url, stream=True, allow_redirects=True) as r:
+            with open(filename, &#39;wb&#39;) as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    f.write(chunk)
+        print(&#39;Downloaded&#39;, filename)
+    return filename
+
+# Example usage
+url = &#39;https://example.com/data.tif&#39;
+filepath = download(url)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-data">
+<h3>Reading Data<a class="headerlink" href="#reading-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import geopandas as gpd
+import rioxarray as rxr
+
+# Read vector data
+gdf = gpd.read_file(filepath)
+
+# Read raster data
+raster = rxr.open_rasterio(filepath)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="google-drive-integration">
+<h2>Google Drive Integration<a class="headerlink" href="#google-drive-integration" title="Link to this heading">#</a></h2>
+<p>Rather than saving to the temporary Colab machine, you can save to your Google Drive for persistent storage.</p>
+<section id="mounting-google-drive">
+<h3>Mounting Google Drive<a class="headerlink" href="#mounting-google-drive" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from google.colab import drive
+drive.mount(&#39;/content/drive&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>After running this, click the link and authorize access.</p>
+</section>
+<section id="working-with-drive-files">
+<h3>Working with Drive Files<a class="headerlink" href="#working-with-drive-files" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Define paths
+drive_folder_root = &#39;MyDrive&#39;
+output_folder = &#39;remote-sensing-outputs&#39;
+drive_folder_path = os.path.join(&#39;/content/drive&#39;, drive_folder_root, output_folder)
+
+# Create folder if it doesn&#39;t exist
+if not os.path.exists(drive_folder_path):
+    os.makedirs(drive_folder_path)
+
+# Save file to Drive
+output_file = &#39;result.tif&#39;
+output_path = os.path.join(drive_folder_path, output_file)
+raster.rio.to_raster(output_path)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="unmounting-drive">
+<h3>Unmounting Drive<a class="headerlink" href="#unmounting-drive" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>drive.flush_and_unmount()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="runtime-management">
+<h2>Runtime Management<a class="headerlink" href="#runtime-management" title="Link to this heading">#</a></h2>
+<section id="runtime-types">
+<h3>Runtime Types<a class="headerlink" href="#runtime-types" title="Link to this heading">#</a></h3>
+<p>Colab offers different runtime types:</p>
+<ul class="simple">
+<li><p><strong>None</strong>: No accelerator (CPU only)</p></li>
+<li><p><strong>GPU</strong>: NVIDIA GPU (T4, P100, or V100)</p></li>
+<li><p><strong>TPU</strong>: Google TPU</p></li>
+</ul>
+<p>To change runtime:</p>
+<ol class="arabic simple">
+<li><p>Click <strong>Runtime → Change runtime type</strong></p></li>
+<li><p>Select Hardware accelerator</p></li>
+<li><p>Click <strong>Save</strong></p></li>
+</ol>
+</section>
+<section id="checking-resources">
+<h3>Checking Resources<a class="headerlink" href="#checking-resources" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Check RAM
+!cat /proc/meminfo | grep MemTotal
+
+# Check CPU
+!cat /proc/cpuinfo | grep &quot;model name&quot; | head -1
+
+# Check GPU (if available)
+!nvidia-smi
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="session-limits">
+<h3>Session Limits<a class="headerlink" href="#session-limits" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Free tier</strong>: 12-hour maximum runtime</p></li>
+<li><p><strong>Colab Pro</strong>: 24-hour maximum runtime</p></li>
+<li><p>Sessions disconnect after 90 minutes of inactivity</p></li>
+</ul>
+</section>
+</section>
+<section id="keyboard-shortcuts">
+<h2>Keyboard Shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Action</p></th>
+<th class="head"><p>Shortcut</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Run cell</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+Enter</span></code> or <code class="docutils literal notranslate"><span class="pre">Shift+Enter</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Insert cell above</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+M</span> <span class="pre">A</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Insert cell below</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+M</span> <span class="pre">B</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Delete cell</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+M</span> <span class="pre">D</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Convert to code</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+M</span> <span class="pre">Y</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Convert to text</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+M</span> <span class="pre">M</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Show shortcuts</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ctrl+M</span> <span class="pre">H</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="magic-commands">
+<h2>Magic Commands<a class="headerlink" href="#magic-commands" title="Link to this heading">#</a></h2>
+<p>Colab supports IPython magic commands:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Time execution
+%%time
+result = expensive_computation()
+
+# Time multiple runs
+%%timeit
+quick_computation()
+
+# Run shell commands
+!ls -la
+
+# Change directory
+%cd /content/data
+
+# Show current directory
+%pwd
+
+# Load external Python file
+%load script.py
+
+# Run external Python file
+%run script.py
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Link to this heading">#</a></h2>
+<section id="matplotlib">
+<h3>Matplotlib<a class="headerlink" href="#matplotlib" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(1, 1, figsize=(10, 8))
+raster.plot(ax=ax, cmap=&#39;viridis&#39;)
+plt.title(&#39;Satellite Image&#39;)
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interactive-plots">
+<h3>Interactive Plots<a class="headerlink" href="#interactive-plots" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Install plotly
+!pip install plotly
+
+import plotly.express as px
+
+# Create interactive plot
+fig = px.scatter(df, x=&#39;lon&#39;, y=&#39;lat&#39;, color=&#39;value&#39;)
+fig.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="forms-and-widgets">
+<h2>Forms and Widgets<a class="headerlink" href="#forms-and-widgets" title="Link to this heading">#</a></h2>
+<p>Create interactive forms:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#@title Configuration { run: &quot;auto&quot; }
+year = 2023 #@param {type:&quot;slider&quot;, min:2015, max:2024, step:1}
+cloud_cover = 30 #@param {type:&quot;slider&quot;, min:0, max:100, step:5}
+region = &quot;Global&quot; #@param [&quot;Global&quot;, &quot;North America&quot;, &quot;Europe&quot;, &quot;Asia&quot;]
+
+print(f&quot;Year: {year}&quot;)
+print(f&quot;Max Cloud Cover: {cloud_cover}%&quot;)
+print(f&quot;Region: {region}&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sharing-notebooks">
+<h2>Sharing Notebooks<a class="headerlink" href="#sharing-notebooks" title="Link to this heading">#</a></h2>
+<section id="save-to-github">
+<h3>Save to GitHub<a class="headerlink" href="#save-to-github" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Click <strong>File → Save a copy in GitHub</strong></p></li>
+<li><p>Authorize GitHub access</p></li>
+<li><p>Select repository and branch</p></li>
+<li><p>Add commit message</p></li>
+<li><p>Click <strong>OK</strong></p></li>
+</ol>
+</section>
+<section id="share-link">
+<h3>Share Link<a class="headerlink" href="#share-link" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Click <strong>Share</strong> button (top right)</p></li>
+<li><p>Set permissions:</p>
+<ul class="simple">
+<li><p><strong>Viewer</strong>: Can view only</p></li>
+<li><p><strong>Commenter</strong>: Can comment</p></li>
+<li><p><strong>Editor</strong>: Can edit</p></li>
+</ul>
+</li>
+<li><p>Copy link</p></li>
+</ol>
+</section>
+<section id="download-notebook">
+<h3>Download Notebook<a class="headerlink" href="#download-notebook" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Download as .ipynb
+# File → Download → Download .ipynb
+
+# Download as .py
+# File → Download → Download .py
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h2>
+<section id="save-frequently">
+<h3>1. Save Frequently<a class="headerlink" href="#save-frequently" title="Link to this heading">#</a></h3>
+<p>Colab auto-saves, but manually save important work:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Ctrl+S</span></code> or <strong>File → Save</strong></p></li>
+</ul>
+</section>
+<section id="use-version-control">
+<h3>2. Use Version Control<a class="headerlink" href="#use-version-control" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Save checkpoint
+# File → Save a copy in Drive
+# File → Revision history
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="organize-code">
+<h3>3. Organize Code<a class="headerlink" href="#organize-code" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Use markdown cells for documentation
+# Use code cells for executable code
+# Group related operations together
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clear-outputs">
+<h3>4. Clear Outputs<a class="headerlink" href="#clear-outputs" title="Link to this heading">#</a></h3>
+<p>Before sharing:</p>
+<ul class="simple">
+<li><p><strong>Edit → Clear all outputs</strong></p></li>
+</ul>
+</section>
+<section id="restart-runtime">
+<h3>5. Restart Runtime<a class="headerlink" href="#restart-runtime" title="Link to this heading">#</a></h3>
+<p>If experiencing issues:</p>
+<ul class="simple">
+<li><p><strong>Runtime → Restart runtime</strong></p></li>
+</ul>
+</section>
+</section>
+<section id="working-with-large-datasets">
+<h2>Working with Large Datasets<a class="headerlink" href="#working-with-large-datasets" title="Link to this heading">#</a></h2>
+<section id="streaming-data">
+<h3>Streaming Data<a class="headerlink" href="#streaming-data" title="Link to this heading">#</a></h3>
+<p>Don’t download entire datasets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import xarray as xr
+
+# Stream from cloud storage
+ds = xr.open_dataset(
+    &#39;https://example.com/large_dataset.nc&#39;,
+    chunks={&#39;time&#39;: 10}
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-dask">
+<h3>Using Dask<a class="headerlink" href="#using-dask" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from dask.distributed import Client
+
+# Start local Dask cluster
+client = Client()
+
+# View dashboard
+client
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="viewing-dask-dashboard-in-colab">
+<h3>Viewing Dask Dashboard in Colab<a class="headerlink" href="#viewing-dask-dashboard-in-colab" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from google.colab import output
+
+port_to_expose = 8787  # Dask dashboard port
+print(output.eval_js(f&#39;google.colab.kernel.proxyPort({port_to_expose})&#39;))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading">#</a></h3>
+<p><strong>1. Runtime Disconnected</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Solution: Reconnect
+# Runtime → Reconnect
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>2. Out of Memory</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Solution: Use smaller chunks or restart runtime
+# Runtime → Restart runtime
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>3. Package Import Errors</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Solution: Reinstall package
+!pip install --upgrade --force-reinstall package-name
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>4. Drive Mount Issues</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Solution: Unmount and remount
+drive.flush_and_unmount()
+drive.mount(&#39;/content/drive&#39;, force_remount=True)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="advanced-features">
+<h2>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading">#</a></h2>
+<section id="gpu-acceleration">
+<h3>GPU Acceleration<a class="headerlink" href="#gpu-acceleration" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import tensorflow as tf
+
+# Check GPU availability
+print(&quot;GPU Available:&quot;, tf.config.list_physical_devices(&#39;GPU&#39;))
+
+# Use GPU for computation
+with tf.device(&#39;/GPU:0&#39;):
+    # Your GPU-accelerated code here
+    pass
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="parallel-processing">
+<h3>Parallel Processing<a class="headerlink" href="#parallel-processing" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from joblib import Parallel, delayed
+
+def process_file(filename):
+    # Processing logic
+    return result
+
+# Process files in parallel
+results = Parallel(n_jobs=-1)(
+    delayed(process_file)(f) for f in files
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="custom-snippets">
+<h3>Custom Snippets<a class="headerlink" href="#custom-snippets" title="Link to this heading">#</a></h3>
+<p>Create reusable code snippets:</p>
+<ol class="arabic simple">
+<li><p><strong>Tools → Command palette</strong></p></li>
+<li><p>Search “Insert code snippet”</p></li>
+<li><p>Create custom snippet</p></li>
+</ol>
+</section>
+</section>
+<section id="example-workflow">
+<h2>Example Workflow<a class="headerlink" href="#example-workflow" title="Link to this heading">#</a></h2>
+<p>Complete example of a typical remote sensing workflow in Colab:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># 1. Install packages
+%%capture
+!pip install rioxarray pystac-client odc-stac
+
+# 2. Import libraries
+import xarray as xr
+import rioxarray as rxr
+from pystac_client import Client
+import matplotlib.pyplot as plt
+
+# 3. Search for data
+catalog = Client.open(&#39;https://earth-search.aws.element84.com/v1&#39;)
+search = catalog.search(
+    collections=[&#39;sentinel-2-l2a&#39;],
+    bbox=[lon_min, lat_min, lon_max, lat_max],
+    datetime=&#39;2023-01-01/2023-12-31&#39;
+)
+items = search.item_collection()
+
+# 4. Load data
+from odc.stac import load as stac_load
+ds = stac_load(
+    items,
+    bands=[&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;, &#39;nir&#39;],
+    resolution=10
+)
+
+# 5. Process
+ndvi = (ds.nir - ds.red) / (ds.nir + ds.red)
+
+# 6. Visualize
+fig, ax = plt.subplots(figsize=(10, 8))
+ndvi.isel(time=0).plot(ax=ax, cmap=&#39;RdYlGn&#39;)
+plt.title(&#39;NDVI&#39;)
+plt.show()
+
+# 7. Save to Drive
+from google.colab import drive
+drive.mount(&#39;/content/drive&#39;)
+output_path = &#39;/content/drive/MyDrive/ndvi_result.nc&#39;
+ndvi.to_netcdf(output_path)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>Now that you’re familiar with Google Colab:</p>
+<p>→ Continue to <a class="reference internal" href="../fundamentals/xarray-basics.html"><span class="std std-doc">XArray Basics</span></a></p>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://research.google.com/colaboratory/faq.html">Colab FAQ</a></p></li>
+<li><p><a class="reference external" href="https://colab.research.google.com/notebooks/">Colab Notebooks Gallery</a></p></li>
+<li><p><a class="reference external" href="https://colab.research.google.com/notebooks/markdown_guide.ipynb">Markdown Guide</a></p></li>
+<li><p><a class="reference external" href="https://colab.research.google.com/notebooks/snippets/importing_libraries.ipynb">Data Science Snippets</a></p></li>
+</ul>
+</section>
+<section id="quick-reference-card">
+<h2>Quick Reference Card<a class="headerlink" href="#quick-reference-card" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Essential Colab Commands
+
+# Package management
+!pip install package-name
+!pip list
+!pip show package-name
+
+# File system
+!ls
+!pwd
+!mkdir folder_name
+!rm file_name
+
+# System information
+!cat /proc/meminfo
+!nvidia-smi
+
+# Google Drive
+from google.colab import drive
+drive.mount(&#39;/content/drive&#39;)
+
+# Magic commands
+%%time
+%%timeit
+%pwd
+%cd directory
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\getting-started"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="setup.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Setup Environment</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../fundamentals/xarray-basics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">XArray Basics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-your-first-notebook">Creating Your First Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-code">Running Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-management">Package Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-additional-packages">Installing Additional Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-installed-packages">Checking Installed Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-management">Data Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-directories">Creating Directories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-data">Downloading Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-data">Reading Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-drive-integration">Google Drive Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mounting-google-drive">Mounting Google Drive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-drive-files">Working with Drive Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unmounting-drive">Unmounting Drive</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-management">Runtime Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-types">Runtime Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-resources">Checking Resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#session-limits">Session Limits</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magic-commands">Magic Commands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">Matplotlib</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-plots">Interactive Plots</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forms-and-widgets">Forms and Widgets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sharing-notebooks">Sharing Notebooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-to-github">Save to GitHub</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#share-link">Share Link</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-notebook">Download Notebook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-frequently">1. Save Frequently</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-version-control">2. Use Version Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organize-code">3. Organize Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clear-outputs">4. Clear Outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restart-runtime">5. Restart Runtime</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-large-datasets">Working with Large Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming-data">Streaming Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-dask">Using Dask</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-dask-dashboard-in-colab">Viewing Dask Dashboard in Colab</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-features">Advanced Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-acceleration">GPU Acceleration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-processing">Parallel Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-snippets">Custom Snippets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-workflow">Example Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-reference-card">Quick Reference Card</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

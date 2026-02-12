@@ -1,0 +1,893 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Open GIS - Python-based Cloud Native Geospatial Analysis &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/index';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction to Cloud Native Remote Sensing" href="getting-started/introduction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="getting-started/introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="fundamentals/xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fundamentals/stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fundamentals/zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fundamentals/xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="processing/spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing/cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing/time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing/aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="examples/ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="reference/xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/index.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/index.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Open GIS - Python-based Cloud Native Geospatial Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-relying-solely-on-proprietary-gee"><span style="color:red">🛑 STOP</span> relying solely on proprietary “GEE”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-python-first">🐍 Why Python First?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">🎯 What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-cloud-native-remote-sensing">🚀 Why Cloud-Native Remote Sensing?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-structure">📚 Course Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamentals">Fundamentals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing">Data Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-topics">Advanced Topics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples">Practical Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-technologies">🛠️ Key Technologies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xarray">XArray</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stac">STAC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dask">Dask</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zarr">Zarr</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xee">XEE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">💡 Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-path">🎓 Learning Path</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">🌟 Key Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-this-course">📖 How to Use This Course</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">🤝 Contributing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">📝 License</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="open-gis-python-based-cloud-native-geospatial-analysis">
+<h1>Open GIS - Python-based Cloud Native Geospatial Analysis<a class="headerlink" href="#open-gis-python-based-cloud-native-geospatial-analysis" title="Link to this heading">#</a></h1>
+<p>!!! danger “🛑 STOP: Are you locked into GEE?”
+Don’t be a victim of <strong>vendor lock-in</strong>. Relying solely on Google Earth Engine (GEE) as a “black box” is a risk to your <strong>Intellectual Property</strong> and <strong>Patentability</strong>. This course teaches you a <strong>Python-First</strong> approach—where you use GEE only as a data source and perform all analysis in an open, portable ecosystem.</p>
+<p>Welcome to the comprehensive guide on <strong>Open GIS</strong> and cloud-native remote sensing! This curriculum moves beyond proprietary platforms, focusing on the power of Python, open-source standards, and distributed cloud computing.</p>
+<section id="stop-relying-solely-on-proprietary-gee">
+<h2><span style="color:red">🛑 STOP</span> relying solely on proprietary “GEE”<a class="headerlink" href="#stop-relying-solely-on-proprietary-gee" title="Link to this heading">#</a></h2>
+<p>While Google Earth Engine (GEE) is a powerful tool, relying solely on it for groundbreaking geospatial research carries significant professional and intellectual risks:</p>
+<ul class="simple">
+<li><p><strong>Vendor Mercy</strong>: GEE is a proprietary service owned by a private corporation. They have the power to change access terms, pricing, or even lock down years of your “hard work” and code scripts at any time.</p></li>
+<li><p><strong>Intellectual Property &amp; Patents</strong>: Developing innovative methodologies “natively” inside the GEE ecosystem can complicate patent applications. As a proprietary “black box,” the underlying infrastructure belongs to Google, which may limit an author’s ability to be fully credited or appreciated for groundbreaking innovation.</p></li>
+<li><p><strong>Scientific Reproducibility</strong>: High-stakes geospatial analysis should be verifiable and portable. Proprietary platforms hinder true independence.</p></li>
+</ul>
+</section>
+<section id="why-python-first">
+<h2>🐍 Why Python First?<a class="headerlink" href="#why-python-first" title="Link to this heading">#</a></h2>
+<p>Python is the <strong>native home</strong> for advanced geospatial analysis and Deep Learning. By developing in an open-source Python environment:</p>
+<ol class="arabic simple">
+<li><p><strong>Innovation &amp; Patents</strong>: You develop in an environment you control. Innovative algorithms developed in Python are more suitable for patenting as they are built on open foundations, ensuring the author receives full credit.</p></li>
+<li><p><strong>Native Development</strong>: Most cutting-edge AI and Geospatial libraries (PyTorch, TensorFlow, XArray) are developed in Python <em>first</em>. You gain immediate access to the latest breakthroughs.</p></li>
+<li><p><strong>Future Confidence</strong>: Open source means reproducibility. Your work is not tied to a single company’s roadmap or survival.</p></li>
+</ol>
+</section>
+<section id="what-you-ll-learn">
+<h2>🎯 What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>XArray</strong>: Multi-dimensional labeled arrays for efficient data manipulation</p></li>
+<li><p><strong>STAC (Spatio Temporal Asset Catalog)</strong>: Standardized way to discover and access geospatial data</p></li>
+<li><p><strong>Dask</strong>: Parallel computing library for scaling your analysis</p></li>
+<li><p><strong>Zarr</strong>: Cloud-optimized array storage format</p></li>
+<li><p><strong>XEE</strong>: XArray Earth Engine integration for seamless data access</p></li>
+</ul>
+</section>
+<section id="why-cloud-native-remote-sensing">
+<h2>🚀 Why Cloud-Native Remote Sensing?<a class="headerlink" href="#why-cloud-native-remote-sensing" title="Link to this heading">#</a></h2>
+<p>Traditional remote sensing workflows often involve downloading large datasets to local machines, which is:</p>
+<ul class="simple">
+<li><p><strong>Time-consuming</strong>: Downloading terabytes of data takes hours or days</p></li>
+<li><p><strong>Storage-intensive</strong>: Requires significant local storage capacity</p></li>
+<li><p><strong>Computationally limited</strong>: Constrained by local machine resources</p></li>
+<li><p><strong>Not scalable</strong>: Difficult to process large areas or long time series</p></li>
+</ul>
+<p>Cloud-native approaches solve these problems by:</p>
+<p>✅ <strong>Accessing data on-demand</strong> - Only download what you need<br />
+✅ <strong>Leveraging cloud compute</strong> - Scale processing power as needed<br />
+✅ <strong>Using optimized formats</strong> - Zarr and COG for efficient data access<br />
+✅ <strong>Parallel processing</strong> - Dask for distributed computing<br />
+✅ <strong>Standardized discovery</strong> - STAC for finding relevant datasets</p>
+</section>
+<section id="course-structure">
+<h2>📚 Course Structure<a class="headerlink" href="#course-structure" title="Link to this heading">#</a></h2>
+<section id="getting-started">
+<h3>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h3>
+<p>Learn the basics of setting up your environment and working with Google Colab for cloud-based analysis.</p>
+</section>
+<section id="fundamentals">
+<h3>Fundamentals<a class="headerlink" href="#fundamentals" title="Link to this heading">#</a></h3>
+<p>Master the core libraries: XArray for data manipulation, STAC for data discovery, Dask for parallel computing, Zarr for storage, and XEE for Earth Engine integration.</p>
+</section>
+<section id="data-processing">
+<h3>Data Processing<a class="headerlink" href="#data-processing" title="Link to this heading">#</a></h3>
+<p>Apply your knowledge to real-world tasks like calculating spectral indices, masking clouds, extracting time series, and aggregating data.</p>
+</section>
+<section id="advanced-topics">
+<h3>Advanced Topics<a class="headerlink" href="#advanced-topics" title="Link to this heading">#</a></h3>
+<p>Scale your analysis with advanced Dask techniques, cloud computing platforms, and optimization strategies.</p>
+</section>
+<section id="practical-examples">
+<h3>Practical Examples<a class="headerlink" href="#practical-examples" title="Link to this heading">#</a></h3>
+<p>Work through complete examples including NDVI analysis, land cover classification, change detection, and multi-temporal analysis.</p>
+</section>
+</section>
+<section id="key-technologies">
+<h2>🛠️ Key Technologies<a class="headerlink" href="#key-technologies" title="Link to this heading">#</a></h2>
+<section id="xarray">
+<h3>XArray<a class="headerlink" href="#xarray" title="Link to this heading">#</a></h3>
+<p>XArray extends NumPy and Pandas to N-dimensional labeled arrays, making it perfect for satellite imagery with dimensions like time, latitude, longitude, and bands.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import xarray as xr
+
+# Open a dataset
+ds = xr.open_dataset(&#39;sentinel2_data.nc&#39;)
+
+# Select data by labels
+subset = ds.sel(time=&#39;2023-01-01&#39;, band=&#39;red&#39;)
+
+# Perform calculations
+ndvi = (ds[&#39;nir&#39;] - ds[&#39;red&#39;]) / (ds[&#39;nir&#39;] + ds[&#39;red&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="stac">
+<h3>STAC<a class="headerlink" href="#stac" title="Link to this heading">#</a></h3>
+<p>STAC provides a common language to describe geospatial information, making it easier to discover and access satellite imagery.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from pystac_client import Client
+
+# Connect to a STAC catalog
+catalog = Client.open(&#39;https://earth-search.aws.element84.com/v1&#39;)
+
+# Search for Sentinel-2 imagery
+search = catalog.search(
+    collections=[&#39;sentinel-2-l2a&#39;],
+    bbox=[lon_min, lat_min, lon_max, lat_max],
+    datetime=&#39;2023-01-01/2023-12-31&#39;
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dask">
+<h3>Dask<a class="headerlink" href="#dask" title="Link to this heading">#</a></h3>
+<p>Dask enables parallel computing in Python, allowing you to work with datasets larger than memory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import dask.array as da
+
+# Create a Dask array
+x = da.from_zarr(&#39;large_dataset.zarr&#39;)
+
+# Computations are lazy
+result = x.mean(axis=0)
+
+# Trigger computation
+result.compute()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="zarr">
+<h3>Zarr<a class="headerlink" href="#zarr" title="Link to this heading">#</a></h3>
+<p>Zarr is a cloud-optimized format for storing chunked, compressed N-dimensional arrays.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import zarr
+
+# Create a Zarr array
+z = zarr.open(&#39;data.zarr&#39;, mode=&#39;w&#39;, shape=(10000, 10000), 
+              chunks=(1000, 1000), dtype=&#39;f4&#39;)
+
+# Write data
+z[:] = data
+
+# Read data
+subset = z[1000:2000, 1000:2000]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="xee">
+<h3>XEE<a class="headerlink" href="#xee" title="Link to this heading">#</a></h3>
+<p>XEE (XArray Earth Engine Extension) allows you to use Earth Engine datasets with XArray.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import xee
+import ee
+
+ee.Initialize(project=&#39;spatialgeography&#39;)
+
+# Open an Earth Engine ImageCollection as XArray
+ds = xr.open_dataset(
+    &#39;ee://COPERNICUS/S2_SR&#39;,
+    engine=&#39;ee&#39;,
+    geometry=ee.Geometry.Point([lon, lat]).buffer(10000),
+    scale=10
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="prerequisites">
+<h2>💡 Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Python Programming</strong>: Basic knowledge of Python</p></li>
+<li><p><strong>NumPy/Pandas</strong>: Familiarity with array operations</p></li>
+<li><p><strong>Remote Sensing</strong>: Basic understanding of satellite imagery</p></li>
+<li><p><strong>GIS Concepts</strong>: Knowledge of coordinate systems and projections</p></li>
+</ul>
+</section>
+<section id="learning-path">
+<h2>🎓 Learning Path<a class="headerlink" href="#learning-path" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Beginners</strong>: Start with Getting Started → Fundamentals</p></li>
+<li><p><strong>Intermediate</strong>: Focus on Data Processing → Practical Examples</p></li>
+<li><p><strong>Advanced</strong>: Dive into Advanced Topics and optimization</p></li>
+</ol>
+</section>
+<section id="key-features">
+<h2>🌟 Key Features<a class="headerlink" href="#key-features" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Hands-on Examples</strong>: Every concept includes working code examples</p></li>
+<li><p><strong>Google Colab Integration</strong>: Run examples in your browser without setup</p></li>
+<li><p><strong>Real-world Datasets</strong>: Work with actual Sentinel-2 and other satellite data</p></li>
+<li><p><strong>Best Practices</strong>: Learn industry-standard approaches</p></li>
+<li><p><strong>Scalable Solutions</strong>: Techniques that work from local to cloud scale</p></li>
+</ul>
+</section>
+<section id="how-to-use-this-course">
+<h2>📖 How to Use This Course<a class="headerlink" href="#how-to-use-this-course" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Read sequentially</strong> for a complete learning experience</p></li>
+<li><p><strong>Jump to specific topics</strong> using the navigation menu</p></li>
+<li><p><strong>Run the code examples</strong> in Google Colab or your local environment</p></li>
+<li><p><strong>Complete the exercises</strong> to reinforce your learning</p></li>
+<li><p><strong>Explore the reference</strong> section for detailed API information</p></li>
+</ol>
+</section>
+<section id="contributing">
+<h2>🤝 Contributing<a class="headerlink" href="#contributing" title="Link to this heading">#</a></h2>
+<p>This course is open-source and welcomes contributions! If you find errors, have suggestions, or want to add content, please contribute via GitHub.</p>
+</section>
+<section id="license">
+<h2>📝 License<a class="headerlink" href="#license" title="Link to this heading">#</a></h2>
+<p>This course content is available under the Creative Commons Attribution 4.0 International License.</p>
+<hr class="docutils" />
+<p>Ready to get started? Head to <a class="reference internal" href="getting-started/introduction.html"><span class="std std-doc">Introduction</span></a> to begin your cloud-native remote sensing journey!</p>
+<div class="grid cards" markdown>
+<ul>
+<li><p>:material-rocket-launch:{ .lg .middle } <strong>Getting Started</strong></p>
+<hr class="docutils" />
+<p>Set up your environment and learn the basics of cloud-native remote sensing workflows.</p>
+<p><a class="reference internal" href="getting-started/introduction.html"><span class="std std-doc">:octicons-arrow-right-24: Start Learning</span></a></p>
+</li>
+<li><p>:material-book-open-variant:{ .lg .middle } <strong>Fundamentals</strong></p>
+<hr class="docutils" />
+<p>Master XArray, STAC, Dask, Zarr, and XEE - the core tools for cloud-native analysis.</p>
+<p><a class="reference internal" href="fundamentals/xarray-basics.html"><span class="std std-doc">:octicons-arrow-right-24: Learn Fundamentals</span></a></p>
+</li>
+<li><p>:material-cog:{ .lg .middle } <strong>Data Processing</strong></p>
+<hr class="docutils" />
+<p>Apply techniques for spectral indices, cloud masking, time series, and aggregation.</p>
+<p><a class="reference internal" href="processing/spectral-indices.html"><span class="std std-doc">:octicons-arrow-right-24: Process Data</span></a></p>
+</li>
+<li><p>:material-rocket:{ .lg .middle } <strong>Advanced Topics</strong></p>
+<hr class="docutils" />
+<p>Scale your analysis with Dask, cloud platforms, and optimization strategies.</p>
+<p><a class="reference internal" href="advanced/scaling-dask.html"><span class="std std-doc">:octicons-arrow-right-24: Go Advanced</span></a></p>
+</li>
+<li><p>:material-code-braces:{ .lg .middle } <strong>Practical Examples</strong></p>
+<hr class="docutils" />
+<p>Complete workflows for NDVI analysis, land cover, change detection, and more.</p>
+<p><a class="reference internal" href="examples/ndvi-analysis.html"><span class="std std-doc">:octicons-arrow-right-24: See Examples</span></a></p>
+</li>
+<li><p>:material-book-multiple:{ .lg .middle } <strong>Reference</strong></p>
+<hr class="docutils" />
+<p>Comprehensive API documentation and best practices for all libraries.</p>
+<p><a class="reference internal" href="reference/xarray-api.html"><span class="std std-doc">:octicons-arrow-right-24: Browse Reference</span></a></p>
+</li>
+</ul>
+</div></section>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="getting-started/introduction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction to Cloud Native Remote Sensing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-relying-solely-on-proprietary-gee"><span style="color:red">🛑 STOP</span> relying solely on proprietary “GEE”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-python-first">🐍 Why Python First?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">🎯 What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-cloud-native-remote-sensing">🚀 Why Cloud-Native Remote Sensing?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-structure">📚 Course Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamentals">Fundamentals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing">Data Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-topics">Advanced Topics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples">Practical Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-technologies">🛠️ Key Technologies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xarray">XArray</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stac">STAC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dask">Dask</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zarr">Zarr</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xee">XEE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">💡 Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-path">🎓 Learning Path</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">🌟 Key Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-this-course">📖 How to Use This Course</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">🤝 Contributing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">📝 License</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

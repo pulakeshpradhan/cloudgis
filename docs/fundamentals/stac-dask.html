@@ -1,0 +1,1267 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>STAC and Dask Basics &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/fundamentals/stac-dask';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Working with Zarr" href="zarr.html" />
+    <link rel="prev" title="XArray Basics" href="xarray-basics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../processing/spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/fundamentals/stac-dask.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/fundamentals/stac-dask.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/fundamentals/stac-dask.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>STAC and Dask Basics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-and-data-download">Setup and Data Download</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask">Dask</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-a-dask-client">Starting a Dask Client</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-dask-dashboard-in-colab">Viewing Dask Dashboard in Colab</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatio-temporal-asset-catalog-stac">Spatio Temporal Asset Catalog (STAC)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stac-components">STAC Components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#browse-available-catalogs">Browse Available Catalogs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-to-a-stac-catalog">Connecting to a STAC Catalog</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-search-parameters">Defining Search Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-search">Basic Search</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-by-metadata">Filtering by Metadata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-results">Sorting Results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-stac-images-to-xarray">Load STAC Images to XArray</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-dataset-size">Check Dataset Size</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-a-single-scene">Select a Single Scene</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-into-memory">Load Data into Memory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-nodata-values">Handle NoData Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-scale-and-offset">Apply Scale and Offset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-scene">Visualize the Scene</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-spatial-metadata">Check Spatial Metadata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-preview">Create Preview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#false-color-composite">False Color Composite</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-results">Save Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-as-netcdf">Save as NetCDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-as-geotiff">Save as GeoTIFF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-to-google-drive">Save to Google Drive</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-stac-queries">Advanced STAC Queries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-by-geometry">Search by Geometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-collections">Multiple Collections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-queries">Complex Queries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-best-practices">Dask Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunk-size-selection">Chunk Size Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monitor-performance">Monitor Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persist-results">Persist Results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="stac-and-dask-basics">
+<h1>STAC and Dask Basics<a class="headerlink" href="#stac-and-dask-basics" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/python_remote_sensing/02_stac_dask_basics.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this section, we’ll learn the basics of querying cloud-hosted data via <a class="reference external" href="https://stacspec.org/en">STAC</a> and leverage parallel computing via <a class="reference external" href="https://tutorial.xarray.dev/intermediate/xarray_and_dask.html">Dask</a>.</p>
+<p>We will learn how to:</p>
+<ul class="simple">
+<li><p>Query a catalog of Sentinel-2 images</p></li>
+<li><p>Find the least-cloudy scene over a chosen area</p></li>
+<li><p>Visualize the scene</p></li>
+<li><p>Download it as a GeoTIFF file</p></li>
+</ul>
+</section>
+<section id="setup-and-data-download">
+<h2>Setup and Data Download<a class="headerlink" href="#setup-and-data-download" title="Link to this heading">#</a></h2>
+<p>Install required packages:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%%capture
+if &#39;google.colab&#39; in str(get_ipython()):
+    !pip install pystac-client odc-stac rioxarray dask jupyter-server-proxy
+</pre></div>
+</div>
+</div>
+</div>
+<p>Import libraries:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import os
+import matplotlib.pyplot as plt
+import pandas as pd
+import pystac_client
+from odc import stac
+import xarray as xr
+import rioxarray as rxr
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dask">
+<h2>Dask<a class="headerlink" href="#dask" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.dask.org/">Dask</a> is a Python library to run your computation in parallel across many machines. Dask has built-in support for key geospatial packages like XArray and Pandas, allowing you to scale your computation easily.</p>
+<p><strong>Key Features:</strong></p>
+<ul class="simple">
+<li><p>Run code in parallel on your laptop, cloud machine, or cluster</p></li>
+<li><p>Seamless integration with XArray and Pandas</p></li>
+<li><p>Lazy evaluation for efficient computation</p></li>
+<li><p>Interactive dashboard for monitoring</p></li>
+</ul>
+<section id="starting-a-dask-client">
+<h3>Starting a Dask Client<a class="headerlink" href="#starting-a-dask-client" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from dask.distributed import Client
+
+client = Client()  # set up local cluster on the machine
+client
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="viewing-dask-dashboard-in-colab">
+<h3>Viewing Dask Dashboard in Colab<a class="headerlink" href="#viewing-dask-dashboard-in-colab" title="Link to this heading">#</a></h3>
+<p>If running in Colab, create a proxy URL to view the dashboard:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if &#39;google.colab&#39; in str(get_ipython()):
+    from google.colab import output
+    port_to_expose = 8787  # Default port for Dask dashboard
+    print(output.eval_js(f&#39;google.colab.kernel.proxyPort({port_to_expose})&#39;))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="spatio-temporal-asset-catalog-stac">
+<h2>Spatio Temporal Asset Catalog (STAC)<a class="headerlink" href="#spatio-temporal-asset-catalog-stac" title="Link to this heading">#</a></h2>
+<p>STAC is an open standard for specifying and querying geospatial data. Data providers can share catalogs of:</p>
+<ul class="simple">
+<li><p>Satellite imagery</p></li>
+<li><p>Climate datasets</p></li>
+<li><p>LIDAR data</p></li>
+<li><p>Vector data</p></li>
+</ul>
+<p>All STAC catalogs can be queried to find matching assets by time, location, or metadata.</p>
+<section id="stac-components">
+<h3>STAC Components<a class="headerlink" href="#stac-components" title="Link to this heading">#</a></h3>
+<p><strong>Item</strong>: A single spatiotemporal asset (e.g., one satellite scene)</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;stac_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S2A_MSIL2A_20230115&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;datetime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-01-15T10:30:00Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;eo:cloud_cover&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">15.5</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;geometry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;assets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;red&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3://...&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;nir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3://...&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Collection</strong>: A group of related items</p>
+<p><strong>Catalog</strong>: A collection of collections</p>
+<p><strong>API</strong>: RESTful interface for searching</p>
+</section>
+<section id="browse-available-catalogs">
+<h3>Browse Available Catalogs<a class="headerlink" href="#browse-available-catalogs" title="Link to this heading">#</a></h3>
+<p>Visit <a class="reference external" href="https://stacindex.org/">https://stacindex.org/</a> to explore available STAC catalogs.</p>
+</section>
+<section id="connecting-to-a-stac-catalog">
+<h3>Connecting to a STAC Catalog<a class="headerlink" href="#connecting-to-a-stac-catalog" title="Link to this heading">#</a></h3>
+<p>Let’s use <a class="reference external" href="https://stacindex.org/catalogs/earth-search#/">Earth Search by Element 84</a> to access Sentinel-2 data on AWS:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>catalog = pystac_client.Client.open(
+    &#39;https://earth-search.aws.element84.com/v1&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="defining-search-parameters">
+<h3>Defining Search Parameters<a class="headerlink" href="#defining-search-parameters" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>latitude = 27.163
+longitude = 82.608
+year = 2023
+
+# Define bounding box around the point
+km2deg = 1.0 / 111
+x, y = (longitude, latitude)
+r = 1 * km2deg  # radius in degrees
+bbox = (x - r, y - r, x + r, y + r)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="basic-search">
+<h3>Basic Search<a class="headerlink" href="#basic-search" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>search = catalog.search(
+    collections=[&#39;sentinel-2-c1-l2a&#39;],
+    bbox=bbox,
+    datetime=f&#39;{year}&#39;
+)
+items = search.item_collection()
+items
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="filtering-by-metadata">
+<h3>Filtering by Metadata<a class="headerlink" href="#filtering-by-metadata" title="Link to this heading">#</a></h3>
+<p>Apply additional filters for cloud cover and nodata pixels:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>search = catalog.search(
+    collections=[&#39;sentinel-2-c1-l2a&#39;],
+    bbox=bbox,
+    datetime=f&#39;{year}&#39;,
+    query={
+        &#39;eo:cloud_cover&#39;: {&#39;lt&#39;: 30},
+        &#39;s2:nodata_pixel_percentage&#39;: {&#39;lt&#39;: 10}
+    }
+)
+items = search.item_collection()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sorting-results">
+<h3>Sorting Results<a class="headerlink" href="#sorting-results" title="Link to this heading">#</a></h3>
+<p>Sort by cloud cover to get the clearest scenes first:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>search = catalog.search(
+    collections=[&#39;sentinel-2-c1-l2a&#39;],
+    bbox=bbox,
+    datetime=f&#39;{year}&#39;,
+    query={
+        &#39;eo:cloud_cover&#39;: {&#39;lt&#39;: 30},
+        &#39;s2:nodata_pixel_percentage&#39;: {&#39;lt&#39;: 10}
+    },
+    sortby=[{
+        &#39;field&#39;: &#39;properties.eo:cloud_cover&#39;,
+        &#39;direction&#39;: &#39;asc&#39;
+    }]
+)
+items = search.item_collection()
+items
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="load-stac-images-to-xarray">
+<h2>Load STAC Images to XArray<a class="headerlink" href="#load-stac-images-to-xarray" title="Link to this heading">#</a></h2>
+<p>Load matching images as an XArray Dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ds = stac.load(
+    items,
+    bands=[&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;, &#39;nir&#39;],
+    resolution=10,
+    chunks={},  # &lt;-- use Dask
+    groupby=&#39;solar_day&#39;,
+    preserve_original_order=True
+)
+ds
+</pre></div>
+</div>
+</div>
+</div>
+<section id="check-dataset-size">
+<h3>Check Dataset Size<a class="headerlink" href="#check-dataset-size" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(f&#39;DataSet size: {ds.nbytes/1e6:.2f} MB.&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="select-a-single-scene">
+<h2>Select a Single Scene<a class="headerlink" href="#select-a-single-scene" title="Link to this heading">#</a></h2>
+<p>Get the timestamp of the least cloudy scene:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>timestamp = pd.to_datetime(items[0].properties[&#39;datetime&#39;]).tz_convert(None)
+scene = ds.sel(time=timestamp)
+scene
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check scene size:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(f&#39;Scene size: {scene.nbytes/1e6:.2f} MB.&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="load-data-into-memory">
+<h3>Load Data into Memory<a class="headerlink" href="#load-data-into-memory" title="Link to this heading">#</a></h3>
+<p>Use Dask to parallelize data loading:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%%time
+scene = scene.compute()
+</pre></div>
+</div>
+</div>
+</div>
+<p>Watch the Dask dashboard to see the parallel processing in action!</p>
+</section>
+<section id="handle-nodata-values">
+<h3>Handle NoData Values<a class="headerlink" href="#handle-nodata-values" title="Link to this heading">#</a></h3>
+<p>Sentinel-2 scenes have NoData value of 0:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>scene = scene.where(scene != 0)
+scene
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="apply-scale-and-offset">
+<h3>Apply Scale and Offset<a class="headerlink" href="#apply-scale-and-offset" title="Link to this heading">#</a></h3>
+<p>Convert raw pixel values to reflectances:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>scale = 0.0001
+offset = -0.1
+scene = scene * scale + offset
+</pre></div>
+</div>
+</div>
+</div>
+<p>!!! info “Scale and Offset Values”
+For Sentinel-2 scenes captured after Jan 25, 2022:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```text
+Scale: 0.0001
+Offset: -0.1
+```
+
+These values are in the `raster:bands` metadata for each band.
+</pre></div>
+</div>
+</section>
+</section>
+<section id="visualize-the-scene">
+<h2>Visualize the Scene<a class="headerlink" href="#visualize-the-scene" title="Link to this heading">#</a></h2>
+<p>Convert Dataset to DataArray:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>scene_da = scene.to_array(&#39;band&#39;)
+scene_da
+</pre></div>
+</div>
+</div>
+</div>
+<section id="check-spatial-metadata">
+<h3>Check Spatial Metadata<a class="headerlink" href="#check-spatial-metadata" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(&#39;CRS:&#39;, scene_da.rio.crs)
+print(&#39;Resolution:&#39;, scene_da.rio.resolution())
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-preview">
+<h3>Create Preview<a class="headerlink" href="#create-preview" title="Link to this heading">#</a></h3>
+<p>Resample to lower resolution for visualization:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>preview = scene_da.rio.reproject(
+    scene_da.rio.crs, resolution=300
+)
+
+fig, ax = plt.subplots(1, 1)
+fig.set_size_inches(5, 5)
+preview.sel(band=[&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]).plot.imshow(
+    ax=ax,
+    robust=True)
+ax.set_title(&#39;RGB Visualization&#39;)
+ax.set_axis_off()
+ax.set_aspect(&#39;equal&#39;)
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="false-color-composite">
+<h3>False Color Composite<a class="headerlink" href="#false-color-composite" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fig, ax = plt.subplots(1, 1, figsize=(8, 8))
+preview.sel(band=[&#39;nir&#39;, &#39;red&#39;, &#39;green&#39;]).plot.imshow(
+    ax=ax,
+    robust=True)
+ax.set_title(&#39;False Color (NIR-R-G)&#39;)
+ax.set_axis_off()
+ax.set_aspect(&#39;equal&#39;)
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="save-results">
+<h2>Save Results<a class="headerlink" href="#save-results" title="Link to this heading">#</a></h2>
+<section id="save-as-netcdf">
+<h3>Save as NetCDF<a class="headerlink" href="#save-as-netcdf" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>output_file = &#39;scene.nc&#39;
+scene.to_netcdf(output_file)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="save-as-geotiff">
+<h3>Save as GeoTIFF<a class="headerlink" href="#save-as-geotiff" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Save RGB composite
+rgb_file = &#39;rgb_composite.tif&#39;
+scene_da.sel(band=[&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]).rio.to_raster(rgb_file)
+
+# Save single band
+nir_file = &#39;nir_band.tif&#39;
+scene.nir.rio.to_raster(nir_file)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="save-to-google-drive">
+<h3>Save to Google Drive<a class="headerlink" href="#save-to-google-drive" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if &#39;google.colab&#39; in str(get_ipython()):
+    from google.colab import drive
+    drive.mount(&#39;/content/drive&#39;)
+    
+    drive_path = &#39;/content/drive/MyDrive/remote-sensing-outputs&#39;
+    if not os.path.exists(drive_path):
+        os.makedirs(drive_path)
+    
+    output_path = os.path.join(drive_path, &#39;scene.nc&#39;)
+    scene.to_netcdf(output_path)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="advanced-stac-queries">
+<h2>Advanced STAC Queries<a class="headerlink" href="#advanced-stac-queries" title="Link to this heading">#</a></h2>
+<section id="search-by-geometry">
+<h3>Search by Geometry<a class="headerlink" href="#search-by-geometry" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from shapely.geometry import Point
+
+# Create a point geometry
+point = Point(longitude, latitude)
+buffer = point.buffer(0.01)  # ~1km buffer
+
+search = catalog.search(
+    collections=[&#39;sentinel-2-c1-l2a&#39;],
+    intersects=buffer.__geo_interface__,
+    datetime=&#39;2023-01-01/2023-12-31&#39;
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multiple-collections">
+<h3>Multiple Collections<a class="headerlink" href="#multiple-collections" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>search = catalog.search(
+    collections=[&#39;sentinel-2-c1-l2a&#39;, &#39;landsat-c2-l2&#39;],
+    bbox=bbox,
+    datetime=f&#39;{year}&#39;
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="complex-queries">
+<h3>Complex Queries<a class="headerlink" href="#complex-queries" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>search = catalog.search(
+    collections=[&#39;sentinel-2-c1-l2a&#39;],
+    bbox=bbox,
+    datetime=&#39;2023-06-01/2023-08-31&#39;,  # Summer months
+    query={
+        &#39;eo:cloud_cover&#39;: {&#39;lt&#39;: 20},
+        &#39;s2:nodata_pixel_percentage&#39;: {&#39;lt&#39;: 5},
+        &#39;platform&#39;: {&#39;in&#39;: [&#39;sentinel-2a&#39;, &#39;sentinel-2b&#39;]}
+    },
+    limit=50
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="dask-best-practices">
+<h2>Dask Best Practices<a class="headerlink" href="#dask-best-practices" title="Link to this heading">#</a></h2>
+<section id="chunk-size-selection">
+<h3>Chunk Size Selection<a class="headerlink" href="#chunk-size-selection" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Good chunking - balanced chunks
+ds = stac.load(
+    items,
+    bands=[&#39;red&#39;, &#39;nir&#39;],
+    chunks={&#39;time&#39;: 10, &#39;x&#39;: 512, &#39;y&#39;: 512}
+)
+
+# Too small - overhead dominates
+ds_bad = stac.load(items, chunks={&#39;time&#39;: 1, &#39;x&#39;: 64, &#39;y&#39;: 64})
+
+# Too large - memory issues
+ds_bad = stac.load(items, chunks={&#39;time&#39;: 100, &#39;x&#39;: 4096, &#39;y&#39;: 4096})
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="monitor-performance">
+<h3>Monitor Performance<a class="headerlink" href="#monitor-performance" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># View task graph
+ds.red.data.visualize(filename=&#39;task_graph.png&#39;)
+
+# Check chunk info
+print(ds.red.data)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="persist-results">
+<h3>Persist Results<a class="headerlink" href="#persist-results" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Persist in memory for repeated access
+scene_persisted = scene.persist()
+
+# Now operations are faster
+result1 = scene_persisted.mean()
+result2 = scene_persisted.std()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">items</span></code> variable contains a list of STAC Items returned by the query. Extract the Sentinel-2 Product ID stored in <code class="docutils literal notranslate"><span class="pre">s2:product_uri</span></code> property and print a list of all image IDs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>for item in items:
+    print(item.properties)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Solution:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>product_ids = []
+for item in items:
+    product_id = item.properties.get(&#39;s2:product_uri&#39;, &#39;N/A&#39;)
+    product_ids.append(product_id)
+    print(product_id)
+
+print(f&quot;\nTotal images found: {len(product_ids)}&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<p>!!! success “What You Learned”
+- STAC provides a standardized way to discover geospatial data
+- Use <code class="docutils literal notranslate"><span class="pre">pystac-client</span></code> to search STAC catalogs
+- Filter by metadata (cloud cover, date, location)
+- Sort results to find optimal scenes
+- Dask enables parallel data loading and processing
+- Monitor Dask dashboard for performance insights
+- Load STAC items directly into XArray with <code class="docutils literal notranslate"><span class="pre">odc-stac</span></code>
+- Apply scale/offset to convert to physical values</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>→ Continue to <a class="reference internal" href="zarr.html"><span class="std std-doc">Working with Zarr</span></a></p>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stacspec.org/">STAC Specification</a></p></li>
+<li><p><a class="reference external" href="https://stacindex.org/">STAC Index</a></p></li>
+<li><p><a class="reference external" href="https://pystac-client.readthedocs.io/">pystac-client Documentation</a></p></li>
+<li><p><a class="reference external" href="https://odc-stac.readthedocs.io/">odc-stac Documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.dask.org/">Dask Documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.dask.org/en/stable/best-practices.html">Dask Best Practices</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\fundamentals"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="xarray-basics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">XArray Basics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="zarr.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Working with Zarr</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-and-data-download">Setup and Data Download</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask">Dask</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-a-dask-client">Starting a Dask Client</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-dask-dashboard-in-colab">Viewing Dask Dashboard in Colab</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatio-temporal-asset-catalog-stac">Spatio Temporal Asset Catalog (STAC)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stac-components">STAC Components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#browse-available-catalogs">Browse Available Catalogs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-to-a-stac-catalog">Connecting to a STAC Catalog</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-search-parameters">Defining Search Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-search">Basic Search</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-by-metadata">Filtering by Metadata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-results">Sorting Results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-stac-images-to-xarray">Load STAC Images to XArray</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-dataset-size">Check Dataset Size</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-a-single-scene">Select a Single Scene</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-into-memory">Load Data into Memory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-nodata-values">Handle NoData Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-scale-and-offset">Apply Scale and Offset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-scene">Visualize the Scene</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-spatial-metadata">Check Spatial Metadata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-preview">Create Preview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#false-color-composite">False Color Composite</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-results">Save Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-as-netcdf">Save as NetCDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-as-geotiff">Save as GeoTIFF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-to-google-drive">Save to Google Drive</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-stac-queries">Advanced STAC Queries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-by-geometry">Search by Geometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-collections">Multiple Collections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-queries">Complex Queries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-best-practices">Dask Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunk-size-selection">Chunk Size Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monitor-performance">Monitor Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persist-results">Persist Results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

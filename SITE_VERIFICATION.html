@@ -1,0 +1,882 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Site Navigation Verification - All Pages Present &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'SITE_VERIFICATION';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="docs/index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="docs/index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="docs/getting-started/introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/getting-started/setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/getting-started/colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="docs/fundamentals/xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/fundamentals/stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/fundamentals/zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/fundamentals/xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="docs/processing/spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/processing/cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/processing/time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/processing/aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="docs/advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/examples/complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="docs/reference/xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/reference/stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/reference/dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/reference/zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/reference/xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="docs/resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/SITE_VERIFICATION.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2FSITE_VERIFICATION.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/SITE_VERIFICATION.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Site Navigation Verification - All Pages Present</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-file-inventory">✅ Complete File Inventory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#total-files-33-markdown-pages">Total Files: 33 Markdown Pages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navigation-structure-verification">Navigation Structure Verification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#home">1. Home ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-3-pages">2. Getting Started (3 pages) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamentals-4-pages">3. Fundamentals (4 pages) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-4-pages">4. Data Processing (4 pages) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-topics-5-pages">5. Advanced Topics (5 pages) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples-7-pages">6. Practical Examples (7 pages) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-analysis-1-page">7. Advanced Analysis (1 page) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-5-pages">8. Reference (5 pages) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-3-pages">9. Resources (3 pages) ✅</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navigation-links-verification">Navigation Links Verification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-continue-to-links">Internal “Continue to” Links ✅</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mkdocs-configuration-verification">MkDocs Configuration Verification ✅</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navigation-structure-in-mkdocs-yml">Navigation Structure in mkdocs.yml</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-system-structure">File System Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-files-not-in-navigation">Additional Files (Not in Navigation)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verification-commands">Verification Commands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-urls-when-deployed">Expected URLs (when deployed)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#status-all-pages-present-no-404-errors">Status: ✅ ALL PAGES PRESENT - NO 404 ERRORS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-checklist">Testing Checklist</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="site-navigation-verification-all-pages-present">
+<h1>Site Navigation Verification - All Pages Present<a class="headerlink" href="#site-navigation-verification-all-pages-present" title="Link to this heading">#</a></h1>
+<section id="complete-file-inventory">
+<h2>✅ Complete File Inventory<a class="headerlink" href="#complete-file-inventory" title="Link to this heading">#</a></h2>
+<section id="total-files-33-markdown-pages">
+<h3>Total Files: 33 Markdown Pages<a class="headerlink" href="#total-files-33-markdown-pages" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="navigation-structure-verification">
+<h2>Navigation Structure Verification<a class="headerlink" href="#navigation-structure-verification" title="Link to this heading">#</a></h2>
+<section id="home">
+<h3>1. Home ✅<a class="headerlink" href="#home" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">index.md</span></code> - EXISTS</p></li>
+</ul>
+</section>
+<section id="getting-started-3-pages">
+<h3>2. Getting Started (3 pages) ✅<a class="headerlink" href="#getting-started-3-pages" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">getting-started/introduction.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getting-started/setup.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getting-started/colab-basics.md</span></code> - EXISTS</p></li>
+</ul>
+</section>
+<section id="fundamentals-4-pages">
+<h3>3. Fundamentals (4 pages) ✅<a class="headerlink" href="#fundamentals-4-pages" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fundamentals/xarray-basics.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fundamentals/stac-dask.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fundamentals/zarr.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fundamentals/xee.md</span></code> - EXISTS</p></li>
+</ul>
+</section>
+<section id="data-processing-4-pages">
+<h3>4. Data Processing (4 pages) ✅<a class="headerlink" href="#data-processing-4-pages" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">processing/spectral-indices.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">processing/cloud-masking.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">processing/time-series.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">processing/aggregation.md</span></code> - EXISTS</p></li>
+</ul>
+</section>
+<section id="advanced-topics-5-pages">
+<h3>5. Advanced Topics (5 pages) ✅<a class="headerlink" href="#advanced-topics-5-pages" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">advanced/scaling-dask.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">advanced/geemap-tiled-download.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">advanced/cloud-computing.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">advanced/planetary-computer.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">advanced/optimization.md</span></code> - EXISTS</p></li>
+</ul>
+</section>
+<section id="practical-examples-7-pages">
+<h3>6. Practical Examples (7 pages) ✅<a class="headerlink" href="#practical-examples-7-pages" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/ndvi-analysis.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/complete-timeseries-workflow.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/land-cover.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/change-detection.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/multi-temporal.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/water-quality.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/clustering-analysis.md</span></code> - EXISTS</p></li>
+</ul>
+</section>
+<section id="advanced-analysis-1-page">
+<h3>7. Advanced Analysis (1 page) ✅<a class="headerlink" href="#advanced-analysis-1-page" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">advanced-analysis/deep-learning-cnn.md</span></code> - EXISTS</p></li>
+</ul>
+</section>
+<section id="reference-5-pages">
+<h3>8. Reference (5 pages) ✅<a class="headerlink" href="#reference-5-pages" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">reference/xarray-api.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reference/stac-spec.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reference/dask-practices.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reference/zarr-format.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reference/xee-usage.md</span></code> - EXISTS</p></li>
+</ul>
+</section>
+<section id="resources-3-pages">
+<h3>9. Resources (3 pages) ✅<a class="headerlink" href="#resources-3-pages" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">resources/datasets.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resources/tools.md</span></code> - EXISTS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resources/reading.md</span></code> - EXISTS</p></li>
+</ul>
+</section>
+</section>
+<section id="navigation-links-verification">
+<h2>Navigation Links Verification<a class="headerlink" href="#navigation-links-verification" title="Link to this heading">#</a></h2>
+<section id="internal-continue-to-links">
+<h3>Internal “Continue to” Links ✅<a class="headerlink" href="#internal-continue-to-links" title="Link to this heading">#</a></h3>
+<p>All pages have proper sequential navigation:</p>
+<p><strong>Getting Started Flow:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Introduction → Setup → Colab Basics → XArray Basics
+</pre></div>
+</div>
+<p><strong>Fundamentals Flow:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>XArray → STAC/Dask → Zarr → XEE → Spectral Indices
+</pre></div>
+</div>
+<p><strong>Processing Flow:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Spectral Indices → Cloud Masking → Time Series → Aggregation → Advanced Topics
+</pre></div>
+</div>
+<p><strong>Examples Flow:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Each</span> <span class="n">example</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">-</span><span class="n">contained</span> <span class="k">with</span> <span class="n">links</span> <span class="n">to</span> <span class="n">related</span> <span class="n">topics</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="mkdocs-configuration-verification">
+<h2>MkDocs Configuration Verification ✅<a class="headerlink" href="#mkdocs-configuration-verification" title="Link to this heading">#</a></h2>
+<section id="navigation-structure-in-mkdocs-yml">
+<h3>Navigation Structure in mkdocs.yml<a class="headerlink" href="#navigation-structure-in-mkdocs-yml" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">nav</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Home</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">index.md</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Getting Started</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(3 pages)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Fundamentals</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(4 pages)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Data Processing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(4 pages)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Advanced Topics</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(5 pages)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Practical Examples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(7 pages)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Advanced Analysis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(1 page)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Reference</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(5 pages)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Resources</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(3 pages)</span>
+</pre></div>
+</div>
+<p><strong>Total: 33 pages - ALL PRESENT</strong></p>
+</section>
+</section>
+<section id="file-system-structure">
+<h2>File System Structure<a class="headerlink" href="#file-system-structure" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docs/
+├── index.md ✅
+├── getting-started/
+│   ├── introduction.md ✅
+│   ├── setup.md ✅
+│   └── colab-basics.md ✅
+├── fundamentals/
+│   ├── xarray-basics.md ✅
+│   ├── stac-dask.md ✅
+│   ├── zarr.md ✅
+│   └── xee.md ✅
+├── processing/
+│   ├── spectral-indices.md ✅
+│   ├── cloud-masking.md ✅
+│   ├── time-series.md ✅
+│   └── aggregation.md ✅
+├── advanced/
+│   ├── scaling-dask.md ✅
+│   ├── geemap-tiled-download.md ✅
+│   ├── cloud-computing.md ✅
+│   ├── planetary-computer.md ✅
+│   └── optimization.md ✅
+├── examples/
+│   ├── ndvi-analysis.md ✅
+│   ├── complete-timeseries-workflow.md ✅
+│   ├── land-cover.md ✅
+│   ├── change-detection.md ✅
+│   ├── multi-temporal.md ✅
+│   ├── water-quality.md ✅
+│   └── clustering-analysis.md ✅
+├── advanced-analysis/
+│   └── deep-learning-cnn.md ✅
+├── reference/
+│   ├── xarray-api.md ✅
+│   ├── stac-spec.md ✅
+│   ├── dask-practices.md ✅
+│   ├── zarr-format.md ✅
+│   └── xee-usage.md ✅
+└── resources/
+    ├── datasets.md ✅
+    ├── tools.md ✅
+    └── reading.md ✅
+</pre></div>
+</div>
+</section>
+<section id="additional-files-not-in-navigation">
+<h2>Additional Files (Not in Navigation)<a class="headerlink" href="#additional-files-not-in-navigation" title="Link to this heading">#</a></h2>
+<p>Supporting documentation files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NAVIGATION_FIX.md</span></code> - Navigation fix summary</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">XEE_EXAMPLES_SUMMARY.md</span></code> - XEE examples summary</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FINAL_DOCUMENTATION_SUMMARY.md</span></code> - Complete documentation summary</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ADVANCED_ANALYSIS_PLAN.md</span></code> - Advanced analysis implementation plan</p></li>
+</ul>
+</section>
+<section id="verification-commands">
+<h2>Verification Commands<a class="headerlink" href="#verification-commands" title="Link to this heading">#</a></h2>
+<p>To verify all pages exist:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check all files referenced in mkdocs.yml exist</span>
+mkdocs<span class="w"> </span>build<span class="w"> </span>--strict
+
+<span class="c1"># Serve locally to test</span>
+mkdocs<span class="w"> </span>serve
+</pre></div>
+</div>
+</section>
+<section id="expected-urls-when-deployed">
+<h2>Expected URLs (when deployed)<a class="headerlink" href="#expected-urls-when-deployed" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/                                           → index.md
+/getting-started/introduction/              → getting-started/introduction.md
+/getting-started/setup/                     → getting-started/setup.md
+/getting-started/colab-basics/              → getting-started/colab-basics.md
+/fundamentals/xarray-basics/                → fundamentals/xarray-basics.md
+/fundamentals/stac-dask/                    → fundamentals/stac-dask.md
+/fundamentals/zarr/                         → fundamentals/zarr.md
+/fundamentals/xee/                          → fundamentals/xee.md
+/processing/spectral-indices/               → processing/spectral-indices.md
+/processing/cloud-masking/                  → processing/cloud-masking.md
+/processing/time-series/                    → processing/time-series.md
+/processing/aggregation/                    → processing/aggregation.md
+/advanced/scaling-dask/                     → advanced/scaling-dask.md
+/advanced/geemap-tiled-download/            → advanced/geemap-tiled-download.md
+/advanced/cloud-computing/                  → advanced/cloud-computing.md
+/advanced/planetary-computer/               → advanced/planetary-computer.md
+/advanced/optimization/                     → advanced/optimization.md
+/examples/ndvi-analysis/                    → examples/ndvi-analysis.md
+/examples/complete-timeseries-workflow/     → examples/complete-timeseries-workflow.md
+/examples/land-cover/                       → examples/land-cover.md
+/examples/change-detection/                 → examples/change-detection.md
+/examples/multi-temporal/                   → examples/multi-temporal.md
+/examples/water-quality/                    → examples/water-quality.md
+/examples/clustering-analysis/              → examples/clustering-analysis.md
+/advanced-analysis/deep-learning-cnn/       → advanced-analysis/deep-learning-cnn.md
+/reference/xarray-api/                      → reference/xarray-api.md
+/reference/stac-spec/                       → reference/stac-spec.md
+/reference/dask-practices/                  → reference/dask-practices.md
+/reference/zarr-format/                     → reference/zarr-format.md
+/reference/xee-usage/                       → reference/xee-usage.md
+/resources/datasets/                        → resources/datasets.md
+/resources/tools/                           → resources/tools.md
+/resources/reading/                         → resources/reading.md
+</pre></div>
+</div>
+</section>
+<section id="status-all-pages-present-no-404-errors">
+<h2>Status: ✅ ALL PAGES PRESENT - NO 404 ERRORS<a class="headerlink" href="#status-all-pages-present-no-404-errors" title="Link to this heading">#</a></h2>
+<p><strong>Summary:</strong></p>
+<ul class="simple">
+<li><p>✅ All 33 pages exist on filesystem</p></li>
+<li><p>✅ All pages referenced in mkdocs.yml</p></li>
+<li><p>✅ Navigation structure is complete</p></li>
+<li><p>✅ No broken internal links</p></li>
+<li><p>✅ Sequential navigation working</p></li>
+<li><p>✅ Bottom navigation cards on index page</p></li>
+</ul>
+<p><strong>The site is ready for deployment with zero 404 errors!</strong></p>
+</section>
+<section id="testing-checklist">
+<h2>Testing Checklist<a class="headerlink" href="#testing-checklist" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>[x] All markdown files exist</p></li>
+<li><p>[x] All paths in mkdocs.yml are correct</p></li>
+<li><p>[x] No typos in file names</p></li>
+<li><p>[x] All directories created</p></li>
+<li><p>[x] Internal links verified</p></li>
+<li><p>[x] Navigation cards added</p></li>
+<li><p>[x] Mermaid diagrams configured</p></li>
+<li><p>[x] Sequential flow established</p></li>
+</ul>
+<p><strong>Result: PASS</strong> ✅</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-file-inventory">✅ Complete File Inventory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#total-files-33-markdown-pages">Total Files: 33 Markdown Pages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navigation-structure-verification">Navigation Structure Verification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#home">1. Home ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-3-pages">2. Getting Started (3 pages) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamentals-4-pages">3. Fundamentals (4 pages) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-4-pages">4. Data Processing (4 pages) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-topics-5-pages">5. Advanced Topics (5 pages) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples-7-pages">6. Practical Examples (7 pages) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-analysis-1-page">7. Advanced Analysis (1 page) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-5-pages">8. Reference (5 pages) ✅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-3-pages">9. Resources (3 pages) ✅</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navigation-links-verification">Navigation Links Verification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-continue-to-links">Internal “Continue to” Links ✅</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mkdocs-configuration-verification">MkDocs Configuration Verification ✅</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navigation-structure-in-mkdocs-yml">Navigation Structure in mkdocs.yml</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-system-structure">File System Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-files-not-in-navigation">Additional Files (Not in Navigation)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verification-commands">Verification Commands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-urls-when-deployed">Expected URLs (when deployed)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#status-all-pages-present-no-404-errors">Status: ✅ ALL PAGES PRESENT - NO 404 ERRORS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-checklist">Testing Checklist</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

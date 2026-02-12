@@ -1,0 +1,954 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to Cloud Native Remote Sensing &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/getting-started/introduction';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Setup Environment" href="setup.html" />
+    <link rel="prev" title="Open GIS - Python-based Cloud Native Geospatial Analysis" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../processing/spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/getting-started/introduction.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/getting-started/introduction.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/getting-started/introduction.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Cloud Native Remote Sensing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolution-of-remote-sensing-workflows">The Evolution of Remote Sensing Workflows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#traditional-approach">Traditional Approach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-native-approach">Cloud-Native Approach</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts">Core Concepts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-ready-data-ard">1. Analysis-Ready Data (ARD)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-optimized-formats">2. Cloud-Optimized Formats</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-optimized-geotiff-cog">Cloud Optimized GeoTIFF (COG)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#zarr">Zarr</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stac-spatiotemporal-asset-catalog">3. STAC (SpatioTemporal Asset Catalog)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lazy-evaluation">4. Lazy Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-technologies-stack">Key Technologies Stack</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-discovery">Data Discovery</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-access">Data Access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation">Computation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage">Storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-use-cases">Common Use Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-analysis">1. Time Series Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#large-area-mapping">2. Large Area Mapping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-sensor-fusion">3. Multi-sensor Fusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-cloud-native-approach">Advantages of Cloud-Native Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalability">Scalability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collaboration">Collaboration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-effectiveness">Cost-Effectiveness</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-checklist">Getting Started Checklist</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="introduction-to-cloud-native-remote-sensing">
+<h1>Introduction to Cloud Native Remote Sensing<a class="headerlink" href="#introduction-to-cloud-native-remote-sensing" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>Cloud-native remote sensing represents a paradigm shift in how we work with Earth observation data. This approach leverages modern cloud computing infrastructure and optimized data formats to enable efficient processing of massive satellite imagery datasets.</p>
+</section>
+<section id="the-evolution-of-remote-sensing-workflows">
+<h2>The Evolution of Remote Sensing Workflows<a class="headerlink" href="#the-evolution-of-remote-sensing-workflows" title="Link to this heading">#</a></h2>
+<section id="traditional-approach">
+<h3>Traditional Approach<a class="headerlink" href="#traditional-approach" title="Link to this heading">#</a></h3>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph LR
+    A[Data Provider] --&gt; B[Download Data]
+    B --&gt; C[Local Storage]
+    C --&gt; D[Local Processing]
+    D --&gt; E[Results]
+</pre></div>
+</div>
+<p><strong>Challenges:</strong></p>
+<ul class="simple">
+<li><p>Large download times (hours to days)</p></li>
+<li><p>Significant storage requirements (terabytes)</p></li>
+<li><p>Limited by local compute resources</p></li>
+<li><p>Difficult to share and reproduce</p></li>
+</ul>
+</section>
+<section id="cloud-native-approach">
+<h3>Cloud-Native Approach<a class="headerlink" href="#cloud-native-approach" title="Link to this heading">#</a></h3>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph LR
+    A[Cloud Data Catalog] --&gt; B[Query via STAC]
+    B --&gt; C[Stream Data]
+    C --&gt; D[Cloud Processing]
+    D --&gt; E[Results]
+</pre></div>
+</div>
+<p><strong>Benefits:</strong></p>
+<ul class="simple">
+<li><p>Instant data access</p></li>
+<li><p>Minimal storage needs</p></li>
+<li><p>Scalable compute</p></li>
+<li><p>Easy sharing and collaboration</p></li>
+</ul>
+</section>
+</section>
+<section id="core-concepts">
+<h2>Core Concepts<a class="headerlink" href="#core-concepts" title="Link to this heading">#</a></h2>
+<section id="analysis-ready-data-ard">
+<h3>1. Analysis-Ready Data (ARD)<a class="headerlink" href="#analysis-ready-data-ard" title="Link to this heading">#</a></h3>
+<p>Analysis-ready data is satellite imagery that has been processed to a minimum set of requirements and organized so it can be analyzed immediately:</p>
+<ul class="simple">
+<li><p><strong>Geometric Correction</strong>: Orthorectified and georeferenced</p></li>
+<li><p><strong>Radiometric Calibration</strong>: Converted to surface reflectance</p></li>
+<li><p><strong>Cloud Masking</strong>: Quality flags included</p></li>
+<li><p><strong>Tiled and Indexed</strong>: Organized for efficient access</p></li>
+</ul>
+</section>
+<section id="cloud-optimized-formats">
+<h3>2. Cloud-Optimized Formats<a class="headerlink" href="#cloud-optimized-formats" title="Link to this heading">#</a></h3>
+<section id="cloud-optimized-geotiff-cog">
+<h4>Cloud Optimized GeoTIFF (COG)<a class="headerlink" href="#cloud-optimized-geotiff-cog" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Regular GeoTIFF with internal tiling</p></li>
+<li><p>Supports HTTP range requests</p></li>
+<li><p>Enables partial file reading</p></li>
+</ul>
+</section>
+<section id="zarr">
+<h4>Zarr<a class="headerlink" href="#zarr" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Chunked, compressed N-dimensional arrays</p></li>
+<li><p>Cloud-native storage format</p></li>
+<li><p>Parallel read/write operations</p></li>
+<li><p>Works seamlessly with Dask</p></li>
+</ul>
+</section>
+</section>
+<section id="stac-spatiotemporal-asset-catalog">
+<h3>3. STAC (SpatioTemporal Asset Catalog)<a class="headerlink" href="#stac-spatiotemporal-asset-catalog" title="Link to this heading">#</a></h3>
+<p>STAC provides a common language to describe geospatial information:</p>
+<p><strong>Core Components:</strong></p>
+<ul class="simple">
+<li><p><strong>Items</strong>: Individual assets (e.g., a single satellite scene)</p></li>
+<li><p><strong>Catalogs</strong>: Collections of items</p></li>
+<li><p><strong>Collections</strong>: Groups of related items</p></li>
+<li><p><strong>API</strong>: RESTful interface for searching</p></li>
+</ul>
+</section>
+<section id="lazy-evaluation">
+<h3>4. Lazy Evaluation<a class="headerlink" href="#lazy-evaluation" title="Link to this heading">#</a></h3>
+<p>Process data only when needed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># This doesn&#39;t load data into memory
+ds = xr.open_dataset(&#39;large_file.nc&#39;, chunks={&#39;time&#39;: 10})
+
+# Computation is lazy
+result = ds.mean(dim=&#39;time&#39;)
+
+# Data is loaded and processed only when needed
+result.compute()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="key-technologies-stack">
+<h2>Key Technologies Stack<a class="headerlink" href="#key-technologies-stack" title="Link to this heading">#</a></h2>
+<section id="data-discovery">
+<h3>Data Discovery<a class="headerlink" href="#data-discovery" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>STAC</strong>: Find and access data</p></li>
+<li><p><strong>pystac-client</strong>: Python client for STAC APIs</p></li>
+</ul>
+</section>
+<section id="data-access">
+<h3>Data Access<a class="headerlink" href="#data-access" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>XArray</strong>: Multi-dimensional labeled arrays</p></li>
+<li><p><strong>rioxarray</strong>: Geospatial extensions for XArray</p></li>
+<li><p><strong>XEE</strong>: Earth Engine integration</p></li>
+</ul>
+</section>
+<section id="computation">
+<h3>Computation<a class="headerlink" href="#computation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Dask</strong>: Parallel computing</p></li>
+<li><p><strong>NumPy</strong>: Array operations</p></li>
+<li><p><strong>Pandas</strong>: Tabular data</p></li>
+</ul>
+</section>
+<section id="storage">
+<h3>Storage<a class="headerlink" href="#storage" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Zarr</strong>: Cloud-optimized arrays</p></li>
+<li><p><strong>COG</strong>: Cloud-optimized GeoTIFF</p></li>
+<li><p><strong>NetCDF</strong>: Self-describing data format</p></li>
+</ul>
+</section>
+<section id="visualization">
+<h3>Visualization<a class="headerlink" href="#visualization" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Matplotlib</strong>: Static plots</p></li>
+<li><p><strong>Hvplot</strong>: Interactive visualizations</p></li>
+<li><p><strong>Folium</strong>: Interactive maps</p></li>
+</ul>
+</section>
+</section>
+<section id="common-use-cases">
+<h2>Common Use Cases<a class="headerlink" href="#common-use-cases" title="Link to this heading">#</a></h2>
+<section id="time-series-analysis">
+<h3>1. Time Series Analysis<a class="headerlink" href="#time-series-analysis" title="Link to this heading">#</a></h3>
+<p>Monitor changes over time across large areas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load multi-year Sentinel-2 data
+ds = xr.open_dataset(&#39;s2_timeseries.zarr&#39;, chunks=&#39;auto&#39;)
+
+# Calculate monthly NDVI
+ndvi = (ds.nir - ds.red) / (ds.nir + ds.red)
+monthly_ndvi = ndvi.resample(time=&#39;1M&#39;).mean()
+
+# Compute trends
+trend = monthly_ndvi.polyfit(dim=&#39;time&#39;, deg=1)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="large-area-mapping">
+<h3>2. Large Area Mapping<a class="headerlink" href="#large-area-mapping" title="Link to this heading">#</a></h3>
+<p>Process continental or global datasets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Process data in parallel using Dask
+from dask.distributed import Client
+
+client = Client()  # Start local cluster
+
+# Load data with chunking
+ds = xr.open_zarr(&#39;global_landcover.zarr&#39;)
+
+# Process in parallel
+result = ds.groupby(&#39;time.year&#39;).mean().compute()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multi-sensor-fusion">
+<h3>3. Multi-sensor Fusion<a class="headerlink" href="#multi-sensor-fusion" title="Link to this heading">#</a></h3>
+<p>Combine data from different satellites:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load Sentinel-2 optical data
+s2 = xr.open_dataset(&#39;sentinel2.nc&#39;)
+
+# Load Sentinel-1 radar data
+s1 = xr.open_dataset(&#39;sentinel1.nc&#39;)
+
+# Align and combine
+combined = xr.merge([s2, s1], join=&#39;inner&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="advantages-of-cloud-native-approach">
+<h2>Advantages of Cloud-Native Approach<a class="headerlink" href="#advantages-of-cloud-native-approach" title="Link to this heading">#</a></h2>
+<section id="performance">
+<h3>Performance<a class="headerlink" href="#performance" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Parallel Processing</strong>: Utilize multiple cores/machines</p></li>
+<li><p><strong>Lazy Evaluation</strong>: Process only what’s needed</p></li>
+<li><p><strong>Optimized I/O</strong>: Read only required chunks</p></li>
+</ul>
+</section>
+<section id="scalability">
+<h3>Scalability<a class="headerlink" href="#scalability" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Elastic Compute</strong>: Scale up/down as needed</p></li>
+<li><p><strong>Distributed Processing</strong>: Handle datasets larger than memory</p></li>
+<li><p><strong>Cloud Storage</strong>: Unlimited storage capacity</p></li>
+</ul>
+</section>
+<section id="collaboration">
+<h3>Collaboration<a class="headerlink" href="#collaboration" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Reproducible</strong>: Share code and environment</p></li>
+<li><p><strong>Accessible</strong>: Run anywhere with internet</p></li>
+<li><p><strong>Version Control</strong>: Track changes with Git</p></li>
+</ul>
+</section>
+<section id="cost-effectiveness">
+<h3>Cost-Effectiveness<a class="headerlink" href="#cost-effectiveness" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Pay-per-use</strong>: Only pay for what you use</p></li>
+<li><p><strong>No Infrastructure</strong>: No need for local servers</p></li>
+<li><p><strong>Shared Resources</strong>: Leverage public datasets</p></li>
+</ul>
+</section>
+</section>
+<section id="getting-started-checklist">
+<h2>Getting Started Checklist<a class="headerlink" href="#getting-started-checklist" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>[ ] Understand basic Python programming</p></li>
+<li><p>[ ] Familiarize yourself with NumPy and Pandas</p></li>
+<li><p>[ ] Learn basic remote sensing concepts</p></li>
+<li><p>[ ] Set up Google Colab account (free)</p></li>
+<li><p>[ ] Review coordinate systems and projections</p></li>
+<li><p>[ ] Understand raster data structures</p></li>
+</ul>
+</section>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>By the end of this course, you will be able to:</p>
+<ol class="arabic simple">
+<li><p><strong>Discover</strong> satellite imagery using STAC catalogs</p></li>
+<li><p><strong>Access</strong> cloud-hosted datasets efficiently</p></li>
+<li><p><strong>Process</strong> large-scale Earth observation data</p></li>
+<li><p><strong>Analyze</strong> time series and multi-temporal datasets</p></li>
+<li><p><strong>Visualize</strong> results effectively</p></li>
+<li><p><strong>Scale</strong> your analysis from local to cloud</p></li>
+<li><p><strong>Optimize</strong> workflows for performance</p></li>
+<li><p><strong>Share</strong> reproducible analysis</p></li>
+</ol>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>Now that you understand the fundamentals, let’s set up your environment:</p>
+<p>→ Continue to <a class="reference internal" href="setup.html"><span class="std std-doc">Setup Environment</span></a></p>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.xarray.dev/">XArray Documentation</a></p></li>
+<li><p><a class="reference external" href="https://stacspec.org/">STAC Specification</a></p></li>
+<li><p><a class="reference external" href="https://docs.dask.org/">Dask Documentation</a></p></li>
+<li><p><a class="reference external" href="https://zarr.readthedocs.io/">Zarr Documentation</a></p></li>
+<li><p><a class="reference external" href="https://pangeo.io/">Pangeo Community</a></p></li>
+</ul>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<p>!!! success “Remember”
+- Cloud-native workflows enable analysis at unprecedented scales
+- STAC standardizes data discovery across providers
+- XArray provides intuitive interfaces for N-dimensional data
+- Dask enables parallel and distributed computing
+- Zarr optimizes data storage and access in the cloud
+- Lazy evaluation minimizes data transfer and computation</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\getting-started"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="setup.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Setup Environment</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolution-of-remote-sensing-workflows">The Evolution of Remote Sensing Workflows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#traditional-approach">Traditional Approach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-native-approach">Cloud-Native Approach</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts">Core Concepts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-ready-data-ard">1. Analysis-Ready Data (ARD)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-optimized-formats">2. Cloud-Optimized Formats</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-optimized-geotiff-cog">Cloud Optimized GeoTIFF (COG)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#zarr">Zarr</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stac-spatiotemporal-asset-catalog">3. STAC (SpatioTemporal Asset Catalog)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lazy-evaluation">4. Lazy Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-technologies-stack">Key Technologies Stack</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-discovery">Data Discovery</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-access">Data Access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation">Computation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage">Storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-use-cases">Common Use Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-analysis">1. Time Series Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#large-area-mapping">2. Large Area Mapping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-sensor-fusion">3. Multi-sensor Fusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-cloud-native-approach">Advantages of Cloud-Native Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalability">Scalability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collaboration">Collaboration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-effectiveness">Cost-Effectiveness</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-checklist">Getting Started Checklist</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

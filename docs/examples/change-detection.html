@@ -1,0 +1,1031 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Change Detection with XEE &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/examples/change-detection';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Complete Time Series Workflow" href="complete-timeseries-workflow.html" />
+    <link rel="prev" title="Vegetation Continuous Fields (VCF) Analysis" href="vegetation-vcf.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../processing/spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/examples/change-detection.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/examples/change-detection.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/examples/change-detection.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Change Detection with XEE</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-initialize-and-define-parameters">Step 1: Initialize and Define Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-load-data-for-both-periods">Step 2: Load Data for Both Periods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-load-with-xee">Step 3: Load with XEE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-indices-for-both-periods">Step 4: Calculate Indices for Both Periods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-calculate-change">Step 5: Calculate Change</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-visualize-before-after">Step 6: Visualize Before/After</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-detect-significant-changes">Step 7: Detect Significant Changes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-calculate-change-statistics">Step 8: Calculate Change Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-temporal-profile-analysis">Step 9: Temporal Profile Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-10-export-results">Step 10: Export Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-change-trajectory-analysis">Advanced: Change Trajectory Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="change-detection-with-xee">
+<h1>Change Detection with XEE<a class="headerlink" href="#change-detection-with-xee" title="Link to this heading">#</a></h1>
+<p>Detect and quantify land surface changes using multi-temporal Earth Engine data accessed through XEE.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>This example demonstrates:</p>
+<ul class="simple">
+<li><p>Pre/post event comparison</p></li>
+<li><p>Change magnitude calculation</p></li>
+<li><p>Statistical significance testing</p></li>
+<li><p>Change visualization and mapping</p></li>
+</ul>
+<p><strong>Scenario</strong>: Detecting urban expansion between 2020 and 2023</p>
+</section>
+<section id="step-1-initialize-and-define-parameters">
+<h2>Step 1: Initialize and Define Parameters<a class="headerlink" href="#step-1-initialize-and-define-parameters" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import ee
+import xarray as xr
+import xee
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+import seaborn as sns
+
+# Initialize Earth Engine
+ee.Initialize(project=&#39;spatialgeography&#39;)
+
+# Define region of interest
+roi = ee.Geometry.Rectangle([77.1, 28.5, 77.3, 28.7])  # Delhi suburbs
+
+# Define time periods
+period_before = (&#39;2020-01-01&#39;, &#39;2020-03-31&#39;)
+period_after = (&#39;2023-01-01&#39;, &#39;2023-03-31&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-load-data-for-both-periods">
+<h2>Step 2: Load Data for Both Periods<a class="headerlink" href="#step-2-load-data-for-both-periods" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def get_composite(start_date, end_date, roi):
+    &quot;&quot;&quot;Create cloud-free composite for a time period.&quot;&quot;&quot;
+    
+    def mask_clouds(image):
+        qa = image.select(&#39;QA60&#39;)
+        cloud_mask = qa.bitwiseAnd(1 &lt;&lt; 10).eq(0).And(
+                     qa.bitwiseAnd(1 &lt;&lt; 11).eq(0))
+        return image.updateMask(cloud_mask)
+    
+    collection = ee.ImageCollection(&#39;COPERNICUS/S2_SR_HARMONIZED&#39;) \
+        .filterBounds(roi) \
+        .filterDate(start_date, end_date) \
+        .filter(ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 30)) \
+        .map(mask_clouds)
+    
+    return collection.median().clip(roi)
+
+# Create composites
+composite_before = get_composite(*period_before, roi)
+composite_after = get_composite(*period_after, roi)
+
+print(&quot;Composites created&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-load-with-xee">
+<h2>Step 3: Load with XEE<a class="headerlink" href="#step-3-load-with-xee" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load both periods
+ds_before = xr.open_dataset(
+    composite_before,
+    engine=&#39;ee&#39;,
+    geometry=roi,
+    scale=20,
+    crs=&#39;EPSG:4326&#39;
+).compute()
+
+ds_after = xr.open_dataset(
+    composite_after,
+    engine=&#39;ee&#39;,
+    geometry=roi,
+    scale=20,
+    crs=&#39;EPSG:4326&#39;
+).compute()
+
+print(&quot;Data loaded&quot;)
+print(f&quot;Shape: {ds_before.B4.shape}&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4-calculate-indices-for-both-periods">
+<h2>Step 4: Calculate Indices for Both Periods<a class="headerlink" href="#step-4-calculate-indices-for-both-periods" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># NDVI (vegetation)
+ndvi_before = (ds_before.B8 - ds_before.B4) / (ds_before.B8 + ds_before.B4)
+ndvi_after = (ds_after.B8 - ds_after.B4) / (ds_after.B8 + ds_after.B4)
+
+# NDBI (built-up)
+ndbi_before = (ds_before.B11 - ds_before.B8) / (ds_before.B11 + ds_before.B8)
+ndbi_after = (ds_after.B11 - ds_after.B8) / (ds_after.B11 + ds_after.B8)
+
+# NDWI (water)
+ndwi_before = (ds_before.B3 - ds_before.B8) / (ds_before.B3 + ds_before.B8)
+ndwi_after = (ds_after.B3 - ds_after.B8) / (ds_after.B3 + ds_after.B8)
+
+print(&quot;Indices calculated&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-5-calculate-change">
+<h2>Step 5: Calculate Change<a class="headerlink" href="#step-5-calculate-change" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Calculate differences
+ndvi_change = ndvi_after - ndvi_before
+ndbi_change = ndbi_after - ndbi_before
+ndwi_change = ndwi_after - ndwi_before
+
+# Calculate percentage change
+ndvi_pct_change = ((ndvi_after - ndvi_before) / np.abs(ndvi_before)) * 100
+ndbi_pct_change = ((ndbi_after - ndbi_before) / np.abs(ndbi_before)) * 100
+
+print(&quot;Change calculated&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-6-visualize-before-after">
+<h2>Step 6: Visualize Before/After<a class="headerlink" href="#step-6-visualize-before-after" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fig, axes = plt.subplots(2, 3, figsize=(18, 12))
+
+# NDVI Before
+ndvi_before.plot(ax=axes[0, 0], cmap=&#39;RdYlGn&#39;, vmin=-1, vmax=1)
+axes[0, 0].set_title(&#39;NDVI - 2020&#39;)
+axes[0, 0].set_axis_off()
+
+# NDVI After
+ndvi_after.plot(ax=axes[0, 1], cmap=&#39;RdYlGn&#39;, vmin=-1, vmax=1)
+axes[0, 1].set_title(&#39;NDVI - 2023&#39;)
+axes[0, 1].set_axis_off()
+
+# NDVI Change
+im1 = ndvi_change.plot(ax=axes[0, 2], cmap=&#39;RdBu&#39;, vmin=-0.5, vmax=0.5)
+axes[0, 2].set_title(&#39;NDVI Change (2023-2020)&#39;)
+axes[0, 2].set_axis_off()
+
+# NDBI Before
+ndbi_before.plot(ax=axes[1, 0], cmap=&#39;YlOrRd&#39;, vmin=-1, vmax=1)
+axes[1, 0].set_title(&#39;NDBI - 2020&#39;)
+axes[1, 0].set_axis_off()
+
+# NDBI After
+ndbi_after.plot(ax=axes[1, 1], cmap=&#39;YlOrRd&#39;, vmin=-1, vmax=1)
+axes[1, 1].set_title(&#39;NDBI - 2023&#39;)
+axes[1, 1].set_axis_off()
+
+# NDBI Change
+im2 = ndbi_change.plot(ax=axes[1, 2], cmap=&#39;RdBu_r&#39;, vmin=-0.5, vmax=0.5)
+axes[1, 2].set_title(&#39;NDBI Change (Urban Expansion)&#39;)
+axes[1, 2].set_axis_off()
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-7-detect-significant-changes">
+<h2>Step 7: Detect Significant Changes<a class="headerlink" href="#step-7-detect-significant-changes" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Define thresholds for significant change
+ndvi_threshold = 0.2  # Decrease indicates vegetation loss
+ndbi_threshold = 0.2  # Increase indicates urbanization
+
+# Detect changes
+vegetation_loss = ndvi_change &lt; -ndvi_threshold
+urban_expansion = ndbi_change &gt; ndbi_threshold
+water_change = np.abs(ndwi_change) &gt; 0.2
+
+# Combine into change categories
+change_map = np.zeros_like(ndvi_change.values)
+change_map[vegetation_loss.values] = 1  # Vegetation loss
+change_map[urban_expansion.values] = 2  # Urban expansion
+change_map[water_change.values] = 3     # Water change
+
+# Visualize change categories
+from matplotlib.colors import ListedColormap
+
+colors = [&#39;white&#39;, &#39;red&#39;, &#39;gray&#39;, &#39;blue&#39;]
+labels = [&#39;No Change&#39;, &#39;Vegetation Loss&#39;, &#39;Urban Expansion&#39;, &#39;Water Change&#39;]
+cmap = ListedColormap(colors)
+
+fig, ax = plt.subplots(figsize=(12, 10))
+im = ax.imshow(change_map, cmap=cmap, vmin=0, vmax=3)
+ax.set_title(&#39;Change Detection Map (2020-2023)&#39;, fontsize=14)
+ax.set_axis_off()
+
+# Add legend
+from matplotlib.patches import Patch
+legend_elements = [Patch(facecolor=colors[i], label=labels[i]) 
+                   for i in range(len(labels))]
+ax.legend(handles=legend_elements, loc=&#39;upper right&#39;, fontsize=10)
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-8-calculate-change-statistics">
+<h2>Step 8: Calculate Change Statistics<a class="headerlink" href="#step-8-calculate-change-statistics" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Calculate areas
+pixel_area_sqm = 20 * 20  # 20m x 20m
+pixel_area_sqkm = pixel_area_sqm / 1e6
+
+# Count pixels for each change type
+stats = {}
+for i, label in enumerate(labels):
+    pixel_count = np.sum(change_map == i)
+    area_sqkm = pixel_count * pixel_area_sqkm
+    percentage = (pixel_count / change_map.size) * 100
+    
+    stats[label] = {
+        &#39;pixels&#39;: pixel_count,
+        &#39;area_km2&#39;: area_sqkm,
+        &#39;percentage&#39;: percentage
+    }
+    
+    print(f&quot;{label}:&quot;)
+    print(f&quot;  Area: {area_sqkm:.2f} km²&quot;)
+    print(f&quot;  Percentage: {percentage:.1f}%&quot;)
+    print()
+
+# Visualize statistics
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+# Bar chart
+areas = [stats[label][&#39;area_km2&#39;] for label in labels]
+axes[0].bar(labels, areas, color=colors)
+axes[0].set_ylabel(&#39;Area (km²)&#39;)
+axes[0].set_title(&#39;Change Areas&#39;)
+axes[0].tick_params(axis=&#39;x&#39;, rotation=45)
+
+# Pie chart (excluding no change)
+change_labels = labels[1:]
+change_areas = areas[1:]
+axes[1].pie(change_areas, labels=change_labels, colors=colors[1:],
+            autopct=&#39;%1.1f%%&#39;, startangle=90)
+axes[1].set_title(&#39;Distribution of Changes&#39;)
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-9-temporal-profile-analysis">
+<h2>Step 9: Temporal Profile Analysis<a class="headerlink" href="#step-9-temporal-profile-analysis" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Extract temporal profiles at specific points
+points_of_interest = [
+    {&#39;name&#39;: &#39;Urban Expansion Site&#39;, &#39;lon&#39;: 77.15, &#39;lat&#39;: 28.60},
+    {&#39;name&#39;: &#39;Stable Vegetation&#39;, &#39;lon&#39;: 77.25, &#39;lat&#39;: 28.65},
+    {&#39;name&#39;: &#39;Water Body&#39;, &#39;lon&#39;: 77.20, &#39;lat&#39;: 28.55}
+]
+
+fig, axes = plt.subplots(len(points_of_interest), 1, figsize=(12, 10))
+
+for idx, poi in enumerate(points_of_interest):
+    # Extract values at point
+    ndvi_b = ndvi_before.sel(lon=poi[&#39;lon&#39;], lat=poi[&#39;lat&#39;], method=&#39;nearest&#39;).values
+    ndvi_a = ndvi_after.sel(lon=poi[&#39;lon&#39;], lat=poi[&#39;lat&#39;], method=&#39;nearest&#39;).values
+    
+    ndbi_b = ndbi_before.sel(lon=poi[&#39;lon&#39;], lat=poi[&#39;lat&#39;], method=&#39;nearest&#39;).values
+    ndbi_a = ndbi_after.sel(lon=poi[&#39;lon&#39;], lat=poi[&#39;lat&#39;], method=&#39;nearest&#39;).values
+    
+    # Plot
+    x = [&#39;2020&#39;, &#39;2023&#39;]
+    axes[idx].plot(x, [ndvi_b, ndvi_a], &#39;o-&#39;, label=&#39;NDVI&#39;, linewidth=2, markersize=8)
+    axes[idx].plot(x, [ndbi_b, ndbi_a], &#39;s-&#39;, label=&#39;NDBI&#39;, linewidth=2, markersize=8)
+    axes[idx].set_title(poi[&#39;name&#39;])
+    axes[idx].set_ylabel(&#39;Index Value&#39;)
+    axes[idx].legend()
+    axes[idx].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-10-export-results">
+<h2>Step 10: Export Results<a class="headerlink" href="#step-10-export-results" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Create change detection dataset
+change_ds = xr.Dataset({
+    &#39;ndvi_change&#39;: ([&#39;y&#39;, &#39;x&#39;], ndvi_change.values),
+    &#39;ndbi_change&#39;: ([&#39;y&#39;, &#39;x&#39;], ndbi_change.values),
+    &#39;change_category&#39;: ([&#39;y&#39;, &#39;x&#39;], change_map)
+}, coords={
+    &#39;y&#39;: ds_before.lat.values,
+    &#39;x&#39;: ds_before.lon.values
+})
+
+# Add CRS
+change_ds = change_ds.rio.write_crs(&#39;EPSG:4326&#39;)
+
+# Save as NetCDF
+change_ds.to_netcdf(&#39;change_detection_results.nc&#39;)
+print(&quot;Results saved to change_detection_results.nc&quot;)
+
+# Export change map as GeoTIFF
+change_da = xr.DataArray(
+    change_map,
+    dims=[&#39;y&#39;, &#39;x&#39;],
+    coords={&#39;y&#39;: ds_before.lat.values, &#39;x&#39;: ds_before.lon.values}
+)
+change_da = change_da.rio.write_crs(&#39;EPSG:4326&#39;)
+change_da.rio.to_raster(&#39;change_map.tif&#39;)
+print(&quot;Change map saved to change_map.tif&quot;)
+
+# Export statistics
+import pandas as pd
+stats_df = pd.DataFrame(stats).T
+stats_df.to_csv(&#39;change_statistics.csv&#39;)
+print(&quot;Statistics saved to change_statistics.csv&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-change-trajectory-analysis">
+<h2>Advanced: Change Trajectory Analysis<a class="headerlink" href="#advanced-change-trajectory-analysis" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># For more detailed analysis, load monthly data
+def get_monthly_ndvi(year, roi):
+    &quot;&quot;&quot;Get monthly NDVI composites for a year.&quot;&quot;&quot;
+    monthly_ndvi = []
+    
+    for month in range(1, 13):
+        start = f&#39;{year}-{month:02d}-01&#39;
+        if month == 12:
+            end = f&#39;{year+1}-01-01&#39;
+        else:
+            end = f&#39;{year}-{month+1:02d}-01&#39;
+        
+        composite = get_composite(start, end, roi)
+        ds = xr.open_dataset(composite, engine=&#39;ee&#39;, geometry=roi, scale=100, crs=&#39;EPSG:4326&#39;).compute()
+        ndvi = (ds.B8 - ds.B4) / (ds.B8 + ds.B4)
+        monthly_ndvi.append(ndvi.mean().values)
+    
+    return monthly_ndvi
+
+# Get trajectories for both years
+ndvi_2020 = get_monthly_ndvi(2020, roi)
+ndvi_2023 = get_monthly_ndvi(2023, roi)
+
+# Plot trajectory comparison
+months = [&#39;Jan&#39;, &#39;Feb&#39;, &#39;Mar&#39;, &#39;Apr&#39;, &#39;May&#39;, &#39;Jun&#39;, 
+          &#39;Jul&#39;, &#39;Aug&#39;, &#39;Sep&#39;, &#39;Oct&#39;, &#39;Nov&#39;, &#39;Dec&#39;]
+
+plt.figure(figsize=(12, 6))
+plt.plot(months, ndvi_2020, &#39;o-&#39;, label=&#39;2020&#39;, linewidth=2, markersize=8)
+plt.plot(months, ndvi_2023, &#39;s-&#39;, label=&#39;2023&#39;, linewidth=2, markersize=8)
+plt.xlabel(&#39;Month&#39;)
+plt.ylabel(&#39;Mean NDVI&#39;)
+plt.title(&#39;Annual NDVI Trajectory Comparison&#39;)
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<p>!!! success “What You Learned”
+- Creating multi-temporal composites with XEE
+- Calculating change in multiple indices
+- Detecting significant changes with thresholds
+- Categorizing different types of change
+- Visualizing before/after comparisons
+- Calculating change statistics and areas
+- Analyzing temporal trajectories
+- Exporting change detection results</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>→ Continue to <a class="reference internal" href="timeseries-phenology.html"><span class="std std-doc">Time Series and Phenological Methods</span></a></p>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.sciencedirect.com/topics/earth-and-planetary-sciences/change-detection">Change Detection Methods</a></p></li>
+<li><p><a class="reference external" href="https://developers.google.com/earth-engine/tutorials/community/detecting-changes-in-sentinel-1-imagery-pt-1">Earth Engine Change Detection</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\examples"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="vegetation-vcf.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Vegetation Continuous Fields (VCF) Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="complete-timeseries-workflow.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Complete Time Series Workflow</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-initialize-and-define-parameters">Step 1: Initialize and Define Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-load-data-for-both-periods">Step 2: Load Data for Both Periods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-load-with-xee">Step 3: Load with XEE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-indices-for-both-periods">Step 4: Calculate Indices for Both Periods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-calculate-change">Step 5: Calculate Change</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-visualize-before-after">Step 6: Visualize Before/After</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-detect-significant-changes">Step 7: Detect Significant Changes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-calculate-change-statistics">Step 8: Calculate Change Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-temporal-profile-analysis">Step 9: Temporal Profile Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-10-export-results">Step 10: Export Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-change-trajectory-analysis">Advanced: Change Trajectory Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

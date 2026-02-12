@@ -1,0 +1,1558 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Google Earth Engine Reference &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/reference/xee-usage';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Datasets" href="../resources/datasets.html" />
+    <link rel="prev" title="Zarr Format Reference" href="zarr-format.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../processing/spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/reference/xee-usage.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/reference/xee-usage.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/reference/xee-usage.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Google Earth Engine Reference</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication">Authentication</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-time-setup">First-Time Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-based-authentication">Project-based Authentication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#service-account">Service Account</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-data-types">Core Data Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ee-image">ee.Image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ee-imagecollection">ee.ImageCollection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ee-geometry">ee.Geometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ee-feature">ee.Feature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ee-featurecollection">ee.FeatureCollection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-filtering">Spatial Filtering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-filtering">Temporal Filtering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-filtering">Metadata Filtering</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-functions">Mapping Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map">map()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-masking">Cloud Masking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reducers">Reducers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-reduction">Temporal Reduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-reduction">Spatial Reduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zonal-statistics">Zonal Statistics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-operations">Image Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#band-math">Band Math</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masking">Masking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clipping">Clipping</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exporting">Exporting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#export-to-drive">Export to Drive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#export-to-asset">Export to Asset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#export-to-cloud-storage">Export to Cloud Storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#export-table">Export Table</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-datasets">Common Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sentinel-2">Sentinel-2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landsat">Landsat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modis">MODIS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-data">Climate Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terrain">Terrain</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-early">1. Filter Early</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-appropriate-scale">2. Use Appropriate Scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limit-computation">3. Limit Computation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-getinfo-sparingly">4. Use getInfo() Sparingly</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging">Debugging</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#print-information">Print Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-properties">Inspect Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize">Visualize</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-limits">Computational Limits</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#free-tier-limits">Free Tier Limits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-tips">Optimization Tips</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues-fixes-xee-specific">Common Issues &amp; Fixes (XEE-specific)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-monotonicity-error">1. The Monotonicity Error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-nan-data-empty-plot">2. All-NaN Data (Empty Plot)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-dimension-mismatch">3. Spatial Dimension Mismatch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-reference">Quick Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-band-names">Common Band Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-filters">Common Filters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-reducers">Common Reducers</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="google-earth-engine-reference">
+<h1>Google Earth Engine Reference<a class="headerlink" href="#google-earth-engine-reference" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>Google Earth Engine (GEE) is a cloud-based platform for planetary-scale geospatial analysis. It provides access to petabytes of satellite imagery and geospatial datasets with powerful processing capabilities.</p>
+</section>
+<section id="key-features">
+<h2>Key Features<a class="headerlink" href="#key-features" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Massive Data Catalog</strong>: 1000+ public datasets</p></li>
+<li><p><strong>Server-side Processing</strong>: Computation happens in Google’s cloud</p></li>
+<li><p><strong>Parallel Processing</strong>: Automatic parallelization</p></li>
+<li><p><strong>No Download Required</strong>: Stream data directly</p></li>
+<li><p><strong>Free for Research</strong>: No cost for non-commercial use</p></li>
+</ul>
+</section>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">#</a></h2>
+<section id="first-time-setup">
+<h3>First-Time Setup<a class="headerlink" href="#first-time-setup" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import ee
+
+# Authenticate (opens browser)
+ee.Authenticate()
+
+# Initialize
+ee.Initialize(project=&#39;spatialgeography&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="project-based-authentication">
+<h3>Project-based Authentication<a class="headerlink" href="#project-based-authentication" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># For newer accounts
+ee.Initialize(project=&#39;spatialgeography&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="service-account">
+<h3>Service Account<a class="headerlink" href="#service-account" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># For production/automated systems
+credentials = ee.ServiceAccountCredentials(
+    email=&#39;your-service-account@project.iam.gserviceaccount.com&#39;,
+    key_file=&#39;/path/to/private-key.json&#39;
+)
+ee.Initialize(credentials)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="core-data-types">
+<h2>Core Data Types<a class="headerlink" href="#core-data-types" title="Link to this heading">#</a></h2>
+<section id="ee-image">
+<h3>ee.Image<a class="headerlink" href="#ee-image" title="Link to this heading">#</a></h3>
+<p>A single raster image with one or more bands.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load image
+image = ee.Image(&#39;COPERNICUS/S2_SR/20230115T051131_20230115T051126_T44QMG&#39;)
+
+# Select bands
+rgb = image.select([&#39;B4&#39;, &#39;B3&#39;, &#39;B2&#39;])
+
+# Get info
+print(image.bandNames().getInfo())
+print(image.projection().getInfo())
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ee-imagecollection">
+<h3>ee.ImageCollection<a class="headerlink" href="#ee-imagecollection" title="Link to this heading">#</a></h3>
+<p>A stack or time series of images.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load collection
+collection = ee.ImageCollection(&#39;COPERNICUS/S2_SR&#39;) \
+    .filterBounds(ee.Geometry.Point([82.5, 27.0])) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .filter(ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 20))
+
+# Get size
+print(collection.size().getInfo())
+
+# Get first image
+first = collection.first()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ee-geometry">
+<h3>ee.Geometry<a class="headerlink" href="#ee-geometry" title="Link to this heading">#</a></h3>
+<p>Geometric objects (points, lines, polygons).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Point
+point = ee.Geometry.Point([82.5, 27.0])
+
+# Rectangle
+rect = ee.Geometry.Rectangle([82.0, 26.5, 83.0, 27.5])
+
+# Polygon
+polygon = ee.Geometry.Polygon([[
+    [82.0, 27.0],
+    [83.0, 27.0],
+    [83.0, 28.0],
+    [82.0, 28.0],
+    [82.0, 27.0]
+]])
+
+# Buffer
+buffered = point.buffer(10000)  # 10km buffer
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ee-feature">
+<h3>ee.Feature<a class="headerlink" href="#ee-feature" title="Link to this heading">#</a></h3>
+<p>A geometry with properties (attributes).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Create feature
+feature = ee.Feature(
+    ee.Geometry.Point([82.5, 27.0]),
+    {&#39;name&#39;: &#39;Location A&#39;, &#39;value&#39;: 100}
+)
+
+# Get property
+name = feature.get(&#39;name&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ee-featurecollection">
+<h3>ee.FeatureCollection<a class="headerlink" href="#ee-featurecollection" title="Link to this heading">#</a></h3>
+<p>A collection of features (vector data).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load feature collection
+countries = ee.FeatureCollection(&#39;USDOS/LSIB_SIMPLE/2017&#39;)
+
+# Filter
+india = countries.filter(ee.Filter.eq(&#39;country_na&#39;, &#39;India&#39;))
+
+# Get geometry
+geometry = india.geometry()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="filtering">
+<h2>Filtering<a class="headerlink" href="#filtering" title="Link to this heading">#</a></h2>
+<section id="spatial-filtering">
+<h3>Spatial Filtering<a class="headerlink" href="#spatial-filtering" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Filter by bounds
+filtered = collection.filterBounds(geometry)
+
+# Filter by geometry intersection
+filtered = collection.filter(ee.Filter.intersects(&#39;.geo&#39;, geometry))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="temporal-filtering">
+<h3>Temporal Filtering<a class="headerlink" href="#temporal-filtering" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Date range
+filtered = collection.filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;)
+
+# Specific dates
+filtered = collection.filter(
+    ee.Filter.inList(&#39;system:index&#39;, [&#39;20230115&#39;, &#39;20230120&#39;])
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="metadata-filtering">
+<h3>Metadata Filtering<a class="headerlink" href="#metadata-filtering" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Less than
+filtered = collection.filter(
+    ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 20)
+)
+
+# Greater than
+filtered = collection.filter(
+    ee.Filter.gt(&#39;SUN_ELEVATION&#39;, 30)
+)
+
+# Equals
+filtered = collection.filter(
+    ee.Filter.eq(&#39;SPACECRAFT_NAME&#39;, &#39;Sentinel-2A&#39;)
+)
+
+# In list
+filtered = collection.filter(
+    ee.Filter.inList(&#39;MGRS_TILE&#39;, [&#39;44QMG&#39;, &#39;44QNG&#39;])
+)
+
+# Multiple conditions (AND)
+filtered = collection.filter(
+    ee.Filter.And(
+        ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 20),
+        ee.Filter.gt(&#39;SUN_ELEVATION&#39;, 30)
+    )
+)
+
+# Multiple conditions (OR)
+filtered = collection.filter(
+    ee.Filter.Or(
+        ee.Filter.eq(&#39;SPACECRAFT_NAME&#39;, &#39;Sentinel-2A&#39;),
+        ee.Filter.eq(&#39;SPACECRAFT_NAME&#39;, &#39;Sentinel-2B&#39;)
+    )
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="mapping-functions">
+<h2>Mapping Functions<a class="headerlink" href="#mapping-functions" title="Link to this heading">#</a></h2>
+<section id="map">
+<h3>map()<a class="headerlink" href="#map" title="Link to this heading">#</a></h3>
+<p>Apply function to each image in collection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def add_ndvi(image):
+    ndvi = image.normalizedDifference([&#39;B8&#39;, &#39;B4&#39;]).rename(&#39;NDVI&#39;)
+    return image.addBands(ndvi)
+
+collection_with_ndvi = collection.map(add_ndvi)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cloud-masking">
+<h3>Cloud Masking<a class="headerlink" href="#cloud-masking" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def mask_s2_clouds(image):
+    qa = image.select(&#39;QA60&#39;)
+    cloud_mask = qa.bitwiseAnd(1 &lt;&lt; 10).eq(0).And(
+                 qa.bitwiseAnd(1 &lt;&lt; 11).eq(0))
+    return image.updateMask(cloud_mask)
+
+masked = collection.map(mask_s2_clouds)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="reducers">
+<h2>Reducers<a class="headerlink" href="#reducers" title="Link to this heading">#</a></h2>
+<section id="temporal-reduction">
+<h3>Temporal Reduction<a class="headerlink" href="#temporal-reduction" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Median composite
+median = collection.median()
+
+# Mean
+mean = collection.mean()
+
+# Max
+maximum = collection.max()
+
+# Percentile
+p90 = collection.reduce(ee.Reducer.percentile([90]))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="spatial-reduction">
+<h3>Spatial Reduction<a class="headerlink" href="#spatial-reduction" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Mean over region
+mean_value = image.reduceRegion(
+    reducer=ee.Reducer.mean(),
+    geometry=geometry,
+    scale=30,
+    maxPixels=1e9
+)
+
+# Multiple statistics
+stats = image.reduceRegion(
+    reducer=ee.Reducer.mean() \
+        .combine(ee.Reducer.stdDev(), &#39;&#39;, True) \
+        .combine(ee.Reducer.min(), &#39;&#39;, True) \
+        .combine(ee.Reducer.max(), &#39;&#39;, True),
+    geometry=geometry,
+    scale=30
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="zonal-statistics">
+<h3>Zonal Statistics<a class="headerlink" href="#zonal-statistics" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Statistics by zone
+zonal_stats = image.reduceRegions(
+    collection=zones,
+    reducer=ee.Reducer.mean(),
+    scale=30
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="image-operations">
+<h2>Image Operations<a class="headerlink" href="#image-operations" title="Link to this heading">#</a></h2>
+<section id="band-math">
+<h3>Band Math<a class="headerlink" href="#band-math" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># NDVI
+ndvi = image.normalizedDifference([&#39;B8&#39;, &#39;B4&#39;])
+
+# Custom calculation
+evi = image.expression(
+    &#39;2.5 * ((NIR - RED) / (NIR + 6 * RED - 7.5 * BLUE + 1))&#39;,
+    {
+        &#39;NIR&#39;: image.select(&#39;B8&#39;),
+        &#39;RED&#39;: image.select(&#39;B4&#39;),
+        &#39;BLUE&#39;: image.select(&#39;B2&#39;)
+    }
+)
+
+# Arithmetic
+result = image.select(&#39;B8&#39;).subtract(image.select(&#39;B4&#39;))
+result = image.select(&#39;B8&#39;).divide(image.select(&#39;B4&#39;))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="masking">
+<h3>Masking<a class="headerlink" href="#masking" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Mask by value
+masked = image.updateMask(image.select(&#39;NDVI&#39;).gt(0.3))
+
+# Mask by another image
+mask = image.select(&#39;QA&#39;).eq(0)
+masked = image.updateMask(mask)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clipping">
+<h3>Clipping<a class="headerlink" href="#clipping" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Clip to geometry
+clipped = image.clip(geometry)
+
+# Clip collection
+clipped_collection = collection.map(lambda img: img.clip(geometry))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exporting">
+<h2>Exporting<a class="headerlink" href="#exporting" title="Link to this heading">#</a></h2>
+<section id="export-to-drive">
+<h3>Export to Drive<a class="headerlink" href="#export-to-drive" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Export image
+task = ee.batch.Export.image.toDrive(
+    image=image,
+    description=&#39;my_export&#39;,
+    folder=&#39;EarthEngine&#39;,
+    fileNamePrefix=&#39;sentinel2_image&#39;,
+    scale=10,
+    region=geometry,
+    maxPixels=1e9
+)
+task.start()
+
+# Check status
+print(task.status())
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="export-to-asset">
+<h3>Export to Asset<a class="headerlink" href="#export-to-asset" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>task = ee.batch.Export.image.toAsset(
+    image=image,
+    description=&#39;export_to_asset&#39;,
+    assetId=&#39;users/username/my_image&#39;,
+    scale=10,
+    region=geometry
+)
+task.start()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="export-to-cloud-storage">
+<h3>Export to Cloud Storage<a class="headerlink" href="#export-to-cloud-storage" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>task = ee.batch.Export.image.toCloudStorage(
+    image=image,
+    description=&#39;export_to_gcs&#39;,
+    bucket=&#39;my-bucket&#39;,
+    fileNamePrefix=&#39;sentinel2&#39;,
+    scale=10,
+    region=geometry
+)
+task.start()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="export-table">
+<h3>Export Table<a class="headerlink" href="#export-table" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>task = ee.batch.Export.table.toDrive(
+    collection=feature_collection,
+    description=&#39;export_table&#39;,
+    fileFormat=&#39;CSV&#39;
+)
+task.start()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="common-datasets">
+<h2>Common Datasets<a class="headerlink" href="#common-datasets" title="Link to this heading">#</a></h2>
+<section id="sentinel-2">
+<h3>Sentinel-2<a class="headerlink" href="#sentinel-2" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Surface Reflectance
+s2_sr = ee.ImageCollection(&#39;COPERNICUS/S2_SR&#39;)
+
+# Top of Atmosphere
+s2_toa = ee.ImageCollection(&#39;COPERNICUS/S2&#39;)
+
+# Harmonized (2015-present)
+s2_harmonized = ee.ImageCollection(&#39;COPERNICUS/S2_SR_HARMONIZED&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="landsat">
+<h3>Landsat<a class="headerlink" href="#landsat" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Landsat 8 Collection 2 Level 2
+l8 = ee.ImageCollection(&#39;LANDSAT/LC08/C02/T1_L2&#39;)
+
+# Landsat 9
+l9 = ee.ImageCollection(&#39;LANDSAT/LC09/C02/T1_L2&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="modis">
+<h3>MODIS<a class="headerlink" href="#modis" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># NDVI
+modis_ndvi = ee.ImageCollection(&#39;MODIS/006/MOD13A2&#39;)
+
+# Land Surface Temperature
+modis_lst = ee.ImageCollection(&#39;MODIS/006/MOD11A2&#39;)
+
+# Land Cover
+modis_lc = ee.ImageCollection(&#39;MODIS/006/MCD12Q1&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="climate-data">
+<h3>Climate Data<a class="headerlink" href="#climate-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># ERA5 Daily
+era5 = ee.ImageCollection(&#39;ECMWF/ERA5/DAILY&#39;)
+
+# CHIRPS Precipitation
+chirps = ee.ImageCollection(&#39;UCSB-CHG/CHIRPS/DAILY&#39;)
+
+# TerraClimate
+terraclimate = ee.ImageCollection(&#39;IDAHO_EPSCOR/TERRACLIMATE&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="terrain">
+<h3>Terrain<a class="headerlink" href="#terrain" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># SRTM DEM
+srtm = ee.Image(&#39;USGS/SRTMGL1_003&#39;)
+
+# ALOS World 3D
+alos = ee.Image(&#39;JAXA/ALOS/AW3D30/V3_2&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h2>
+<section id="filter-early">
+<h3>1. Filter Early<a class="headerlink" href="#filter-early" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Good: Filter before processing
+filtered = collection \
+    .filterBounds(geometry) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .filter(ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 20))
+result = filtered.median()
+
+# Bad: Process then filter
+result = collection.median()
+filtered = result.clip(geometry)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="use-appropriate-scale">
+<h3>2. Use Appropriate Scale<a class="headerlink" href="#use-appropriate-scale" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Good: Match data resolution
+stats = image.reduceRegion(
+    reducer=ee.Reducer.mean(),
+    geometry=geometry,
+    scale=10  # Sentinel-2 resolution
+)
+
+# Bad: Too fine (slow, unnecessary)
+stats = image.reduceRegion(
+    reducer=ee.Reducer.mean(),
+    geometry=geometry,
+    scale=1
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="limit-computation">
+<h3>3. Limit Computation<a class="headerlink" href="#limit-computation" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Good: Use maxPixels
+stats = image.reduceRegion(
+    reducer=ee.Reducer.mean(),
+    geometry=geometry,
+    scale=30,
+    maxPixels=1e9
+)
+
+# Good: Use smaller geometry
+small_geometry = geometry.buffer(-1000)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="use-getinfo-sparingly">
+<h3>4. Use getInfo() Sparingly<a class="headerlink" href="#use-getinfo-sparingly" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Good: Minimize getInfo() calls
+size = collection.size().getInfo()
+print(f&quot;Collection has {size} images&quot;)
+
+# Bad: getInfo() in loop
+for i in range(collection.size().getInfo()):
+    image = ee.Image(collection.toList(1, i).get(0))
+    print(image.get(&#39;system:index&#39;).getInfo())
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Link to this heading">#</a></h2>
+<section id="print-information">
+<h3>Print Information<a class="headerlink" href="#print-information" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Print to console
+print(image.bandNames().getInfo())
+print(collection.size().getInfo())
+print(geometry.area().getInfo())
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="inspect-properties">
+<h3>Inspect Properties<a class="headerlink" href="#inspect-properties" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Get all properties
+props = image.propertyNames().getInfo()
+print(props)
+
+# Get specific property
+cloud_cover = image.get(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;).getInfo()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualize">
+<h3>Visualize<a class="headerlink" href="#visualize" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># In Jupyter with geemap
+import geemap
+
+Map = geemap.Map()
+Map.addLayer(image, {&#39;bands&#39;: [&#39;B4&#39;, &#39;B3&#39;, &#39;B2&#39;], &#39;min&#39;: 0, &#39;max&#39;: 3000})
+Map.centerObject(geometry, 10)
+Map
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="computational-limits">
+<h2>Computational Limits<a class="headerlink" href="#computational-limits" title="Link to this heading">#</a></h2>
+<section id="free-tier-limits">
+<h3>Free Tier Limits<a class="headerlink" href="#free-tier-limits" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Concurrent requests</strong>: 3,000</p></li>
+<li><p><strong>User memory</strong>: 256 MB per request</p></li>
+<li><p><strong>Computation time</strong>: 5 minutes per request</p></li>
+<li><p><strong>Export size</strong>: 10 GB per file</p></li>
+<li><p><strong>Asset storage</strong>: 250 GB</p></li>
+</ul>
+</section>
+<section id="optimization-tips">
+<h3>Optimization Tips<a class="headerlink" href="#optimization-tips" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Use smaller geometries</strong></p></li>
+<li><p><strong>Reduce spatial resolution</strong> (increase scale)</p></li>
+<li><p><strong>Filter collections</strong> before processing</p></li>
+<li><p><strong>Use appropriate reducers</strong></p></li>
+<li><p><strong>Batch exports</strong> for large areas</p></li>
+</ol>
+</section>
+</section>
+<section id="common-issues-fixes-xee-specific">
+<h2>Common Issues &amp; Fixes (XEE-specific)<a class="headerlink" href="#common-issues-fixes-xee-specific" title="Link to this heading">#</a></h2>
+<section id="the-monotonicity-error">
+<h3>1. The Monotonicity Error<a class="headerlink" href="#the-monotonicity-error" title="Link to this heading">#</a></h3>
+<p><strong>Error</strong>: <code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">Index</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">monotonic</span> <span class="pre">for</span> <span class="pre">resampling</span></code>
+<strong>Cause</strong>: Earth Engine collections are not always sorted by time when streamed through XEE.
+<strong>Solution</strong>: Use <code class="docutils literal notranslate"><span class="pre">.sortby('time')</span></code> before any resampling or interpolation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ds = xr.open_dataset(collection, engine=&#39;ee&#39;)
+ds = ds.sortby(&#39;time&#39;)  # Fix
+resampled = ds.resample(time=&#39;1M&#39;).median()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="all-nan-data-empty-plot">
+<h3>2. All-NaN Data (Empty Plot)<a class="headerlink" href="#all-nan-data-empty-plot" title="Link to this heading">#</a></h3>
+<p><strong>Error</strong>: <code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">No</span> <span class="pre">numeric</span> <span class="pre">data</span> <span class="pre">to</span> <span class="pre">plot.</span></code>
+<strong>Cause</strong>: Aggressive cloud masking or strict cloud filters (e.g., <code class="docutils literal notranslate"><span class="pre">&lt;20%</span></code>) removed all valid pixels.
+<strong>Solution</strong>: Increase the <code class="docutils literal notranslate"><span class="pre">CLOUDY_PIXEL_PERCENTAGE</span></code> filter or check <code class="docutils literal notranslate"><span class="pre">ds.notnull().any()</span></code> before plotting.</p>
+</section>
+<section id="spatial-dimension-mismatch">
+<h3>3. Spatial Dimension Mismatch<a class="headerlink" href="#spatial-dimension-mismatch" title="Link to this heading">#</a></h3>
+<p><strong>Error</strong>: <code class="docutils literal notranslate"><span class="pre">KeyError:</span> <span class="pre">'X'</span></code> or <code class="docutils literal notranslate"><span class="pre">KeyError:</span> <span class="pre">'Y'</span></code>
+<strong>Cause</strong>: XEE dimension names can vary (<code class="docutils literal notranslate"><span class="pre">lon/lat</span></code> vs <code class="docutils literal notranslate"><span class="pre">X/Y</span></code>) based on the CRS used.
+<strong>Solution</strong>: Dynamically detect spatial dimensions or explicitly specify <strong>EPSG:4326</strong> for consistency.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spatial_dims = [d for d in ds.dims if d not in [&#39;time&#39;, &#39;band&#39;]]
+ds.mean(dim=spatial_dims).plot()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<p>… (previous content) …</p>
+</section>
+<section id="quick-reference">
+<h2>Quick Reference<a class="headerlink" href="#quick-reference" title="Link to this heading">#</a></h2>
+<section id="common-band-names">
+<h3>Common Band Names<a class="headerlink" href="#common-band-names" title="Link to this heading">#</a></h3>
+<p><strong>Sentinel-2:</strong></p>
+<ul class="simple">
+<li><p>B1: Coastal aerosol (443nm)</p></li>
+<li><p>B2: Blue (490nm)</p></li>
+<li><p>B3: Green (560nm)</p></li>
+<li><p>B4: Red (665nm)</p></li>
+<li><p>B8: NIR (842nm)</p></li>
+<li><p>B11: SWIR1 (1610nm)</p></li>
+<li><p>B12: SWIR2 (2190nm)</p></li>
+</ul>
+<p><strong>Landsat 8/9:</strong></p>
+<ul class="simple">
+<li><p>B1: Coastal/Aerosol</p></li>
+<li><p>B2: Blue</p></li>
+<li><p>B3: Green</p></li>
+<li><p>B4: Red</p></li>
+<li><p>B5: NIR</p></li>
+<li><p>B6: SWIR1</p></li>
+<li><p>B7: SWIR2</p></li>
+</ul>
+</section>
+<section id="common-filters">
+<h3>Common Filters<a class="headerlink" href="#common-filters" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Date
+.filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;)
+
+# Bounds
+.filterBounds(geometry)
+
+# Cloud cover
+.filter(ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 20))
+
+# Property equals
+.filter(ee.Filter.eq(&#39;SPACECRAFT_NAME&#39;, &#39;Sentinel-2A&#39;))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="common-reducers">
+<h3>Common Reducers<a class="headerlink" href="#common-reducers" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ee.Reducer.mean()
+ee.Reducer.median()
+ee.Reducer.min()
+ee.Reducer.max()
+ee.Reducer.stdDev()
+ee.Reducer.sum()
+ee.Reducer.count()
+ee.Reducer.percentile([10, 50, 90])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\reference"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="zarr-format.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Zarr Format Reference</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../resources/datasets.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Datasets</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication">Authentication</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-time-setup">First-Time Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-based-authentication">Project-based Authentication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#service-account">Service Account</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-data-types">Core Data Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ee-image">ee.Image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ee-imagecollection">ee.ImageCollection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ee-geometry">ee.Geometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ee-feature">ee.Feature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ee-featurecollection">ee.FeatureCollection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-filtering">Spatial Filtering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-filtering">Temporal Filtering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-filtering">Metadata Filtering</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-functions">Mapping Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map">map()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-masking">Cloud Masking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reducers">Reducers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-reduction">Temporal Reduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-reduction">Spatial Reduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zonal-statistics">Zonal Statistics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-operations">Image Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#band-math">Band Math</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masking">Masking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clipping">Clipping</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exporting">Exporting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#export-to-drive">Export to Drive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#export-to-asset">Export to Asset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#export-to-cloud-storage">Export to Cloud Storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#export-table">Export Table</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-datasets">Common Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sentinel-2">Sentinel-2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landsat">Landsat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modis">MODIS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-data">Climate Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terrain">Terrain</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-early">1. Filter Early</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-appropriate-scale">2. Use Appropriate Scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limit-computation">3. Limit Computation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-getinfo-sparingly">4. Use getInfo() Sparingly</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging">Debugging</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#print-information">Print Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-properties">Inspect Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize">Visualize</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-limits">Computational Limits</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#free-tier-limits">Free Tier Limits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-tips">Optimization Tips</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues-fixes-xee-specific">Common Issues &amp; Fixes (XEE-specific)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-monotonicity-error">1. The Monotonicity Error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-nan-data-empty-plot">2. All-NaN Data (Empty Plot)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-dimension-mismatch">3. Spatial Dimension Mismatch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-reference">Quick Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-band-names">Common Band Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-filters">Common Filters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-reducers">Common Reducers</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1393 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>XArray API Reference &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/reference/xarray-api';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="STAC Specification Reference" href="stac-spec.html" />
+    <link rel="prev" title="Complete Time Series Workflow" href="../examples/complete-timeseries-workflow.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../processing/spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/reference/xarray-api.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/reference/xarray-api.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/reference/xarray-api.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>XArray API Reference</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-data-structures">Core Data Structures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataarray">DataArray</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-and-indexing">Selection and Indexing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#position-based-isel">Position-based (isel)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#label-based-sel">Label-based (sel)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-indexing-where">Boolean Indexing (where)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computation">Computation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation">Aggregation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#element-wise-operations">Element-wise Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#groupby-operations">GroupBy Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resampling">Resampling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rolling-windows">Rolling Windows</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolation">Interpolation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-plots">Basic Plots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-plots">Advanced Plots</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-operations">I/O Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#netcdf">NetCDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zarr">Zarr</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geotiff-via-rioxarray">GeoTIFF (via rioxarray)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-integration">Dask Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunking">Chunking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lazy-evaluation">Lazy Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-operations">Parallel Operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-operations">Coordinate Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-coordinates">Adding Coordinates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#swapping-dimensions">Swapping Dimensions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-index">Multi-index</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-and-concatenating">Merging and Concatenating</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge">Merge</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenate">Concatenate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine">Combine</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-functions">Apply Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-ufunc">apply_ufunc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map-blocks">map_blocks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-tips">Performance Tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-chunking">1. Use Chunking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avoid-loops">2. Avoid Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-appropriate-chunks">3. Use Appropriate Chunks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persist-intermediate-results">4. Persist Intermediate Results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-patterns">Common Patterns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-ndvi">Calculate NDVI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-statistics">Temporal Statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-subsetting">Spatial Subsetting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="xarray-api-reference">
+<h1>XArray API Reference<a class="headerlink" href="#xarray-api-reference" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>XArray is a powerful Python library for working with labeled multi-dimensional arrays. It’s particularly well-suited for remote sensing data with dimensions like time, latitude, and longitude.</p>
+</section>
+<section id="core-data-structures">
+<h2>Core Data Structures<a class="headerlink" href="#core-data-structures" title="Link to this heading">#</a></h2>
+<section id="dataarray">
+<h3>DataArray<a class="headerlink" href="#dataarray" title="Link to this heading">#</a></h3>
+<p>A multi-dimensional array with labeled dimensions and coordinates.</p>
+<p><strong>Creation:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import xarray as xr
+import numpy as np
+
+# From numpy array
+data = np.random.rand(365, 100, 100)
+da = xr.DataArray(
+    data,
+    dims=[&#39;time&#39;, &#39;y&#39;, &#39;x&#39;],
+    coords={
+        &#39;time&#39;: pd.date_range(&#39;2023-01-01&#39;, periods=365),
+        &#39;y&#39;: np.arange(100),
+        &#39;x&#39;: np.arange(100)
+    },
+    name=&#39;temperature&#39;
+)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Attributes:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dims</span></code> - Dimension names</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">coords</span></code> - Coordinate arrays</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">values</span></code> - Underlying numpy array</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attrs</span></code> - Metadata dictionary</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> - Variable name</p></li>
+</ul>
+</section>
+<section id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
+<p>A dict-like container of DataArrays sharing dimensions.</p>
+<p><strong>Creation:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ds = xr.Dataset({
+    &#39;temperature&#39;: ([&#39;time&#39;, &#39;y&#39;, &#39;x&#39;], temp_data),
+    &#39;precipitation&#39;: ([&#39;time&#39;, &#39;y&#39;, &#39;x&#39;], precip_data)
+},
+coords={
+    &#39;time&#39;: pd.date_range(&#39;2023-01-01&#39;, periods=365),
+    &#39;y&#39;: np.arange(100),
+    &#39;x&#39;: np.arange(100)
+})
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="selection-and-indexing">
+<h2>Selection and Indexing<a class="headerlink" href="#selection-and-indexing" title="Link to this heading">#</a></h2>
+<section id="position-based-isel">
+<h3>Position-based (isel)<a class="headerlink" href="#position-based-isel" title="Link to this heading">#</a></h3>
+<p>Select by integer position:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Select first time step
+da.isel(time=0)
+
+# Select range
+da.isel(time=slice(0, 10))
+
+# Select from multiple dimensions
+da.isel(time=0, x=50, y=50)
+
+# Negative indexing
+da.isel(time=-1)  # Last time step
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="label-based-sel">
+<h3>Label-based (sel)<a class="headerlink" href="#label-based-sel" title="Link to this heading">#</a></h3>
+<p>Select by coordinate value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Select by exact value
+da.sel(time=&#39;2023-01-15&#39;)
+
+# Select range
+da.sel(time=slice(&#39;2023-01-01&#39;, &#39;2023-01-31&#39;))
+
+# Nearest neighbor
+da.sel(time=&#39;2023-01-15&#39;, method=&#39;nearest&#39;)
+
+# Multiple dimensions
+da.sel(time=&#39;2023-01-15&#39;, x=50, y=50)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="boolean-indexing-where">
+<h3>Boolean Indexing (where)<a class="headerlink" href="#boolean-indexing-where" title="Link to this heading">#</a></h3>
+<p>Filter based on conditions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Keep values where condition is True
+da.where(da &gt; 0)
+
+# Replace with specific value
+da.where(da &gt; 0, other=0)
+
+# Multiple conditions
+da.where((da &gt; 0) &amp; (da &lt; 100))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="computation">
+<h2>Computation<a class="headerlink" href="#computation" title="Link to this heading">#</a></h2>
+<section id="aggregation">
+<h3>Aggregation<a class="headerlink" href="#aggregation" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Along all dimensions
+da.mean()
+da.sum()
+da.std()
+da.min()
+da.max()
+da.median()
+
+# Along specific dimension
+da.mean(dim=&#39;time&#39;)
+da.sum(dim=[&#39;x&#39;, &#39;y&#39;])
+
+# Keep attributes
+da.mean(dim=&#39;time&#39;, keep_attrs=True)
+
+# Skip NaN values
+da.mean(dim=&#39;time&#39;, skipna=True)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="element-wise-operations">
+<h3>Element-wise Operations<a class="headerlink" href="#element-wise-operations" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Arithmetic
+result = da + 10
+result = da * 2
+result = da / 100
+
+# Mathematical functions
+np.sqrt(da)
+np.exp(da)
+np.log(da)
+
+# Trigonometric
+np.sin(da)
+np.cos(da)
+
+# Between DataArrays
+result = da1 + da2  # Automatically aligns coordinates
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="groupby-operations">
+<h3>GroupBy Operations<a class="headerlink" href="#groupby-operations" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Group by time components
+monthly = da.groupby(&#39;time.month&#39;).mean()
+seasonal = da.groupby(&#39;time.season&#39;).mean()
+yearly = da.groupby(&#39;time.year&#39;).mean()
+
+# Custom grouping
+bins = [0, 10, 20, 30]
+grouped = da.groupby_bins(&#39;temperature&#39;, bins).mean()
+
+# Multiple operations
+stats = da.groupby(&#39;time.month&#39;).agg([&#39;mean&#39;, &#39;std&#39;, &#39;min&#39;, &#39;max&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="resampling">
+<h3>Resampling<a class="headerlink" href="#resampling" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Temporal resampling
+monthly = da.resample(time=&#39;1M&#39;).mean()
+weekly = da.resample(time=&#39;1W&#39;).median()
+daily = da.resample(time=&#39;1D&#39;).sum()
+
+# Upsampling with interpolation
+hourly = da.resample(time=&#39;1H&#39;).interpolate(&#39;linear&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rolling-windows">
+<h3>Rolling Windows<a class="headerlink" href="#rolling-windows" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Moving average
+rolling_mean = da.rolling(time=7, center=True).mean()
+
+# Multiple dimensions
+rolling_2d = da.rolling(x=3, y=3, center=True).mean()
+
+# Custom function
+rolling_custom = da.rolling(time=7).reduce(np.percentile, q=90)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="interpolation">
+<h2>Interpolation<a class="headerlink" href="#interpolation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Linear interpolation
+interp = da.interp(time=&#39;2023-01-15T12:00:00&#39;)
+
+# Multiple points
+new_times = pd.date_range(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;, freq=&#39;6H&#39;)
+interp = da.interp(time=new_times)
+
+# Different methods
+interp = da.interp(time=new_times, method=&#39;cubic&#39;)
+interp = da.interp(time=new_times, method=&#39;nearest&#39;)
+
+# Fill NaN
+interp = da.interpolate_na(dim=&#39;time&#39;, method=&#39;linear&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="broadcasting">
+<h2>Broadcasting<a class="headerlink" href="#broadcasting" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Automatic alignment
+da1 = xr.DataArray([1, 2, 3], dims=&#39;x&#39;, coords={&#39;x&#39;: [0, 1, 2]})
+da2 = xr.DataArray([10, 20], dims=&#39;y&#39;, coords={&#39;y&#39;: [0, 1]})
+
+# Result has dimensions (x, y)
+result = da1 + da2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting">
+<h2>Plotting<a class="headerlink" href="#plotting" title="Link to this heading">#</a></h2>
+<section id="basic-plots">
+<h3>Basic Plots<a class="headerlink" href="#basic-plots" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Line plot (1D)
+da.sel(x=50, y=50).plot()
+
+# 2D plot
+da.isel(time=0).plot()
+
+# With options
+da.isel(time=0).plot(
+    cmap=&#39;viridis&#39;,
+    vmin=0,
+    vmax=100,
+    cbar_kwargs={&#39;label&#39;: &#39;Temperature (°C)&#39;}
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-plots">
+<h3>Advanced Plots<a class="headerlink" href="#advanced-plots" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Contour plot
+da.isel(time=0).plot.contour(levels=10)
+
+# Filled contour
+da.isel(time=0).plot.contourf(levels=20, cmap=&#39;RdYlBu_r&#39;)
+
+# Histogram
+da.plot.hist(bins=50)
+
+# Multiple subplots
+da.isel(time=[0, 10, 20, 30]).plot(col=&#39;time&#39;, col_wrap=2)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="i-o-operations">
+<h2>I/O Operations<a class="headerlink" href="#i-o-operations" title="Link to this heading">#</a></h2>
+<section id="netcdf">
+<h3>NetCDF<a class="headerlink" href="#netcdf" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Write
+ds.to_netcdf(&#39;data.nc&#39;)
+
+# Read
+ds = xr.open_dataset(&#39;data.nc&#39;)
+
+# With chunks (lazy loading)
+ds = xr.open_dataset(&#39;data.nc&#39;, chunks={&#39;time&#39;: 10})
+
+# Multiple files
+ds = xr.open_mfdataset(&#39;data_*.nc&#39;, combine=&#39;by_coords&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="zarr">
+<h3>Zarr<a class="headerlink" href="#zarr" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Write
+ds.to_zarr(&#39;data.zarr&#39;, mode=&#39;w&#39;)
+
+# Read
+ds = xr.open_zarr(&#39;data.zarr&#39;)
+
+# Append
+ds.to_zarr(&#39;data.zarr&#39;, append_dim=&#39;time&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="geotiff-via-rioxarray">
+<h3>GeoTIFF (via rioxarray)<a class="headerlink" href="#geotiff-via-rioxarray" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import rioxarray as rxr
+
+# Read
+da = rxr.open_rasterio(&#39;image.tif&#39;)
+
+# Write
+da.rio.to_raster(&#39;output.tif&#39;)
+
+# With CRS
+da.rio.write_crs(&#39;EPSG:4326&#39;, inplace=True)
+da.rio.to_raster(&#39;output.tif&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="dask-integration">
+<h2>Dask Integration<a class="headerlink" href="#dask-integration" title="Link to this heading">#</a></h2>
+<section id="chunking">
+<h3>Chunking<a class="headerlink" href="#chunking" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Chunk on creation
+ds = xr.Dataset({
+    &#39;temperature&#39;: ([&#39;time&#39;, &#39;y&#39;, &#39;x&#39;], 
+                   dask.array.random.random((365, 1000, 1000), 
+                   chunks=(10, 100, 100)))
+})
+
+# Rechunk existing data
+ds_rechunked = ds.chunk({&#39;time&#39;: 30, &#39;x&#39;: 500, &#39;y&#39;: 500})
+
+# Auto chunking
+ds = xr.open_dataset(&#39;large_file.nc&#39;, chunks=&#39;auto&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lazy-evaluation">
+<h3>Lazy Evaluation<a class="headerlink" href="#lazy-evaluation" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Operations are lazy
+result = ds.mean(dim=&#39;time&#39;)  # Not computed yet
+
+# Trigger computation
+result_computed = result.compute()
+
+# Persist in memory
+result_persisted = result.persist()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="parallel-operations">
+<h3>Parallel Operations<a class="headerlink" href="#parallel-operations" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from dask.distributed import Client
+
+client = Client()
+
+# Operations run in parallel
+result = ds.mean(dim=&#39;time&#39;).compute()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="coordinate-operations">
+<h2>Coordinate Operations<a class="headerlink" href="#coordinate-operations" title="Link to this heading">#</a></h2>
+<section id="adding-coordinates">
+<h3>Adding Coordinates<a class="headerlink" href="#adding-coordinates" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Add new coordinate
+ds = ds.assign_coords(height=100)
+
+# From existing data
+ds = ds.assign_coords(ndvi=(ds.nir - ds.red) / (ds.nir + ds.red))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="swapping-dimensions">
+<h3>Swapping Dimensions<a class="headerlink" href="#swapping-dimensions" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Swap dimension with coordinate
+ds_swapped = ds.swap_dims({&#39;time&#39;: &#39;day_of_year&#39;})
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multi-index">
+<h3>Multi-index<a class="headerlink" href="#multi-index" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Create multi-index
+ds = ds.set_index(location=[&#39;lat&#39;, &#39;lon&#39;])
+
+# Unstack
+ds_unstacked = ds.unstack(&#39;location&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="merging-and-concatenating">
+<h2>Merging and Concatenating<a class="headerlink" href="#merging-and-concatenating" title="Link to this heading">#</a></h2>
+<section id="merge">
+<h3>Merge<a class="headerlink" href="#merge" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Merge datasets
+merged = xr.merge([ds1, ds2])
+
+# With options
+merged = xr.merge([ds1, ds2], compat=&#39;override&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="concatenate">
+<h3>Concatenate<a class="headerlink" href="#concatenate" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Along existing dimension
+concat = xr.concat([ds1, ds2], dim=&#39;time&#39;)
+
+# Create new dimension
+concat = xr.concat([ds1, ds2], dim=&#39;model&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="combine">
+<h3>Combine<a class="headerlink" href="#combine" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Combine by coordinates
+combined = xr.combine_by_coords([ds1, ds2, ds3])
+
+# Combine nested
+combined = xr.combine_nested([[ds1, ds2], [ds3, ds4]], 
+                             concat_dim=[&#39;x&#39;, &#39;y&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="apply-functions">
+<h2>Apply Functions<a class="headerlink" href="#apply-functions" title="Link to this heading">#</a></h2>
+<section id="apply-ufunc">
+<h3>apply_ufunc<a class="headerlink" href="#apply-ufunc" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def custom_function(x, y):
+    return x ** 2 + y
+
+result = xr.apply_ufunc(
+    custom_function,
+    da1, da2,
+    dask=&#39;parallelized&#39;,
+    output_dtypes=[float]
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="map-blocks">
+<h3>map_blocks<a class="headerlink" href="#map-blocks" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def process_block(block):
+    # Custom processing
+    return block * 2
+
+result = da.map_blocks(process_block)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="performance-tips">
+<h2>Performance Tips<a class="headerlink" href="#performance-tips" title="Link to this heading">#</a></h2>
+<section id="use-chunking">
+<h3>1. Use Chunking<a class="headerlink" href="#use-chunking" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Good: Chunked for large data
+ds = xr.open_dataset(&#39;large.nc&#39;, chunks={&#39;time&#39;: 10})
+
+# Bad: Load all into memory
+ds = xr.open_dataset(&#39;large.nc&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="avoid-loops">
+<h3>2. Avoid Loops<a class="headerlink" href="#avoid-loops" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Good: Vectorized
+result = (ds.nir - ds.red) / (ds.nir + ds.red)
+
+# Bad: Loop over time
+for t in ds.time:
+    result = (ds.nir.sel(time=t) - ds.red.sel(time=t)) / \
+             (ds.nir.sel(time=t) + ds.red.sel(time=t))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="use-appropriate-chunks">
+<h3>3. Use Appropriate Chunks<a class="headerlink" href="#use-appropriate-chunks" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Good: Balanced chunks (10-100 MB per chunk)
+ds = ds.chunk({&#39;time&#39;: 10, &#39;x&#39;: 512, &#39;y&#39;: 512})
+
+# Bad: Too small
+ds = ds.chunk({&#39;time&#39;: 1, &#39;x&#39;: 10, &#39;y&#39;: 10})
+
+# Bad: Too large
+ds = ds.chunk({&#39;time&#39;: 1000, &#39;x&#39;: 10000, &#39;y&#39;: 10000})
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="persist-intermediate-results">
+<h3>4. Persist Intermediate Results<a class="headerlink" href="#persist-intermediate-results" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Good: Persist frequently used results
+intermediate = ds.mean(dim=&#39;time&#39;).persist()
+result1 = intermediate + 10
+result2 = intermediate * 2
+
+# Bad: Recompute each time
+result1 = ds.mean(dim=&#39;time&#39;) + 10
+result2 = ds.mean(dim=&#39;time&#39;) * 2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="common-patterns">
+<h2>Common Patterns<a class="headerlink" href="#common-patterns" title="Link to this heading">#</a></h2>
+<section id="calculate-ndvi">
+<h3>Calculate NDVI<a class="headerlink" href="#calculate-ndvi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ndvi = (ds.nir - ds.red) / (ds.nir + ds.red)
+ndvi = ndvi.rename(&#39;NDVI&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="temporal-statistics">
+<h3>Temporal Statistics<a class="headerlink" href="#temporal-statistics" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Mean over time
+temporal_mean = ds.mean(dim=&#39;time&#39;)
+
+# Anomalies
+climatology = ds.groupby(&#39;time.dayofyear&#39;).mean()
+anomalies = ds.groupby(&#39;time.dayofyear&#39;) - climatology
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="spatial-subsetting">
+<h3>Spatial Subsetting<a class="headerlink" href="#spatial-subsetting" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Bounding box
+subset = ds.sel(
+    x=slice(xmin, xmax),
+    y=slice(ymin, ymax)
+)
+
+# Point extraction
+point = ds.sel(x=82.5, y=27.0, method=&#39;nearest&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.xarray.dev/">XArray Documentation</a></p></li>
+<li><p><a class="reference external" href="https://tutorial.xarray.dev/">XArray Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pydata/xarray">XArray GitHub</a></p></li>
+<li><p><a class="reference external" href="https://gallery.pangeo.io/">Pangeo Gallery</a></p></li>
+<li><p><a class="reference external" href="https://docs.xarray.dev/en/stable/getting-started-guide/quick-overview.html">XArray Cheat Sheet</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\reference"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../examples/complete-timeseries-workflow.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Complete Time Series Workflow</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="stac-spec.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">STAC Specification Reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-data-structures">Core Data Structures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataarray">DataArray</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-and-indexing">Selection and Indexing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#position-based-isel">Position-based (isel)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#label-based-sel">Label-based (sel)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-indexing-where">Boolean Indexing (where)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computation">Computation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation">Aggregation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#element-wise-operations">Element-wise Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#groupby-operations">GroupBy Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resampling">Resampling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rolling-windows">Rolling Windows</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolation">Interpolation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-plots">Basic Plots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-plots">Advanced Plots</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-operations">I/O Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#netcdf">NetCDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zarr">Zarr</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geotiff-via-rioxarray">GeoTIFF (via rioxarray)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-integration">Dask Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunking">Chunking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lazy-evaluation">Lazy Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-operations">Parallel Operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-operations">Coordinate Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-coordinates">Adding Coordinates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#swapping-dimensions">Swapping Dimensions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-index">Multi-index</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-and-concatenating">Merging and Concatenating</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge">Merge</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenate">Concatenate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine">Combine</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-functions">Apply Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-ufunc">apply_ufunc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map-blocks">map_blocks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-tips">Performance Tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-chunking">1. Use Chunking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avoid-loops">2. Avoid Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-appropriate-chunks">3. Use Appropriate Chunks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persist-intermediate-results">4. Persist Intermediate Results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-patterns">Common Patterns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-ndvi">Calculate NDVI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-statistics">Temporal Statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-subsetting">Spatial Subsetting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

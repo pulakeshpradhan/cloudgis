@@ -1,0 +1,1359 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>XEE for Earth Engine &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/fundamentals/xee';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Calculating Spectral Indices" href="../processing/spectral-indices.html" />
+    <link rel="prev" title="Working with Zarr" href="zarr.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../processing/spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/fundamentals/xee.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/fundamentals/xee.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/fundamentals/xee.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>XEE for Earth Engine</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#earth-engine-account">Earth Engine Account</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication">Authentication</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage-opening-different-ee-types">Basic Usage: Opening Different EE Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-an-ee-image-single-band-multi-band-image">1. Opening an ee.Image (Single Band/Multi-band Image)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-an-ee-imagecollection-time-series">2. Opening an ee.ImageCollection (Time Series)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-ee-featurecollection-spatial-filtering">3. Using ee.FeatureCollection (Spatial Filtering)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-time-range">Specifying Time Range</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-bands">Selecting Bands</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-different-datasets">Working with Different Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landsat">Landsat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modis">MODIS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-data">Climate Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terrain-data">Terrain Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-features">Advanced Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-masking">Cloud Masking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-collections">Filtering Collections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-geometries">Custom Geometries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-feature-collections">Using Feature Collections</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-with-xarray-operations">Combining with XArray Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-spectral-indices">Calculate Spectral Indices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-analysis">Time Series Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-tips-for-xee">Important Tips for XEE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-aggregation">Spatial Aggregation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-with-dask">Integration with Dask</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-example-land-cover-change">Real-World Example: Land Cover Change</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-tips">Performance Tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-appropriate-scale">1. Use Appropriate Scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limit-spatial-extent">2. Limit Spatial Extent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-before-loading">3. Filter Before Loading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-only-needed-bands">4. Select Only Needed Bands</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication-issues">Authentication Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-errors">Memory Errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slow-performance">Slow Performance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="xee-for-earth-engine">
+<h1>XEE for Earth Engine<a class="headerlink" href="#xee-for-earth-engine" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://github.com/google/Xee">XEE (XArray Earth Engine Extension)</a> enables you to use Google Earth Engine datasets with XArray. This integration brings together the massive Earth Engine data catalog with the powerful analysis capabilities of XArray and Dask.</p>
+<p><strong>Key Features:</strong></p>
+<ul class="simple">
+<li><p>Access Earth Engine ImageCollections as XArray datasets</p></li>
+<li><p>Leverage Earth Engine’s petabyte-scale data catalog</p></li>
+<li><p>Use XArray’s intuitive API for analysis</p></li>
+<li><p>Combine with Dask for parallel processing</p></li>
+<li><p>Seamless integration with existing XArray workflows</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<section id="earth-engine-account">
+<h3>Earth Engine Account<a class="headerlink" href="#earth-engine-account" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Sign up at <a class="reference external" href="https://earthengine.google.com/">earthengine.google.com</a></p></li>
+<li><p>Wait for approval (usually instant for research/education)</p></li>
+</ol>
+</section>
+<section id="authentication">
+<h3>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import ee
+
+# Authenticate (first time only)
+ee.Authenticate()
+
+# Initialize Earth Engine
+ee.Initialize(project=&#39;spatialgeography&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>For Colab:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Authenticate in Colab
+ee.Authenticate()
+ee.Initialize(project=&#39;spatialgeography&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%%capture
+!pip install xee earthengine-api
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="basic-usage-opening-different-ee-types">
+<h2>Basic Usage: Opening Different EE Types<a class="headerlink" href="#basic-usage-opening-different-ee-types" title="Link to this heading">#</a></h2>
+<p>XEE allows you to open various Earth Engine objects directly into XArray.</p>
+<section id="opening-an-ee-image-single-band-multi-band-image">
+<h3>1. Opening an ee.Image (Single Band/Multi-band Image)<a class="headerlink" href="#opening-an-ee-image-single-band-multi-band-image" title="Link to this heading">#</a></h3>
+<p>Useful for static datasets like DEMs or single composites.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import xarray as xr
+import xee
+import ee
+
+ee.Initialize(project=&#39;spatialgeography&#39;)
+
+# Define geometry
+roi = ee.Geometry.Point([83.277, 17.7009]).buffer(10000)
+
+# Open an Earth Engine Image (SRTM DEM)
+ds_image = xr.open_dataset(
+    &#39;ee://CGIAR/SRTM90_V4&#39;,
+    engine=&#39;ee&#39;,
+    geometry=roi,
+    scale=30
+)
+print(ds_image)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="opening-an-ee-imagecollection-time-series">
+<h3>2. Opening an ee.ImageCollection (Time Series)<a class="headerlink" href="#opening-an-ee-imagecollection-time-series" title="Link to this heading">#</a></h3>
+<p>The primary use case for XEE, allowing you to work with multi-temporal data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Open an Earth Engine ImageCollection (Sentinel-2)
+collection = ee.ImageCollection(&#39;COPERNICUS/S2_SR_HARMONIZED&#39;) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-03-31&#39;) \
+    .filterBounds(roi)
+
+ds_coll = xr.open_dataset(
+    collection,
+    engine=&#39;ee&#39;,
+    geometry=roi,
+    scale=10,
+    variables=[&#39;B4&#39;, &#39;B8&#39;] # Select bands to save memory
+)
+print(ds_coll)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-ee-featurecollection-spatial-filtering">
+<h3>3. Using ee.FeatureCollection (Spatial Filtering)<a class="headerlink" href="#using-ee-featurecollection-spatial-filtering" title="Link to this heading">#</a></h3>
+<p>While XEE focuses on raster data, you often use <code class="docutils literal notranslate"><span class="pre">FeatureCollections</span></code> to define the spatial bounds for your XArray.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load administrative boundaries
+districts = ee.FeatureCollection(&#39;FAO/GAUL/2015/level2&#39;)
+vizag = districts.filter(ee.Filter.eq(&#39;ADM2_NAME&#39;, &#39;Visakhapatnam&#39;))
+
+# Use the FeatureCollection geometry to clip the XArray
+ds_fc = xr.open_dataset(
+    &#39;ee://COPERNICUS/S2_SR_HARMONIZED&#39;,
+    engine=&#39;ee&#39;,
+    geometry=vizag.geometry(),
+    scale=100,
+    start_time=&#39;2023-01-01&#39;,
+    end_time=&#39;2023-01-31&#39;
+)
+print(ds_fc)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="specifying-time-range">
+<h3>Specifying Time Range<a class="headerlink" href="#specifying-time-range" title="Link to this heading">#</a></h3>
+<p>The most robust way to filter by time is to filter the Earth Engine collection <strong>before</strong> passing it to XArray.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Filter in Earth Engine first
+collection = ee.ImageCollection(&#39;COPERNICUS/S2_SR&#39;) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .filterBounds(roi)
+
+# Open the filtered collection
+ds = xr.open_dataset(
+    collection,
+    engine=&#39;ee&#39;,
+    geometry=roi,
+    scale=10,
+    ee_mask_value=-9999
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="selecting-bands">
+<h3>Selecting Bands<a class="headerlink" href="#selecting-bands" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ds = xr.open_dataset(
+    &#39;ee://COPERNICUS/S2_SR&#39;,
+    engine=&#39;ee&#39;,
+    geometry=ee.Geometry.Point([82.6, 27.2]).buffer(10000),
+    scale=10,
+    # Select specific bands
+    variables=[&#39;B4&#39;, &#39;B8&#39;, &#39;B11&#39;]  # Red, NIR, SWIR
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="working-with-different-datasets">
+<h2>Working with Different Datasets<a class="headerlink" href="#working-with-different-datasets" title="Link to this heading">#</a></h2>
+<section id="landsat">
+<h3>Landsat<a class="headerlink" href="#landsat" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Landsat 8
+ds_l8 = xr.open_dataset(
+    &#39;ee://LANDSAT/LC08/C02/T1_L2&#39;,
+    engine=&#39;ee&#39;,
+    geometry=ee.Geometry.Rectangle([lon_min, lat_min, lon_max, lat_max]),
+    scale=30,
+    start_time=&#39;2023-01-01&#39;,
+    end_time=&#39;2023-12-31&#39;
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="modis">
+<h3>MODIS<a class="headerlink" href="#modis" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># MODIS NDVI
+ds_modis = xr.open_dataset(
+    &#39;ee://MODIS/006/MOD13A2&#39;,
+    engine=&#39;ee&#39;,
+    geometry=ee.Geometry.Point([lon, lat]).buffer(50000),
+    scale=1000,
+    start_time=&#39;2023-01-01&#39;,
+    end_time=&#39;2023-12-31&#39;
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="climate-data">
+<h3>Climate Data<a class="headerlink" href="#climate-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># ERA5 Climate Reanalysis
+ds_era5 = xr.open_dataset(
+    &#39;ee://ECMWF/ERA5/DAILY&#39;,
+    engine=&#39;ee&#39;,
+    geometry=ee.Geometry.Rectangle([lon_min, lat_min, lon_max, lat_max]),
+    scale=27830,  # ~25km
+    start_time=&#39;2023-01-01&#39;,
+    end_time=&#39;2023-12-31&#39;
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="terrain-data">
+<h3>Terrain Data<a class="headerlink" href="#terrain-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># SRTM Digital Elevation Model
+dem = xr.open_dataset(
+    &#39;ee://USGS/SRTMGL1_003&#39;,
+    engine=&#39;ee&#39;,
+    geometry=ee.Geometry.Rectangle([lon_min, lat_min, lon_max, lat_max]),
+    scale=30
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="advanced-features">
+<h2>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading">#</a></h2>
+<section id="cloud-masking">
+<h3>Cloud Masking<a class="headerlink" href="#cloud-masking" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def mask_clouds(image):
+    &quot;&quot;&quot;Mask clouds in Sentinel-2 imagery.&quot;&quot;&quot;
+    qa = image.select(&#39;QA60&#39;)
+    cloud_mask = qa.bitwiseAnd(1 &lt;&lt; 10).eq(0).And(
+                 qa.bitwiseAnd(1 &lt;&lt; 11).eq(0))
+    return image.updateMask(cloud_mask)
+
+# Apply cloud mask
+collection = ee.ImageCollection(&#39;COPERNICUS/S2_SR&#39;) \
+    .filterBounds(ee.Geometry.Point([lon, lat])) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .map(mask_clouds)
+
+# Open as XArray
+ds = xr.open_dataset(
+    collection,
+    engine=&#39;ee&#39;,
+    geometry=ee.Geometry.Point([lon, lat]).buffer(10000),
+    scale=10
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="filtering-collections">
+<h3>Filtering Collections<a class="headerlink" href="#filtering-collections" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Filter by cloud cover
+collection = ee.ImageCollection(&#39;COPERNICUS/S2_SR&#39;) \
+    .filterBounds(ee.Geometry.Point([lon, lat])) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .filter(ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 20))
+
+ds = xr.open_dataset(
+    collection,
+    engine=&#39;ee&#39;,
+    geometry=ee.Geometry.Point([lon, lat]).buffer(10000),
+    scale=10
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="custom-geometries">
+<h3>Custom Geometries<a class="headerlink" href="#custom-geometries" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Polygon geometry
+polygon = ee.Geometry.Polygon([[
+    [lon_min, lat_min],
+    [lon_max, lat_min],
+    [lon_max, lat_max],
+    [lon_min, lat_max],
+    [lon_min, lat_min]
+]])
+
+ds = xr.open_dataset(
+    &#39;ee://COPERNICUS/S2_SR&#39;,
+    engine=&#39;ee&#39;,
+    geometry=polygon,
+    scale=10,
+    start_time=&#39;2023-01-01&#39;,
+    end_time=&#39;2023-12-31&#39;
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-feature-collections">
+<h3>Using Feature Collections<a class="headerlink" href="#using-feature-collections" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load administrative boundaries
+countries = ee.FeatureCollection(&#39;USDOS/LSIB_SIMPLE/2017&#39;)
+india = countries.filter(ee.Filter.eq(&#39;country_na&#39;, &#39;India&#39;))
+
+# Get geometry
+geometry = india.geometry()
+
+# Open dataset for India
+ds = xr.open_dataset(
+    &#39;ee://COPERNICUS/S2_SR&#39;,
+    engine=&#39;ee&#39;,
+    geometry=geometry,
+    scale=100,  # Use coarser resolution for large areas
+    start_time=&#39;2023-01-01&#39;,
+    end_time=&#39;2023-01-31&#39;
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="combining-with-xarray-operations">
+<h2>Combining with XArray Operations<a class="headerlink" href="#combining-with-xarray-operations" title="Link to this heading">#</a></h2>
+<section id="calculate-spectral-indices">
+<h3>Calculate Spectral Indices<a class="headerlink" href="#calculate-spectral-indices" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load Sentinel-2 data
+ds = xr.open_dataset(
+    &#39;ee://COPERNICUS/S2_SR&#39;,
+    engine=&#39;ee&#39;,
+    geometry=ee.Geometry.Point([82.6, 27.2]).buffer(10000),
+    scale=10,
+    start_time=&#39;2023-01-01&#39;,
+    end_time=&#39;2023-12-31&#39;,
+    variables=[&#39;B4&#39;, &#39;B8&#39;]  # Red, NIR
+)
+
+# Calculate NDVI
+ndvi = (ds.B8 - ds.B4) / (ds.B8 + ds.B4)
+
+# Visualize
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(10, 8))
+ndvi.isel(time=0).plot(ax=ax, cmap=&#39;RdYlGn&#39;, vmin=-1, vmax=1)
+ax.set_title(&#39;NDVI from Earth Engine&#39;)
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="time-series-analysis">
+<h3>Time Series Analysis<a class="headerlink" href="#time-series-analysis" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load MODIS NDVI
+ds = xr.open_dataset(
+    &#39;ee://MODIS/006/MOD13A2&#39;,
+    engine=&#39;ee&#39;,
+    geometry=ee.Geometry.Point([82.6, 27.2]).buffer(5000),
+    scale=1000,
+    start_time=&#39;2020-01-01&#39;,
+    end_time=&#39;2023-12-31&#39;
+)
+
+# Extract NDVI time series
+# IMPORTANT: Always sort by time before resampling or extracting time series
+ndvi_ts = ds.NDVI.sortby(&#39;time&#39;).mean(dim=[&#39;X&#39;, &#39;Y&#39;])
+
+# Plot time series
+fig, ax = plt.subplots(figsize=(12, 6))
+ndvi_ts.plot(ax=ax)
+ax.set_title(&#39;NDVI Time Series&#39;)
+ax.set_ylabel(&#39;NDVI&#39;)
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="important-tips-for-xee">
+<h3>Important Tips for XEE<a class="headerlink" href="#important-tips-for-xee" title="Link to this heading">#</a></h3>
+<p>!!! tip “Crucial: Always Sort by Time”
+Earth Engine collections are not always returned in chronological order. To avoid <code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">Index</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">monotonic</span> <span class="pre">for</span> <span class="pre">resampling</span></code>, always sort your dataset:
+<code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160; <span class="pre">ds</span> <span class="pre">=</span> <span class="pre">ds.sortby('time')</span>&#160;&#160;&#160;&#160; </code></p>
+<p>!!! tip “Spatial Alignment &amp; Projections”
+For consistent results and global compatibility, always specify the coordinate system as <strong>EPSG:4326</strong> (WGS 84).
+<code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160; <span class="pre">ds</span> <span class="pre">=</span> <span class="pre">xr.open_dataset(...,</span> <span class="pre">crs='EPSG:4326',</span> <span class="pre">scale=100)</span>&#160;&#160;&#160;&#160; </code></p>
+<p>!!! tip “Handling Sparse Data (NaNs)”
+Aggressive cloud masking can remove all data for certain periods. Always check if your dataset contains valid numeric data before plotting:
+<code class="docutils literal notranslate"><span class="pre">python</span>&#160;&#160;&#160;&#160; <span class="pre">if</span> <span class="pre">ds.NDVI.notnull().any():</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">ds.NDVI.plot()</span>&#160;&#160;&#160;&#160; <span class="pre">else:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">print(&quot;No</span> <span class="pre">valid</span> <span class="pre">data</span> <span class="pre">found</span> <span class="pre">in</span> <span class="pre">this</span> <span class="pre">period.&quot;)</span>&#160;&#160;&#160;&#160; </code></p>
+</section>
+<section id="spatial-aggregation">
+<h3>Spatial Aggregation<a class="headerlink" href="#spatial-aggregation" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load temperature data
+ds = xr.open_dataset(
+    &#39;ee://ECMWF/ERA5/DAILY&#39;,
+    engine=&#39;ee&#39;,
+    geometry=ee.Geometry.Rectangle([70, 8, 97, 35]),  # India bounds
+    scale=27830,
+    start_time=&#39;2023-01-01&#39;,
+    end_time=&#39;2023-12-31&#39;,
+    variables=[&#39;mean_2m_air_temperature&#39;]
+)
+
+# Calculate spatial mean
+temp_mean = ds.mean_2m_air_temperature.mean(dim=[&#39;lon&#39;, &#39;lat&#39;])
+
+# Convert from Kelvin to Celsius
+temp_celsius = temp_mean - 273.15
+
+# Plot
+fig, ax = plt.subplots(figsize=(12, 6))
+temp_celsius.plot(ax=ax)
+ax.set_title(&#39;Mean Temperature over India&#39;)
+ax.set_ylabel(&#39;Temperature (°C)&#39;)
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="integration-with-dask">
+<h2>Integration with Dask<a class="headerlink" href="#integration-with-dask" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from dask.distributed import Client
+
+# Start Dask client
+client = Client()
+
+# Open large dataset with chunking
+ds = xr.open_dataset(
+    &#39;ee://COPERNICUS/S2_SR&#39;,
+    engine=&#39;ee&#39;,
+    geometry=ee.Geometry.Rectangle([lon_min, lat_min, lon_max, lat_max]),
+    scale=10,
+    start_time=&#39;2023-01-01&#39;,
+    end_time=&#39;2023-12-31&#39;,
+    chunks={&#39;time&#39;: 10, &#39;X&#39;: 512, &#39;Y&#39;: 512}
+)
+
+# Parallel computation
+result = ds.mean(dim=&#39;time&#39;).compute()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="real-world-example-land-cover-change">
+<h2>Real-World Example: Land Cover Change<a class="headerlink" href="#real-world-example-land-cover-change" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import ee
+import xarray as xr
+import matplotlib.pyplot as plt
+
+ee.Initialize(project=&#39;spatialgeography&#39;)
+
+# Define area of interest
+aoi = ee.Geometry.Point([82.6, 27.2]).buffer(20000)
+
+# Load Sentinel-2 for two time periods
+ds_2020 = xr.open_dataset(
+    &#39;ee://COPERNICUS/S2_SR&#39;,
+    engine=&#39;ee&#39;,
+    geometry=aoi,
+    scale=20,
+    start_time=&#39;2020-01-01&#39;,
+    end_time=&#39;2020-12-31&#39;,
+    variables=[&#39;B4&#39;, &#39;B8&#39;]
+)
+
+ds_2023 = xr.open_dataset(
+    &#39;ee://COPERNICUS/S2_SR&#39;,
+    engine=&#39;ee&#39;,
+    geometry=aoi,
+    scale=20,
+    start_time=&#39;2023-01-01&#39;,
+    end_time=&#39;2023-12-31&#39;,
+    variables=[&#39;B4&#39;, &#39;B8&#39;]
+)
+
+# Calculate median NDVI for each period
+ndvi_2020 = ((ds_2020.B8 - ds_2020.B4) / (ds_2020.B8 + ds_2020.B4)).median(dim=&#39;time&#39;)
+ndvi_2023 = ((ds_2023.B8 - ds_2023.B4) / (ds_2023.B8 + ds_2023.B4)).median(dim=&#39;time&#39;)
+
+# Calculate change
+ndvi_change = ndvi_2023 - ndvi_2020
+
+# Visualize
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+
+ndvi_2020.plot(ax=axes[0], cmap=&#39;RdYlGn&#39;, vmin=-1, vmax=1)
+axes[0].set_title(&#39;NDVI 2020&#39;)
+
+ndvi_2023.plot(ax=axes[1], cmap=&#39;RdYlGn&#39;, vmin=-1, vmax=1)
+axes[1].set_title(&#39;NDVI 2023&#39;)
+
+ndvi_change.plot(ax=axes[2], cmap=&#39;RdBu&#39;, vmin=-0.5, vmax=0.5)
+axes[2].set_title(&#39;NDVI Change (2023-2020)&#39;)
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="performance-tips">
+<h2>Performance Tips<a class="headerlink" href="#performance-tips" title="Link to this heading">#</a></h2>
+<section id="use-appropriate-scale">
+<h3>1. Use Appropriate Scale<a class="headerlink" href="#use-appropriate-scale" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Too fine - slow and large
+ds = xr.open_dataset(..., scale=10)  # 10m
+
+# Appropriate for analysis
+ds = xr.open_dataset(..., scale=30)  # 30m
+
+# Coarse for overview
+ds = xr.open_dataset(..., scale=100)  # 100m
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="limit-spatial-extent">
+<h3>2. Limit Spatial Extent<a class="headerlink" href="#limit-spatial-extent" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Use smallest necessary geometry
+geometry = ee.Geometry.Point([lon, lat]).buffer(5000)  # 5km buffer
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="filter-before-loading">
+<h3>3. Filter Before Loading<a class="headerlink" href="#filter-before-loading" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Filter in Earth Engine (server-side)
+collection = ee.ImageCollection(&#39;COPERNICUS/S2_SR&#39;) \
+    .filterBounds(geometry) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .filter(ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 20))
+
+ds = xr.open_dataset(collection, engine=&#39;ee&#39;, ...)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="select-only-needed-bands">
+<h3>4. Select Only Needed Bands<a class="headerlink" href="#select-only-needed-bands" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Don&#39;t load all bands
+ds = xr.open_dataset(..., variables=[&#39;B4&#39;, &#39;B8&#39;])  # Only Red and NIR
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<section id="authentication-issues">
+<h3>Authentication Issues<a class="headerlink" href="#authentication-issues" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Re-authenticate
+ee.Authenticate(force=True)
+ee.Initialize(project=&#39;spatialgeography&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="memory-errors">
+<h3>Memory Errors<a class="headerlink" href="#memory-errors" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Use coarser resolution
+ds = xr.open_dataset(..., scale=100)  # Instead of 10
+
+# Or smaller area
+geometry = ee.Geometry.Point([lon, lat]).buffer(1000)  # 1km instead of 10km
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="slow-performance">
+<h3>Slow Performance<a class="headerlink" href="#slow-performance" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Use Dask chunking
+ds = xr.open_dataset(..., chunks={&#39;time&#39;: 5, &#39;X&#39;: 256, &#39;Y&#39;: 256})
+
+# Reduce spatial extent
+# Increase scale (lower resolution)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<p>!!! success “What You Learned”
+- XEE enables XArray access to Earth Engine datasets
+- Combine Earth Engine’s data catalog with XArray’s analysis tools
+- Use Earth Engine for server-side filtering and processing
+- Integrate with Dask for parallel computation
+- Access diverse datasets: Sentinel, Landsat, MODIS, climate data
+- Apply cloud masking and custom filters
+- Perform time series and spatial analysis</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>→ Continue to <a class="reference internal" href="../processing/spectral-indices.html"><span class="std std-doc">Calculating Spectral Indices</span></a></p>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/google/Xee">XEE Documentation</a></p></li>
+<li><p><a class="reference external" href="https://developers.google.com/earth-engine/datasets">Earth Engine Data Catalog</a></p></li>
+<li><p><a class="reference external" href="https://developers.google.com/earth-engine/guides/python_install">Earth Engine Python API</a></p></li>
+<li><p><a class="reference external" href="https://developers.google.com/earth-engine/guides">Earth Engine Guides</a></p></li>
+<li><p><a class="reference external" href="https://github.com/google/Xee/tree/main/examples">XArray Earth Engine Examples</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\fundamentals"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="zarr.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Working with Zarr</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../processing/spectral-indices.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Calculating Spectral Indices</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#earth-engine-account">Earth Engine Account</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication">Authentication</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage-opening-different-ee-types">Basic Usage: Opening Different EE Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-an-ee-image-single-band-multi-band-image">1. Opening an ee.Image (Single Band/Multi-band Image)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-an-ee-imagecollection-time-series">2. Opening an ee.ImageCollection (Time Series)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-ee-featurecollection-spatial-filtering">3. Using ee.FeatureCollection (Spatial Filtering)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-time-range">Specifying Time Range</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-bands">Selecting Bands</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-different-datasets">Working with Different Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landsat">Landsat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modis">MODIS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-data">Climate Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terrain-data">Terrain Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-features">Advanced Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-masking">Cloud Masking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-collections">Filtering Collections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-geometries">Custom Geometries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-feature-collections">Using Feature Collections</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-with-xarray-operations">Combining with XArray Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-spectral-indices">Calculate Spectral Indices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-analysis">Time Series Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-tips-for-xee">Important Tips for XEE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-aggregation">Spatial Aggregation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-with-dask">Integration with Dask</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-example-land-cover-change">Real-World Example: Land Cover Change</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-tips">Performance Tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-appropriate-scale">1. Use Appropriate Scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limit-spatial-extent">2. Limit Spatial Extent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-before-loading">3. Filter Before Loading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-only-needed-bands">4. Select Only Needed Bands</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication-issues">Authentication Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-errors">Memory Errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slow-performance">Slow Performance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

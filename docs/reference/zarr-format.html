@@ -1,0 +1,1440 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Zarr Format Reference &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/reference/zarr-format';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Google Earth Engine Reference" href="xee-usage.html" />
+    <link rel="prev" title="Dask Best Practices" href="dask-practices.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../processing/spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/reference/zarr-format.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/reference/zarr-format.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/reference/zarr-format.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Zarr Format Reference</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-structure">Storage Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#directory-layout">Directory Layout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-files">Metadata Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#zarray">.zarray</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#zattrs">.zattrs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chunking">Chunking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunk-size-selection">Chunk Size Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#access-pattern-optimization">Access Pattern Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-access">Time Series Access</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-access">Spatial Access</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#balanced-access">Balanced Access</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compression">Compression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blosc-recommended">Blosc (Recommended)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-compressors">Other Compressors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compression-comparison">Compression Comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xarray-integration">XArray Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-to-zarr">Writing to Zarr</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-from-zarr">Reading from Zarr</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#appending-data">Appending Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-storage">Cloud Storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aws-s3">AWS S3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-cloud-storage">Google Cloud Storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#azure-blob-storage">Azure Blob Storage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consolidated-metadata">Consolidated Metadata</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-consolidated-metadata">Create Consolidated Metadata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-consolidated-metadata">Use Consolidated Metadata</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-i-o">Parallel I/O</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-writing">Parallel Writing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-reading">Parallel Reading</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filters">Filters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#groups-and-hierarchies">Groups and Hierarchies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-groups">Creating Groups</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-groups">Reading Groups</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Use Consolidated Metadata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-appropriate-chunks">2. Choose Appropriate Chunks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-compression">3. Use Compression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avoid-small-chunks">4. Avoid Small Chunks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-appropriate-data-types">5. Use Appropriate Data Types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-optimization">Performance Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunk-size-impact">Chunk Size Impact</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compression-impact">Compression Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-slow-reads">Issue: Slow Reads</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-large-file-size">Issue: Large File Size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-memory-errors">Issue: Memory Errors</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-reference">Quick Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-operations">Common Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-settings">Recommended Settings</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="zarr-format-reference">
+<h1>Zarr Format Reference<a class="headerlink" href="#zarr-format-reference" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>Zarr is a format for the storage of chunked, compressed, N-dimensional arrays. It’s designed for use in parallel computing and cloud storage environments.</p>
+</section>
+<section id="key-features">
+<h2>Key Features<a class="headerlink" href="#key-features" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Chunked Storage</strong>: Data divided into regular chunks</p></li>
+<li><p><strong>Compression</strong>: Multiple compression algorithms supported</p></li>
+<li><p><strong>Cloud-Optimized</strong>: Efficient for object storage (S3, GCS, Azure)</p></li>
+<li><p><strong>Parallel I/O</strong>: Concurrent reads and writes</p></li>
+<li><p><strong>Language-Agnostic</strong>: Implementations in Python, Julia, C++, Java</p></li>
+<li><p><strong>Metadata</strong>: Flexible JSON metadata storage</p></li>
+</ul>
+</section>
+<section id="storage-structure">
+<h2>Storage Structure<a class="headerlink" href="#storage-structure" title="Link to this heading">#</a></h2>
+<section id="directory-layout">
+<h3>Directory Layout<a class="headerlink" href="#directory-layout" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data.zarr/
+├── .zarray              # Array metadata
+├── .zattrs              # User attributes
+├── .zgroup              # Group metadata (if applicable)
+└── 0.0.0                # Chunk files
+    ├── 0.0.1
+    ├── 0.1.0
+    ├── 0.1.1
+    └── ...
+</pre></div>
+</div>
+</section>
+<section id="metadata-files">
+<h3>Metadata Files<a class="headerlink" href="#metadata-files" title="Link to this heading">#</a></h3>
+<section id="zarray">
+<h4>.zarray<a class="headerlink" href="#zarray" title="Link to this heading">#</a></h4>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;chunks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w"> </span><span class="mi">512</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;compressor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;blosc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;cname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;zstd&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;clevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;shuffle&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;dtype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;f4&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fill_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NaN&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;shape&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">365</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;zarr_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="zattrs">
+<h4>.zattrs<a class="headerlink" href="#zattrs" title="Link to this heading">#</a></h4>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NDVI Time Series&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sentinel-2&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dimensionless&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;valid_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">-1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="chunking">
+<h2>Chunking<a class="headerlink" href="#chunking" title="Link to this heading">#</a></h2>
+<section id="chunk-size-selection">
+<h3>Chunk Size Selection<a class="headerlink" href="#chunk-size-selection" title="Link to this heading">#</a></h3>
+<p><strong>Formula</strong>: Aim for 10-100 MB per chunk</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import numpy as np
+
+def optimal_chunks(shape, dtype, target_mb=10):
+    &quot;&quot;&quot;Calculate optimal chunk dimensions.&quot;&quot;&quot;
+    itemsize = np.dtype(dtype).itemsize
+    target_items = (target_mb * 1024 * 1024) / itemsize
+    
+    # Distribute evenly across dimensions
+    chunk_dim = int(target_items ** (1/len(shape)))
+    chunks = tuple(min(chunk_dim, s) for s in shape)
+    
+    return chunks
+
+# Example
+shape = (365, 5000, 5000)
+chunks = optimal_chunks(shape, &#39;float32&#39;, target_mb=10)
+print(f&quot;Recommended chunks: {chunks}&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="access-pattern-optimization">
+<h3>Access Pattern Optimization<a class="headerlink" href="#access-pattern-optimization" title="Link to this heading">#</a></h3>
+<section id="time-series-access">
+<h4>Time Series Access<a class="headerlink" href="#time-series-access" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Optimize for temporal access
+chunks = (1, 1000, 1000)  # Small time chunks, large spatial
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="spatial-access">
+<h4>Spatial Access<a class="headerlink" href="#spatial-access" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Optimize for spatial access
+chunks = (365, 100, 100)  # Large time chunks, small spatial
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="balanced-access">
+<h4>Balanced Access<a class="headerlink" href="#balanced-access" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Balanced for mixed access
+chunks = (10, 512, 512)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="compression">
+<h2>Compression<a class="headerlink" href="#compression" title="Link to this heading">#</a></h2>
+<section id="blosc-recommended">
+<h3>Blosc (Recommended)<a class="headerlink" href="#blosc-recommended" title="Link to this heading">#</a></h3>
+<p>Fast compression with multiple algorithms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from numcodecs import Blosc
+
+# Fast compression (LZ4)
+compressor = Blosc(cname=&#39;lz4&#39;, clevel=5, shuffle=Blosc.SHUFFLE)
+
+# Balanced (Zstandard)
+compressor = Blosc(cname=&#39;zstd&#39;, clevel=3, shuffle=Blosc.SHUFFLE)
+
+# High compression (Zstandard)
+compressor = Blosc(cname=&#39;zstd&#39;, clevel=9, shuffle=Blosc.BITSHUFFLE)
+
+# Use with Zarr
+import zarr
+z = zarr.open(&#39;data.zarr&#39;, mode=&#39;w&#39;, shape=(1000, 1000), 
+              chunks=(100, 100), compressor=compressor)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-compressors">
+<h3>Other Compressors<a class="headerlink" href="#other-compressors" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from numcodecs import Zlib, GZip, BZ2, LZMA
+
+# Zlib (good compression, moderate speed)
+compressor = Zlib(level=5)
+
+# GZip (widely compatible)
+compressor = GZip(level=6)
+
+# BZ2 (high compression, slow)
+compressor = BZ2(level=9)
+
+# LZMA (highest compression, slowest)
+compressor = LZMA(preset=6)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compression-comparison">
+<h3>Compression Comparison<a class="headerlink" href="#compression-comparison" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Compressor</p></th>
+<th class="head"><p>Speed</p></th>
+<th class="head"><p>Ratio</p></th>
+<th class="head"><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LZ4</p></td>
+<td><p>Very Fast</p></td>
+<td><p>Low</p></td>
+<td><p>Real-time processing</p></td>
+</tr>
+<tr class="row-odd"><td><p>Zstandard</p></td>
+<td><p>Fast</p></td>
+<td><p>Good</p></td>
+<td><p>General purpose</p></td>
+</tr>
+<tr class="row-even"><td><p>Zlib</p></td>
+<td><p>Medium</p></td>
+<td><p>Good</p></td>
+<td><p>Compatibility</p></td>
+</tr>
+<tr class="row-odd"><td><p>BZ2</p></td>
+<td><p>Slow</p></td>
+<td><p>High</p></td>
+<td><p>Archival</p></td>
+</tr>
+<tr class="row-even"><td><p>LZMA</p></td>
+<td><p>Very Slow</p></td>
+<td><p>Highest</p></td>
+<td><p>Long-term storage</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="xarray-integration">
+<h2>XArray Integration<a class="headerlink" href="#xarray-integration" title="Link to this heading">#</a></h2>
+<section id="writing-to-zarr">
+<h3>Writing to Zarr<a class="headerlink" href="#writing-to-zarr" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import xarray as xr
+from numcodecs import Blosc
+
+# Create dataset
+ds = xr.Dataset({
+    &#39;temperature&#39;: ([&#39;time&#39;, &#39;y&#39;, &#39;x&#39;], data)
+})
+
+# Configure encoding
+encoding = {
+    &#39;temperature&#39;: {
+        &#39;compressor&#39;: Blosc(cname=&#39;zstd&#39;, clevel=3),
+        &#39;chunks&#39;: (10, 512, 512)
+    }
+}
+
+# Write to Zarr
+ds.to_zarr(&#39;data.zarr&#39;, encoding=encoding, consolidated=True)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-from-zarr">
+<h3>Reading from Zarr<a class="headerlink" href="#reading-from-zarr" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Open Zarr store
+ds = xr.open_zarr(&#39;data.zarr&#39;, consolidated=True)
+
+# With custom chunks
+ds = xr.open_zarr(&#39;data.zarr&#39;, chunks={&#39;time&#39;: 5})
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="appending-data">
+<h3>Appending Data<a class="headerlink" href="#appending-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Initial write
+ds1.to_zarr(&#39;timeseries.zarr&#39;, mode=&#39;w&#39;)
+
+# Append along time dimension
+ds2.to_zarr(&#39;timeseries.zarr&#39;, append_dim=&#39;time&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cloud-storage">
+<h2>Cloud Storage<a class="headerlink" href="#cloud-storage" title="Link to this heading">#</a></h2>
+<section id="aws-s3">
+<h3>AWS S3<a class="headerlink" href="#aws-s3" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import s3fs
+import xarray as xr
+
+# Create S3 filesystem
+s3 = s3fs.S3FileSystem(anon=False)
+
+# Write to S3
+store = s3fs.S3Map(root=&#39;s3://my-bucket/data.zarr&#39;, s3=s3)
+ds.to_zarr(store, mode=&#39;w&#39;, consolidated=True)
+
+# Read from S3
+ds = xr.open_zarr(store, consolidated=True)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="google-cloud-storage">
+<h3>Google Cloud Storage<a class="headerlink" href="#google-cloud-storage" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import gcsfs
+
+# Create GCS filesystem
+gcs = gcsfs.GCSFileSystem(token=&#39;anon&#39;)
+
+# Write to GCS
+store = gcsfs.GCSMap(&#39;gs://my-bucket/data.zarr&#39;, gcs=gcs)
+ds.to_zarr(store, mode=&#39;w&#39;, consolidated=True)
+
+# Read from GCS
+ds = xr.open_zarr(store, consolidated=True)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="azure-blob-storage">
+<h3>Azure Blob Storage<a class="headerlink" href="#azure-blob-storage" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import adlfs
+
+# Create Azure filesystem
+fs = adlfs.AzureBlobFileSystem(account_name=&#39;myaccount&#39;)
+
+# Write to Azure
+store = fs.get_mapper(&#39;container/data.zarr&#39;)
+ds.to_zarr(store, mode=&#39;w&#39;, consolidated=True)
+
+# Read from Azure
+ds = xr.open_zarr(store, consolidated=True)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="consolidated-metadata">
+<h2>Consolidated Metadata<a class="headerlink" href="#consolidated-metadata" title="Link to this heading">#</a></h2>
+<p>Improves performance by reducing number of reads.</p>
+<section id="create-consolidated-metadata">
+<h3>Create Consolidated Metadata<a class="headerlink" href="#create-consolidated-metadata" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># During write
+ds.to_zarr(&#39;data.zarr&#39;, consolidated=True)
+
+# After write
+from zarr.convenience import consolidate_metadata
+consolidate_metadata(&#39;data.zarr&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="use-consolidated-metadata">
+<h3>Use Consolidated Metadata<a class="headerlink" href="#use-consolidated-metadata" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Read with consolidated metadata (faster)
+ds = xr.open_zarr(&#39;data.zarr&#39;, consolidated=True)
+
+# Without consolidated metadata (slower)
+ds = xr.open_zarr(&#39;data.zarr&#39;, consolidated=False)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="parallel-i-o">
+<h2>Parallel I/O<a class="headerlink" href="#parallel-i-o" title="Link to this heading">#</a></h2>
+<section id="parallel-writing">
+<h3>Parallel Writing<a class="headerlink" href="#parallel-writing" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from dask.distributed import Client
+import dask.array as da
+
+client = Client()
+
+# Create Dask array
+data = da.random.random((1000, 5000, 5000), chunks=(10, 500, 500))
+
+# Create dataset
+ds = xr.Dataset({&#39;data&#39;: ([&#39;time&#39;, &#39;y&#39;, &#39;x&#39;], data)})
+
+# Parallel write
+ds.to_zarr(&#39;large_data.zarr&#39;, compute=True, consolidated=True)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="parallel-reading">
+<h3>Parallel Reading<a class="headerlink" href="#parallel-reading" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Open with Dask chunks
+ds = xr.open_zarr(&#39;large_data.zarr&#39;, chunks={&#39;time&#39;: 10})
+
+# Operations are parallelized
+result = ds.mean(dim=&#39;time&#39;).compute()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="filters">
+<h2>Filters<a class="headerlink" href="#filters" title="Link to this heading">#</a></h2>
+<p>Apply transformations before compression.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from numcodecs import Delta, FixedScaleOffset
+
+# Delta encoding (for time series)
+filters = [Delta(dtype=&#39;i4&#39;)]
+
+# Scale and offset
+filters = [FixedScaleOffset(offset=0, scale=0.01, dtype=&#39;f4&#39;)]
+
+# Use with Zarr
+z = zarr.open(&#39;data.zarr&#39;, mode=&#39;w&#39;, shape=(1000,), 
+              filters=filters, compressor=compressor)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="groups-and-hierarchies">
+<h2>Groups and Hierarchies<a class="headerlink" href="#groups-and-hierarchies" title="Link to this heading">#</a></h2>
+<section id="creating-groups">
+<h3>Creating Groups<a class="headerlink" href="#creating-groups" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import zarr
+
+# Create root group
+root = zarr.open_group(&#39;data.zarr&#39;, mode=&#39;w&#39;)
+
+# Create subgroups
+temp_group = root.create_group(&#39;temperature&#39;)
+precip_group = root.create_group(&#39;precipitation&#39;)
+
+# Create arrays in groups
+temp_group.create_dataset(&#39;daily&#39;, shape=(365, 100, 100), chunks=(10, 50, 50))
+precip_group.create_dataset(&#39;daily&#39;, shape=(365, 100, 100), chunks=(10, 50, 50))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-groups">
+<h3>Reading Groups<a class="headerlink" href="#reading-groups" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Open group
+root = zarr.open_group(&#39;data.zarr&#39;, mode=&#39;r&#39;)
+
+# Access subgroups
+temp = root[&#39;temperature&#39;]
+precip = root[&#39;precipitation&#39;]
+
+# Access arrays
+daily_temp = temp[&#39;daily&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>1. Use Consolidated Metadata<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Always use for cloud storage
+ds.to_zarr(&#39;s3://bucket/data.zarr&#39;, consolidated=True)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="choose-appropriate-chunks">
+<h3>2. Choose Appropriate Chunks<a class="headerlink" href="#choose-appropriate-chunks" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Match access patterns
+# Time series: large time chunks
+chunks = (100, 512, 512)
+
+# Spatial: large spatial chunks
+chunks = (10, 1024, 1024)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="use-compression">
+<h3>3. Use Compression<a class="headerlink" href="#use-compression" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Always compress for cloud storage
+compressor = Blosc(cname=&#39;zstd&#39;, clevel=3)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="avoid-small-chunks">
+<h3>4. Avoid Small Chunks<a class="headerlink" href="#avoid-small-chunks" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Good: ~10-100 MB per chunk
+chunks = (10, 512, 512)  # ~10 MB for float32
+
+# Bad: Too small
+chunks = (1, 10, 10)  # ~400 bytes
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="use-appropriate-data-types">
+<h3>5. Use Appropriate Data Types<a class="headerlink" href="#use-appropriate-data-types" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Good: Use smallest appropriate dtype
+ds = ds.astype(&#39;float32&#39;)
+
+# Bad: Unnecessary precision
+ds = ds.astype(&#39;float64&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="performance-optimization">
+<h2>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading">#</a></h2>
+<section id="chunk-size-impact">
+<h3>Chunk Size Impact<a class="headerlink" href="#chunk-size-impact" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import time
+
+# Test different chunk sizes
+chunk_sizes = [(5, 256, 256), (10, 512, 512), (20, 1024, 1024)]
+
+for chunks in chunk_sizes:
+    start = time.time()
+    ds.chunk(chunks).to_zarr(f&#39;test_{chunks[0]}.zarr&#39;, mode=&#39;w&#39;)
+    write_time = time.time() - start
+    
+    start = time.time()
+    loaded = xr.open_zarr(f&#39;test_{chunks[0]}.zarr&#39;).compute()
+    read_time = time.time() - start
+    
+    print(f&quot;Chunks {chunks}: Write={write_time:.2f}s, Read={read_time:.2f}s&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compression-impact">
+<h3>Compression Impact<a class="headerlink" href="#compression-impact" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Test compression algorithms
+compressors = {
+    &#39;none&#39;: None,
+    &#39;lz4&#39;: Blosc(cname=&#39;lz4&#39;, clevel=5),
+    &#39;zstd&#39;: Blosc(cname=&#39;zstd&#39;, clevel=3),
+    &#39;zlib&#39;: Zlib(level=5)
+}
+
+for name, comp in compressors.items():
+    encoding = {&#39;data&#39;: {&#39;compressor&#39;: comp}}
+    ds.to_zarr(f&#39;test_{name}.zarr&#39;, encoding=encoding, mode=&#39;w&#39;)
+    
+    # Check size
+    size = sum(f.stat().st_size for f in Path(f&#39;test_{name}.zarr&#39;).rglob(&#39;*&#39;))
+    print(f&quot;{name}: {size/1e6:.2f} MB&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<section id="issue-slow-reads">
+<h3>Issue: Slow Reads<a class="headerlink" href="#issue-slow-reads" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Solution 1: Use consolidated metadata
+ds = xr.open_zarr(&#39;data.zarr&#39;, consolidated=True)
+
+# Solution 2: Check chunk size
+print(ds.chunks)
+
+# Solution 3: Use appropriate chunks for access pattern
+ds = xr.open_zarr(&#39;data.zarr&#39;, chunks={&#39;time&#39;: 10})
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="issue-large-file-size">
+<h3>Issue: Large File Size<a class="headerlink" href="#issue-large-file-size" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Solution: Use compression
+encoding = {
+    &#39;var&#39;: {&#39;compressor&#39;: Blosc(cname=&#39;zstd&#39;, clevel=5)}
+}
+ds.to_zarr(&#39;data.zarr&#39;, encoding=encoding)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="issue-memory-errors">
+<h3>Issue: Memory Errors<a class="headerlink" href="#issue-memory-errors" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Solution: Use smaller chunks
+ds = xr.open_zarr(&#39;data.zarr&#39;, chunks={&#39;time&#39;: 1})
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zarr.readthedocs.io/">Zarr Documentation</a></p></li>
+<li><p><a class="reference external" href="https://zarr.readthedocs.io/en/stable/tutorial.html">Zarr Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://zarr-specs.readthedocs.io/">Zarr Specification</a></p></li>
+<li><p><a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/io.html#zarr">XArray Zarr Guide</a></p></li>
+<li><p><a class="reference external" href="https://pangeo.io/data.html#zarr">Pangeo Zarr Examples</a></p></li>
+</ul>
+</section>
+<section id="quick-reference">
+<h2>Quick Reference<a class="headerlink" href="#quick-reference" title="Link to this heading">#</a></h2>
+<section id="common-operations">
+<h3>Common Operations<a class="headerlink" href="#common-operations" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import zarr
+import xarray as xr
+
+# Create Zarr array
+z = zarr.open(&#39;data.zarr&#39;, mode=&#39;w&#39;, shape=(1000, 1000), 
+              chunks=(100, 100), dtype=&#39;f4&#39;)
+
+# Write XArray to Zarr
+ds.to_zarr(&#39;data.zarr&#39;, mode=&#39;w&#39;, consolidated=True)
+
+# Read Zarr with XArray
+ds = xr.open_zarr(&#39;data.zarr&#39;, consolidated=True)
+
+# Append data
+ds.to_zarr(&#39;data.zarr&#39;, append_dim=&#39;time&#39;)
+
+# Consolidate metadata
+from zarr.convenience import consolidate_metadata
+consolidate_metadata(&#39;data.zarr&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="recommended-settings">
+<h3>Recommended Settings<a class="headerlink" href="#recommended-settings" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># General purpose
+compressor = Blosc(cname=&#39;zstd&#39;, clevel=3, shuffle=Blosc.SHUFFLE)
+chunks = (10, 512, 512)  # For (time, y, x)
+
+# High compression (archival)
+compressor = Blosc(cname=&#39;zstd&#39;, clevel=9, shuffle=Blosc.BITSHUFFLE)
+
+# Fast I/O (real-time)
+compressor = Blosc(cname=&#39;lz4&#39;, clevel=5, shuffle=Blosc.SHUFFLE)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\reference"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="dask-practices.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Dask Best Practices</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="xee-usage.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Google Earth Engine Reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-structure">Storage Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#directory-layout">Directory Layout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-files">Metadata Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#zarray">.zarray</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#zattrs">.zattrs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chunking">Chunking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunk-size-selection">Chunk Size Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#access-pattern-optimization">Access Pattern Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-access">Time Series Access</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-access">Spatial Access</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#balanced-access">Balanced Access</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compression">Compression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blosc-recommended">Blosc (Recommended)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-compressors">Other Compressors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compression-comparison">Compression Comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xarray-integration">XArray Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-to-zarr">Writing to Zarr</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-from-zarr">Reading from Zarr</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#appending-data">Appending Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-storage">Cloud Storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aws-s3">AWS S3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-cloud-storage">Google Cloud Storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#azure-blob-storage">Azure Blob Storage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consolidated-metadata">Consolidated Metadata</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-consolidated-metadata">Create Consolidated Metadata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-consolidated-metadata">Use Consolidated Metadata</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-i-o">Parallel I/O</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-writing">Parallel Writing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-reading">Parallel Reading</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filters">Filters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#groups-and-hierarchies">Groups and Hierarchies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-groups">Creating Groups</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-groups">Reading Groups</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Use Consolidated Metadata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-appropriate-chunks">2. Choose Appropriate Chunks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-compression">3. Use Compression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avoid-small-chunks">4. Avoid Small Chunks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-appropriate-data-types">5. Use Appropriate Data Types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-optimization">Performance Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunk-size-impact">Chunk Size Impact</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compression-impact">Compression Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-slow-reads">Issue: Slow Reads</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-large-file-size">Issue: Large File Size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-memory-errors">Issue: Memory Errors</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-reference">Quick Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-operations">Common Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-settings">Recommended Settings</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

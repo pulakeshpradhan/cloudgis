@@ -1,0 +1,1175 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cloud Masking &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/processing/cloud-masking';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Time Series Extraction" href="time-series.html" />
+    <link rel="prev" title="Calculating Spectral Indices" href="spectral-indices.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/processing/cloud-masking.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/processing/cloud-masking.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/processing/cloud-masking.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Cloud Masking</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-qa-bands">Understanding QA Bands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sentinel-2-qa60-band">Sentinel-2 QA60 Band</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landsat-qa-pixel-band">Landsat QA_PIXEL Band</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-manipulation">Bit Manipulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-representation">Binary Representation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bitwise-and-operation">Bitwise AND Operation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-sentinel-2-scene">Get Sentinel-2 Scene</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-scene">Visualize the Scene</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cloud-mask">Create a Cloud Mask</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-cloud-bits">Extract Cloud Bits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-cloud-mask">Apply Cloud Mask</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-after-comparison">Before/After Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-statistics">Cloud Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-cloud-masking">Advanced Cloud Masking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-operations">Morphological Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-shadow-detection">Cloud Shadow Detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combined-cloud-and-shadow-mask">Combined Cloud and Shadow Mask</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-cloud-masking">Time Series Cloud Masking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-metrics">Quality Metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="cloud-masking">
+<h1>Cloud Masking<a class="headerlink" href="#cloud-masking" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/python_remote_sensing/04_cloud_masking.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>Clouds are a major challenge in optical remote sensing. They obscure the Earth’s surface and can introduce errors in analysis. Proper cloud masking is essential for accurate results.</p>
+<p>In this section, we’ll learn how to:</p>
+<ul class="simple">
+<li><p>Use quality assessment (QA) bands for cloud detection</p></li>
+<li><p>Create cloud masks using bit manipulation</p></li>
+<li><p>Apply masks to remove cloudy pixels</p></li>
+<li><p>Combine cloud and shadow masks</p></li>
+<li><p>Handle partially cloudy scenes</p></li>
+</ul>
+</section>
+<section id="understanding-qa-bands">
+<h2>Understanding QA Bands<a class="headerlink" href="#understanding-qa-bands" title="Link to this heading">#</a></h2>
+<p>Most satellite products include Quality Assessment (QA) bands that contain pixel-level quality information encoded as bit flags.</p>
+<section id="sentinel-2-qa60-band">
+<h3>Sentinel-2 QA60 Band<a class="headerlink" href="#sentinel-2-qa60-band" title="Link to this heading">#</a></h3>
+<p>The QA60 band contains cloud information:</p>
+<ul class="simple">
+<li><p>Bit 10: Opaque clouds</p></li>
+<li><p>Bit 11: Cirrus clouds</p></li>
+</ul>
+</section>
+<section id="landsat-qa-pixel-band">
+<h3>Landsat QA_PIXEL Band<a class="headerlink" href="#landsat-qa-pixel-band" title="Link to this heading">#</a></h3>
+<p>Contains multiple quality flags:</p>
+<ul class="simple">
+<li><p>Bit 3: Cloud</p></li>
+<li><p>Bit 4: Cloud shadow</p></li>
+<li><p>Bit 1: Dilated cloud</p></li>
+</ul>
+</section>
+</section>
+<section id="bit-manipulation">
+<h2>Bit Manipulation<a class="headerlink" href="#bit-manipulation" title="Link to this heading">#</a></h2>
+<p>Quality flags are stored as binary values. We use bitwise operations to extract specific flags.</p>
+<section id="binary-representation">
+<h3>Binary Representation<a class="headerlink" href="#binary-representation" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Example: Number 1024 in binary
+binary = bin(1024)
+print(binary)  # &#39;0b10000000000&#39;
+
+# Bit 10 is set (counting from right, starting at 0)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bitwise-and-operation">
+<h3>Bitwise AND Operation<a class="headerlink" href="#bitwise-and-operation" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Check if bit 10 is set
+value = 1024
+bit_10_mask = 1 &lt;&lt; 10  # Shift 1 left by 10 positions = 1024
+result = value &amp; bit_10_mask
+print(result)  # 1024 (bit is set)
+
+# Check if bit 11 is set
+bit_11_mask = 1 &lt;&lt; 11  # 2048
+result = value &amp; bit_11_mask
+print(result)  # 0 (bit is not set)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%%capture
+if &#39;google.colab&#39; in str(get_ipython()):
+    !pip install pystac-client odc-stac rioxarray dask
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import os
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import pystac_client
+from odc import stac
+import xarray as xr
+import rioxarray as rxr
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="get-sentinel-2-scene">
+<h2>Get Sentinel-2 Scene<a class="headerlink" href="#get-sentinel-2-scene" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>latitude = 27.163
+longitude = 82.608
+year = 2023
+
+# Define bounding box
+km2deg = 1.0 / 111
+x, y = (longitude, latitude)
+r = 1 * km2deg
+bbox = (x - r, y - r, x + r, y + r)
+
+# Query STAC Catalog
+catalog = pystac_client.Client.open(
+    &#39;https://earth-search.aws.element84.com/v1&#39;)
+
+# Search for cloudy scenes to demonstrate masking
+search = catalog.search(
+    collections=[&#39;sentinel-2-c1-l2a&#39;],
+    bbox=bbox,
+    datetime=f&#39;{year}&#39;,
+    query={
+        &#39;eo:cloud_cover&#39;: {&#39;gt&#39;: 20, &#39;lt&#39;: 60}  # Moderately cloudy
+    },
+    sortby=[{
+        &#39;field&#39;: &#39;properties.eo:cloud_cover&#39;,
+        &#39;direction&#39;: &#39;asc&#39;
+    }]
+)
+items = search.item_collection()
+
+# Load data including QA band
+ds = stac.load(
+    items,
+    bands=[&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;, &#39;nir&#39;, &#39;qa60&#39;],  # Include QA band
+    resolution=20,
+    chunks={},
+    groupby=&#39;solar_day&#39;,
+    preserve_original_order=True
+)
+
+# Select a scene
+timestamp = pd.to_datetime(items[0].properties[&#39;datetime&#39;]).tz_convert(None)
+scene = ds.sel(time=timestamp).compute()
+
+# Apply scale and offset (not needed for QA band)
+scale = 0.0001
+offset = -0.1
+scene_scaled = scene[[&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;, &#39;nir&#39;]].where(
+    scene[[&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;, &#39;nir&#39;]] != 0) * scale + offset
+
+# Add QA band back
+scene_scaled[&#39;qa60&#39;] = scene.qa60
+scene = scene_scaled
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualize-the-scene">
+<h2>Visualize the Scene<a class="headerlink" href="#visualize-the-scene" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>scene_da = scene[[&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]].to_array(&#39;band&#39;)
+
+fig, ax = plt.subplots(figsize=(10, 8))
+scene_da.plot.imshow(ax=ax, robust=True)
+ax.set_title(&#39;Original Scene (with clouds)&#39;)
+ax.set_axis_off()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-a-cloud-mask">
+<h2>Create a Cloud Mask<a class="headerlink" href="#create-a-cloud-mask" title="Link to this heading">#</a></h2>
+<section id="extract-cloud-bits">
+<h3>Extract Cloud Bits<a class="headerlink" href="#extract-cloud-bits" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Get QA band
+qa = scene.qa60
+
+# Create masks for opaque and cirrus clouds
+opaque_clouds = (qa &amp; (1 &lt;&lt; 10)) != 0
+cirrus_clouds = (qa &amp; (1 &lt;&lt; 11)) != 0
+
+# Combine cloud masks
+cloud_mask = opaque_clouds | cirrus_clouds
+
+# Visualize cloud mask
+fig, ax = plt.subplots(figsize=(10, 8))
+cloud_mask.plot(ax=ax, cmap=&#39;RdYlGn_r&#39;, add_colorbar=False)
+ax.set_title(&#39;Cloud Mask (True = Cloud)&#39;)
+ax.set_axis_off()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="apply-cloud-mask">
+<h3>Apply Cloud Mask<a class="headerlink" href="#apply-cloud-mask" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Invert mask (True = clear, False = cloud)
+clear_mask = ~cloud_mask
+
+# Apply mask to scene
+scene_masked = scene.where(clear_mask)
+
+# Visualize masked scene
+scene_masked_da = scene_masked[[&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]].to_array(&#39;band&#39;)
+
+fig, ax = plt.subplots(figsize=(10, 8))
+scene_masked_da.plot.imshow(ax=ax, robust=True)
+ax.set_title(&#39;Cloud-Masked Scene&#39;)
+ax.set_axis_off()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="before-after-comparison">
+<h2>Before/After Comparison<a class="headerlink" href="#before-after-comparison" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+
+# Original
+scene_da.plot.imshow(ax=axes[0], robust=True)
+axes[0].set_title(&#39;Original (with clouds)&#39;)
+axes[0].set_axis_off()
+
+# Cloud mask
+cloud_mask.plot(ax=axes[1], cmap=&#39;RdYlGn_r&#39;, add_colorbar=False)
+axes[1].set_title(&#39;Cloud Mask&#39;)
+axes[1].set_axis_off()
+
+# Masked
+scene_masked_da.plot.imshow(ax=axes[2], robust=True)
+axes[2].set_title(&#39;Cloud-Masked&#39;)
+axes[2].set_axis_off()
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cloud-statistics">
+<h2>Cloud Statistics<a class="headerlink" href="#cloud-statistics" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Calculate cloud coverage
+total_pixels = cloud_mask.size
+cloud_pixels = cloud_mask.sum().values
+cloud_percentage = (cloud_pixels / total_pixels) * 100
+
+print(f&quot;Total pixels: {total_pixels:,}&quot;)
+print(f&quot;Cloud pixels: {cloud_pixels:,}&quot;)
+print(f&quot;Cloud coverage: {cloud_percentage:.2f}%&quot;)
+
+# Compare with metadata
+metadata_cloud_cover = items[0].properties.get(&#39;eo:cloud_cover&#39;, &#39;N/A&#39;)
+print(f&quot;Metadata cloud cover: {metadata_cloud_cover}%&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-cloud-masking">
+<h2>Advanced Cloud Masking<a class="headerlink" href="#advanced-cloud-masking" title="Link to this heading">#</a></h2>
+<section id="morphological-operations">
+<h3>Morphological Operations<a class="headerlink" href="#morphological-operations" title="Link to this heading">#</a></h3>
+<p>Dilate cloud mask to include cloud edges:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from scipy import ndimage
+
+# Convert to numpy array
+cloud_array = cloud_mask.values
+
+# Dilate cloud mask (expand clouds)
+structure = np.ones((5, 5))  # 5x5 kernel
+dilated_clouds = ndimage.binary_dilation(cloud_array, structure=structure)
+
+# Convert back to DataArray
+dilated_mask = xr.DataArray(
+    dilated_clouds,
+    coords=cloud_mask.coords,
+    dims=cloud_mask.dims
+)
+
+# Apply dilated mask
+scene_dilated_masked = scene.where(~dilated_mask)
+
+# Visualize
+fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+
+cloud_mask.plot(ax=axes[0], cmap=&#39;RdYlGn_r&#39;, add_colorbar=False)
+axes[0].set_title(&#39;Original Cloud Mask&#39;)
+axes[0].set_axis_off()
+
+dilated_mask.plot(ax=axes[1], cmap=&#39;RdYlGn_r&#39;, add_colorbar=False)
+axes[1].set_title(&#39;Dilated Cloud Mask&#39;)
+axes[1].set_axis_off()
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cloud-shadow-detection">
+<h3>Cloud Shadow Detection<a class="headerlink" href="#cloud-shadow-detection" title="Link to this heading">#</a></h3>
+<p>Estimate cloud shadows using geometry:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Simple cloud shadow detection using NIR threshold
+nir_threshold = 0.15
+potential_shadows = scene.nir &lt; nir_threshold
+
+# Combine with cloud mask (shadows are near clouds)
+# Shift cloud mask to approximate shadow location
+shadow_offset = 10  # pixels
+cloud_shifted = np.roll(cloud_array, shadow_offset, axis=0)
+cloud_shifted = np.roll(cloud_shifted, shadow_offset, axis=1)
+
+# Shadows are dark areas near clouds
+shadow_mask = potential_shadows.values &amp; cloud_shifted &amp; ~cloud_array
+
+# Convert to DataArray
+shadow_mask_da = xr.DataArray(
+    shadow_mask,
+    coords=cloud_mask.coords,
+    dims=cloud_mask.dims
+)
+
+# Visualize
+fig, ax = plt.subplots(figsize=(10, 8))
+shadow_mask_da.plot(ax=ax, cmap=&#39;gray&#39;, add_colorbar=False)
+ax.set_title(&#39;Estimated Cloud Shadows&#39;)
+ax.set_axis_off()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="combined-cloud-and-shadow-mask">
+<h3>Combined Cloud and Shadow Mask<a class="headerlink" href="#combined-cloud-and-shadow-mask" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Combine cloud and shadow masks
+combined_mask = cloud_mask | shadow_mask_da
+
+# Apply combined mask
+scene_fully_masked = scene.where(~combined_mask)
+
+# Visualize
+scene_fully_masked_da = scene_fully_masked[[&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]].to_array(&#39;band&#39;)
+
+fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+
+scene_masked_da.plot.imshow(ax=axes[0], robust=True)
+axes[0].set_title(&#39;Cloud-Masked Only&#39;)
+axes[0].set_axis_off()
+
+scene_fully_masked_da.plot.imshow(ax=axes[1], robust=True)
+axes[1].set_title(&#39;Cloud and Shadow Masked&#39;)
+axes[1].set_axis_off()
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="time-series-cloud-masking">
+<h2>Time Series Cloud Masking<a class="headerlink" href="#time-series-cloud-masking" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load full time series
+ds_full = stac.load(
+    items,
+    bands=[&#39;red&#39;, &#39;nir&#39;, &#39;qa60&#39;],
+    resolution=20,
+    chunks={&#39;time&#39;: 10}
+).compute()
+
+# Apply scale/offset
+ds_scaled = ds_full[[&#39;red&#39;, &#39;nir&#39;]].where(ds_full[[&#39;red&#39;, &#39;nir&#39;]] != 0) * scale + offset
+ds_scaled[&#39;qa60&#39;] = ds_full.qa60
+
+# Create cloud masks for all time steps
+qa_full = ds_scaled.qa60
+cloud_masks = (qa_full &amp; (1 &lt;&lt; 10)) != 0 | (qa_full &amp; (1 &lt;&lt; 11)) != 0
+
+# Apply masks
+ds_masked = ds_scaled.where(~cloud_masks)
+
+# Calculate NDVI
+ndvi = (ds_masked.nir - ds_masked.red) / (ds_masked.nir + ds_masked.red)
+
+# Calculate temporal mean (ignoring masked pixels)
+ndvi_mean = ndvi.mean(dim=&#39;time&#39;)
+
+# Visualize
+fig, ax = plt.subplots(figsize=(10, 8))
+ndvi_mean.plot(ax=ax, cmap=&#39;RdYlGn&#39;, vmin=-1, vmax=1)
+ax.set_title(&#39;Mean NDVI (Cloud-Masked Time Series)&#39;)
+ax.set_axis_off()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="quality-metrics">
+<h2>Quality Metrics<a class="headerlink" href="#quality-metrics" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Calculate valid pixel percentage for each time step
+valid_pixels = (~cloud_masks).sum(dim=[&#39;x&#39;, &#39;y&#39;])
+total_pixels = cloud_masks.sizes[&#39;x&#39;] * cloud_masks.sizes[&#39;y&#39;]
+valid_percentage = (valid_pixels / total_pixels) * 100
+
+# Plot
+fig, ax = plt.subplots(figsize=(12, 6))
+valid_percentage.plot(ax=ax, marker=&#39;o&#39;)
+ax.set_title(&#39;Valid (Cloud-Free) Pixel Percentage Over Time&#39;)
+ax.set_ylabel(&#39;Valid Pixels (%)&#39;)
+ax.grid(True, alpha=0.3)
+ax.axhline(y=50, color=&#39;r&#39;, linestyle=&#39;--&#39;, label=&#39;50% threshold&#39;)
+ax.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
+<p>Create a function that takes a Sentinel-2 scene and returns a cloud-free composite by:</p>
+<ol class="arabic simple">
+<li><p>Creating a cloud mask</p></li>
+<li><p>Dilating the mask by 3 pixels</p></li>
+<li><p>Applying the mask to the scene</p></li>
+<li><p>Calculating the percentage of valid pixels</p></li>
+</ol>
+<p><strong>Solution:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def create_cloud_free_scene(scene, dilation_size=3):
+    &quot;&quot;&quot;
+    Create cloud-free scene from Sentinel-2 data.
+    
+    Parameters:
+    -----------
+    scene : xarray.Dataset
+        Sentinel-2 scene with qa60 band
+    dilation_size : int
+        Size of dilation kernel
+        
+    Returns:
+    --------
+    masked_scene : xarray.Dataset
+        Cloud-masked scene
+    valid_percentage : float
+        Percentage of valid pixels
+    &quot;&quot;&quot;
+    # Extract QA band
+    qa = scene.qa60
+    
+    # Create cloud mask
+    cloud_mask = (qa &amp; (1 &lt;&lt; 10)) != 0 | (qa &amp; (1 &lt;&lt; 11)) != 0
+    
+    # Dilate mask
+    structure = np.ones((dilation_size, dilation_size))
+    dilated = ndimage.binary_dilation(cloud_mask.values, structure=structure)
+    dilated_mask = xr.DataArray(dilated, coords=cloud_mask.coords, dims=cloud_mask.dims)
+    
+    # Apply mask
+    masked_scene = scene.where(~dilated_mask)
+    
+    # Calculate valid percentage
+    valid_pixels = (~dilated_mask).sum().values
+    total_pixels = dilated_mask.size
+    valid_percentage = (valid_pixels / total_pixels) * 100
+    
+    return masked_scene, valid_percentage
+
+# Use function
+masked, valid_pct = create_cloud_free_scene(scene, dilation_size=3)
+print(f&quot;Valid pixels: {valid_pct:.2f}%&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<p>!!! success “What You Learned”
+- QA bands contain pixel-level quality information
+- Bitwise operations extract specific quality flags
+- Cloud masks identify and remove cloudy pixels
+- Morphological operations refine masks
+- Cloud shadows can be detected and masked
+- Time series masking improves composite quality
+- Valid pixel percentage indicates data quality</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>→ Continue to <a class="reference internal" href="time-series.html"><span class="std std-doc">Time Series Extraction</span></a></p>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-2-msi/level-2a/algorithm">Sentinel-2 Cloud Masks</a></p></li>
+<li><p><a class="reference external" href="https://www.usgs.gov/landsat-missions/landsat-collection-2-quality-assessment-bands">Landsat QA Bands</a></p></li>
+<li><p><a class="reference external" href="https://github.com/sentinel-hub/custom-scripts/tree/master/sentinel-2/cloud_detector">Cloud Masking Algorithms</a></p></li>
+<li><p><a class="reference external" href="https://github.com/sentinel-hub/sentinel2-cloud-detector">S2cloudless</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\processing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="spectral-indices.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Calculating Spectral Indices</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="time-series.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Time Series Extraction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-qa-bands">Understanding QA Bands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sentinel-2-qa60-band">Sentinel-2 QA60 Band</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landsat-qa-pixel-band">Landsat QA_PIXEL Band</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-manipulation">Bit Manipulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-representation">Binary Representation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bitwise-and-operation">Bitwise AND Operation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-sentinel-2-scene">Get Sentinel-2 Scene</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-scene">Visualize the Scene</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cloud-mask">Create a Cloud Mask</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-cloud-bits">Extract Cloud Bits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-cloud-mask">Apply Cloud Mask</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-after-comparison">Before/After Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-statistics">Cloud Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-cloud-masking">Advanced Cloud Masking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-operations">Morphological Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-shadow-detection">Cloud Shadow Detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combined-cloud-and-shadow-mask">Combined Cloud and Shadow Mask</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-cloud-masking">Time Series Cloud Masking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-metrics">Quality Metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

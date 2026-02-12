@@ -1,0 +1,1311 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Geemap Tiled Download &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/advanced/geemap-tiled-download';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Cloud Computing for Remote Sensing" href="cloud-computing.html" />
+    <link rel="prev" title="Scaling with Dask" href="scaling-dask.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../processing/spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/advanced/geemap-tiled-download.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/advanced/geemap-tiled-download.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/advanced/geemap-tiled-download.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Geemap Tiled Download</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-setup">Basic Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-tiled-download">Simple Tiled Download</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-sentinel-2-composite">Download Sentinel-2 Composite</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-tiled-download">Advanced Tiled Download</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#large-area-download-with-custom-tiling">Large Area Download with Custom Tiling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-with-processing">Download with Processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-and-download-ndvi">Calculate and Download NDVI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-band-download">Multi-band Download</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-multiple-indices">Download Multiple Indices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-download">Time Series Download</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-monthly-composites">Download Monthly Composites</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-from-featurecollection">Download from FeatureCollection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-data-for-administrative-boundaries">Download Data for Administrative Boundaries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-custom-tiling-strategy">Advanced: Custom Tiling Strategy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-tile-control">Manual Tile Control</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-with-visualization-parameters">Download with Visualization Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-color-palette-before-download">Apply Color Palette Before Download</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-download">Batch Download</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-multiple-regions">Download Multiple Regions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#progress-tracking">Progress Tracking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-with-progress-bar">Download with Progress Bar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-appropriate-scale">1. Choose Appropriate Scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limit-area-size">2. Limit Area Size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-appropriate-crs">3. Use Appropriate CRS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-errors-gracefully">4. Handle Errors Gracefully</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="geemap-tiled-download">
+<h1>Geemap Tiled Download<a class="headerlink" href="#geemap-tiled-download" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p><strong>geemap</strong> provides powerful functionality to download large-scale Earth Engine data directly to your local machine without using Earth Engine Compute Units (EECU) for exports. This is achieved through tiled downloading, where the area is split into manageable tiles, processed server-side, and downloaded directly.</p>
+<p><strong>Key Benefits:</strong></p>
+<ul class="simple">
+<li><p>✅ No EECU consumption for exports</p></li>
+<li><p>✅ Direct download to local folder</p></li>
+<li><p>✅ Automatic tiling for large areas</p></li>
+<li><p>✅ Automatic merging of tiles</p></li>
+<li><p>✅ Progress tracking</p></li>
+<li><p>✅ Handles memory limitations</p></li>
+</ul>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%%capture
+!pip install geemap earthengine-api
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="basic-setup">
+<h2>Basic Setup<a class="headerlink" href="#basic-setup" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import ee
+import geemap
+import os
+
+# Authenticate and initialize Earth Engine
+ee.Authenticate()
+ee.Initialize(project=&#39;spatialgeography&#39;)
+
+# Create output directory
+output_folder = &#39;downloads&#39;
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="simple-tiled-download">
+<h2>Simple Tiled Download<a class="headerlink" href="#simple-tiled-download" title="Link to this heading">#</a></h2>
+<section id="download-sentinel-2-composite">
+<h3>Download Sentinel-2 Composite<a class="headerlink" href="#download-sentinel-2-composite" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Define area of interest
+roi = ee.Geometry.Rectangle([82.5, 27.0, 83.0, 27.5])
+
+# Create Sentinel-2 composite
+s2 = ee.ImageCollection(&#39;COPERNICUS/S2_SR&#39;) \
+    .filterBounds(roi) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .filter(ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 20)) \
+    .median() \
+    .clip(roi)
+
+# Select bands
+image = s2.select([&#39;B4&#39;, &#39;B3&#39;, &#39;B2&#39;, &#39;B8&#39;])
+
+# Download with automatic tiling
+output_file = os.path.join(output_folder, &#39;sentinel2_composite.tif&#39;)
+
+geemap.download_ee_image(
+    image,
+    filename=output_file,
+    region=roi,
+    scale=10,
+    crs=&#39;EPSG:4326&#39;
+)
+
+print(f&quot;Downloaded: {output_file}&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="advanced-tiled-download">
+<h2>Advanced Tiled Download<a class="headerlink" href="#advanced-tiled-download" title="Link to this heading">#</a></h2>
+<section id="large-area-download-with-custom-tiling">
+<h3>Large Area Download with Custom Tiling<a class="headerlink" href="#large-area-download-with-custom-tiling" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Define large area (e.g., entire district)
+large_roi = ee.Geometry.Rectangle([80.0, 25.0, 85.0, 30.0])
+
+# Create image
+landsat = ee.ImageCollection(&#39;LANDSAT/LC08/C02/T1_L2&#39;) \
+    .filterBounds(large_roi) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .median() \
+    .clip(large_roi)
+
+# Select and scale bands
+image = landsat.select([&#39;SR_B4&#39;, &#39;SR_B3&#39;, &#39;SR_B2&#39;]) \
+    .multiply(0.0000275).add(-0.2)
+
+# Download with custom tile size
+output_file = os.path.join(output_folder, &#39;landsat_large_area.tif&#39;)
+
+geemap.download_ee_image(
+    image,
+    filename=output_file,
+    region=large_roi,
+    scale=30,
+    crs=&#39;EPSG:4326&#39;,
+    num_threads=4,  # Parallel downloads
+    max_tile_size=1.0e8,  # 100 MB per tile
+    max_tile_dim=10000  # Max 10000 pixels per dimension
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="download-with-processing">
+<h2>Download with Processing<a class="headerlink" href="#download-with-processing" title="Link to this heading">#</a></h2>
+<section id="calculate-and-download-ndvi">
+<h3>Calculate and Download NDVI<a class="headerlink" href="#calculate-and-download-ndvi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Define ROI
+roi = ee.Geometry.Rectangle([82.5, 27.0, 83.5, 28.0])
+
+# Get Sentinel-2 data
+s2 = ee.ImageCollection(&#39;COPERNICUS/S2_SR&#39;) \
+    .filterBounds(roi) \
+    .filterDate(&#39;2023-06-01&#39;, &#39;2023-08-31&#39;) \
+    .filter(ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 20))
+
+# Cloud masking function
+def mask_s2_clouds(image):
+    qa = image.select(&#39;QA60&#39;)
+    cloud_mask = qa.bitwiseAnd(1 &lt;&lt; 10).eq(0).And(
+                 qa.bitwiseAnd(1 &lt;&lt; 11).eq(0))
+    return image.updateMask(cloud_mask)
+
+# Apply cloud mask and calculate NDVI
+s2_masked = s2.map(mask_s2_clouds)
+median = s2_masked.median()
+
+# Calculate NDVI (processing done server-side)
+ndvi = median.normalizedDifference([&#39;B8&#39;, &#39;B4&#39;]).rename(&#39;NDVI&#39;)
+
+# Download NDVI
+output_file = os.path.join(output_folder, &#39;ndvi_summer_2023.tif&#39;)
+
+geemap.download_ee_image(
+    ndvi,
+    filename=output_file,
+    region=roi,
+    scale=10,
+    crs=&#39;EPSG:4326&#39;
+)
+
+print(f&quot;NDVI downloaded: {output_file}&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="multi-band-download">
+<h2>Multi-band Download<a class="headerlink" href="#multi-band-download" title="Link to this heading">#</a></h2>
+<section id="download-multiple-indices">
+<h3>Download Multiple Indices<a class="headerlink" href="#download-multiple-indices" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Define ROI
+roi = ee.Geometry.Rectangle([82.0, 26.5, 83.0, 27.5])
+
+# Get Sentinel-2 median composite
+s2 = ee.ImageCollection(&#39;COPERNICUS/S2_SR&#39;) \
+    .filterBounds(roi) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .filter(ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 20)) \
+    .median()
+
+# Calculate multiple indices (all processing server-side)
+ndvi = s2.normalizedDifference([&#39;B8&#39;, &#39;B4&#39;]).rename(&#39;NDVI&#39;)
+ndwi = s2.normalizedDifference([&#39;B3&#39;, &#39;B8&#39;]).rename(&#39;NDWI&#39;)
+ndbi = s2.normalizedDifference([&#39;B11&#39;, &#39;B8&#39;]).rename(&#39;NDBI&#39;)
+
+# Combine into multi-band image
+indices = ndvi.addBands(ndwi).addBands(ndbi).clip(roi)
+
+# Download all indices as multi-band GeoTIFF
+output_file = os.path.join(output_folder, &#39;spectral_indices.tif&#39;)
+
+geemap.download_ee_image(
+    indices,
+    filename=output_file,
+    region=roi,
+    scale=20,
+    crs=&#39;EPSG:4326&#39;
+)
+
+print(f&quot;Multi-band indices downloaded: {output_file}&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="time-series-download">
+<h2>Time Series Download<a class="headerlink" href="#time-series-download" title="Link to this heading">#</a></h2>
+<section id="download-monthly-composites">
+<h3>Download Monthly Composites<a class="headerlink" href="#download-monthly-composites" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import calendar
+
+# Define ROI
+roi = ee.Geometry.Rectangle([82.5, 27.0, 83.0, 27.5])
+
+# Download monthly NDVI for 2023
+for month in range(1, 13):
+    # Get month start and end
+    start_date = f&#39;2023-{month:02d}-01&#39;
+    if month == 12:
+        end_date = &#39;2024-01-01&#39;
+    else:
+        end_date = f&#39;2023-{month+1:02d}-01&#39;
+    
+    # Get Sentinel-2 data
+    s2 = ee.ImageCollection(&#39;COPERNICUS/S2_SR&#39;) \
+        .filterBounds(roi) \
+        .filterDate(start_date, end_date) \
+        .filter(ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 30)) \
+        .median()
+    
+    # Calculate NDVI
+    ndvi = s2.normalizedDifference([&#39;B8&#39;, &#39;B4&#39;]).clip(roi)
+    
+    # Download
+    month_name = calendar.month_name[month]
+    output_file = os.path.join(output_folder, f&#39;ndvi_{month:02d}_{month_name}.tif&#39;)
+    
+    try:
+        geemap.download_ee_image(
+            ndvi,
+            filename=output_file,
+            region=roi,
+            scale=20,
+            crs=&#39;EPSG:4326&#39;
+        )
+        print(f&quot;✓ Downloaded: {month_name}&quot;)
+    except Exception as e:
+        print(f&quot;✗ Failed {month_name}: {str(e)}&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="download-from-featurecollection">
+<h2>Download from FeatureCollection<a class="headerlink" href="#download-from-featurecollection" title="Link to this heading">#</a></h2>
+<section id="download-data-for-administrative-boundaries">
+<h3>Download Data for Administrative Boundaries<a class="headerlink" href="#download-data-for-administrative-boundaries" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load administrative boundaries
+countries = ee.FeatureCollection(&#39;USDOS/LSIB_SIMPLE/2017&#39;)
+india = countries.filter(ee.Filter.eq(&#39;country_na&#39;, &#39;India&#39;))
+
+# Get a specific state (example: Uttar Pradesh)
+states = ee.FeatureCollection(&#39;FAO/GAUL/2015/level1&#39;)
+state = states.filter(ee.Filter.eq(&#39;ADM1_NAME&#39;, &#39;Uttar Pradesh&#39;)).first()
+state_geom = state.geometry()
+
+# Get MODIS NDVI
+modis = ee.ImageCollection(&#39;MODIS/006/MOD13A2&#39;) \
+    .filterBounds(state_geom) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .select(&#39;NDVI&#39;) \
+    .mean() \
+    .clip(state_geom)
+
+# Download
+output_file = os.path.join(output_folder, &#39;uttar_pradesh_ndvi.tif&#39;)
+
+geemap.download_ee_image(
+    modis,
+    filename=output_file,
+    region=state_geom,
+    scale=1000,
+    crs=&#39;EPSG:4326&#39;
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="advanced-custom-tiling-strategy">
+<h2>Advanced: Custom Tiling Strategy<a class="headerlink" href="#advanced-custom-tiling-strategy" title="Link to this heading">#</a></h2>
+<section id="manual-tile-control">
+<h3>Manual Tile Control<a class="headerlink" href="#manual-tile-control" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def download_large_area_custom(image, roi, output_file, tile_size=0.5):
+    &quot;&quot;&quot;
+    Download large area with custom tiling.
+    
+    Parameters:
+    -----------
+    image : ee.Image
+        Earth Engine image to download
+    roi : ee.Geometry
+        Region of interest
+    output_file : str
+        Output file path
+    tile_size : float
+        Tile size in degrees
+    &quot;&quot;&quot;
+    import rasterio
+    from rasterio.merge import merge
+    import glob
+    
+    # Get bounds
+    bounds = roi.bounds().getInfo()[&#39;coordinates&#39;][0]
+    min_lon, min_lat = bounds[0]
+    max_lon, max_lat = bounds[2]
+    
+    # Create tiles
+    temp_folder = os.path.join(output_folder, &#39;temp_tiles&#39;)
+    if not os.path.exists(temp_folder):
+        os.makedirs(temp_folder)
+    
+    tile_files = []
+    tile_count = 0
+    
+    # Iterate over tiles
+    for lon in range(int(min_lon), int(max_lon) + 1):
+        for lat in range(int(min_lat), int(max_lat) + 1):
+            # Create tile geometry
+            tile_roi = ee.Geometry.Rectangle([
+                lon, lat,
+                min(lon + tile_size, max_lon),
+                min(lat + tile_size, max_lat)
+            ])
+            
+            # Download tile
+            tile_file = os.path.join(temp_folder, f&#39;tile_{tile_count}.tif&#39;)
+            
+            try:
+                geemap.download_ee_image(
+                    image,
+                    filename=tile_file,
+                    region=tile_roi,
+                    scale=30,
+                    crs=&#39;EPSG:4326&#39;
+                )
+                tile_files.append(tile_file)
+                tile_count += 1
+                print(f&quot;Downloaded tile {tile_count}&quot;)
+            except Exception as e:
+                print(f&quot;Failed tile at ({lon}, {lat}): {str(e)}&quot;)
+    
+    # Merge tiles
+    print(&quot;Merging tiles...&quot;)
+    src_files_to_mosaic = []
+    for tile_file in tile_files:
+        src = rasterio.open(tile_file)
+        src_files_to_mosaic.append(src)
+    
+    mosaic, out_trans = merge(src_files_to_mosaic)
+    
+    # Save merged file
+    out_meta = src_files_to_mosaic[0].meta.copy()
+    out_meta.update({
+        &quot;driver&quot;: &quot;GTiff&quot;,
+        &quot;height&quot;: mosaic.shape[1],
+        &quot;width&quot;: mosaic.shape[2],
+        &quot;transform&quot;: out_trans,
+        &quot;compress&quot;: &quot;lzw&quot;
+    })
+    
+    with rasterio.open(output_file, &quot;w&quot;, **out_meta) as dest:
+        dest.write(mosaic)
+    
+    # Clean up temporary files
+    for src in src_files_to_mosaic:
+        src.close()
+    
+    for tile_file in tile_files:
+        os.remove(tile_file)
+    os.rmdir(temp_folder)
+    
+    print(f&quot;✓ Merged file saved: {output_file}&quot;)
+
+# Example usage
+roi = ee.Geometry.Rectangle([80.0, 25.0, 82.0, 27.0])
+landsat = ee.ImageCollection(&#39;LANDSAT/LC08/C02/T1_L2&#39;) \
+    .filterBounds(roi) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .median() \
+    .clip(roi)
+
+output_file = os.path.join(output_folder, &#39;large_area_merged.tif&#39;)
+download_large_area_custom(landsat.select([&#39;SR_B4&#39;, &#39;SR_B3&#39;, &#39;SR_B2&#39;]), 
+                           roi, output_file, tile_size=0.5)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="download-with-visualization-parameters">
+<h2>Download with Visualization Parameters<a class="headerlink" href="#download-with-visualization-parameters" title="Link to this heading">#</a></h2>
+<section id="apply-color-palette-before-download">
+<h3>Apply Color Palette Before Download<a class="headerlink" href="#apply-color-palette-before-download" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Get elevation data
+dem = ee.Image(&#39;USGS/SRTMGL1_003&#39;)
+roi = ee.Geometry.Rectangle([82.0, 27.0, 83.0, 28.0])
+
+# Clip to ROI
+elevation = dem.clip(roi)
+
+# Apply visualization (server-side)
+vis_params = {
+    &#39;min&#39;: 0,
+    &#39;max&#39;: 3000,
+    &#39;palette&#39;: [&#39;blue&#39;, &#39;green&#39;, &#39;yellow&#39;, &#39;orange&#39;, &#39;red&#39;]
+}
+
+# Convert to RGB
+rgb = elevation.visualize(**vis_params)
+
+# Download RGB image
+output_file = os.path.join(output_folder, &#39;elevation_colored.tif&#39;)
+
+geemap.download_ee_image(
+    rgb,
+    filename=output_file,
+    region=roi,
+    scale=30,
+    crs=&#39;EPSG:4326&#39;
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="batch-download">
+<h2>Batch Download<a class="headerlink" href="#batch-download" title="Link to this heading">#</a></h2>
+<section id="download-multiple-regions">
+<h3>Download Multiple Regions<a class="headerlink" href="#download-multiple-regions" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Define multiple ROIs
+regions = {
+    &#39;region_1&#39;: ee.Geometry.Rectangle([82.0, 27.0, 82.5, 27.5]),
+    &#39;region_2&#39;: ee.Geometry.Rectangle([82.5, 27.0, 83.0, 27.5]),
+    &#39;region_3&#39;: ee.Geometry.Rectangle([82.0, 26.5, 82.5, 27.0]),
+}
+
+# Get Sentinel-2 composite
+s2 = ee.ImageCollection(&#39;COPERNICUS/S2_SR&#39;) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .filter(ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 20)) \
+    .median()
+
+# Download each region
+for region_name, roi in regions.items():
+    image = s2.clip(roi).select([&#39;B4&#39;, &#39;B3&#39;, &#39;B2&#39;])
+    output_file = os.path.join(output_folder, f&#39;{region_name}_s2.tif&#39;)
+    
+    try:
+        geemap.download_ee_image(
+            image,
+            filename=output_file,
+            region=roi,
+            scale=10,
+            crs=&#39;EPSG:4326&#39;
+        )
+        print(f&quot;✓ Downloaded: {region_name}&quot;)
+    except Exception as e:
+        print(f&quot;✗ Failed {region_name}: {str(e)}&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="progress-tracking">
+<h2>Progress Tracking<a class="headerlink" href="#progress-tracking" title="Link to this heading">#</a></h2>
+<section id="download-with-progress-bar">
+<h3>Download with Progress Bar<a class="headerlink" href="#download-with-progress-bar" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from tqdm import tqdm
+
+def download_with_progress(image, roi, output_file, scale=10):
+    &quot;&quot;&quot;Download with progress tracking.&quot;&quot;&quot;
+    
+    # Calculate approximate number of tiles
+    bounds = roi.bounds().getInfo()[&#39;coordinates&#39;][0]
+    width = bounds[2][0] - bounds[0][0]
+    height = bounds[2][1] - bounds[0][1]
+    
+    # Estimate tiles (rough approximation)
+    tile_size_deg = 0.1  # ~10km
+    n_tiles = int((width / tile_size_deg) * (height / tile_size_deg))
+    
+    print(f&quot;Downloading {n_tiles} estimated tiles...&quot;)
+    
+    with tqdm(total=100, desc=&quot;Downloading&quot;) as pbar:
+        geemap.download_ee_image(
+            image,
+            filename=output_file,
+            region=roi,
+            scale=scale,
+            crs=&#39;EPSG:4326&#39;
+        )
+        pbar.update(100)
+    
+    print(f&quot;✓ Download complete: {output_file}&quot;)
+
+# Example usage
+roi = ee.Geometry.Rectangle([82.0, 27.0, 83.0, 28.0])
+s2 = ee.ImageCollection(&#39;COPERNICUS/S2_SR&#39;) \
+    .filterBounds(roi) \
+    .filterDate(&#39;2023-01-01&#39;, &#39;2023-12-31&#39;) \
+    .median() \
+    .clip(roi)
+
+output_file = os.path.join(output_folder, &#39;sentinel2_with_progress.tif&#39;)
+download_with_progress(s2.select([&#39;B4&#39;, &#39;B3&#39;, &#39;B2&#39;]), roi, output_file)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h2>
+<section id="choose-appropriate-scale">
+<h3>1. Choose Appropriate Scale<a class="headerlink" href="#choose-appropriate-scale" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Sentinel-2: 10m for RGB/NIR, 20m for other bands
+scale = 10
+
+# Landsat: 30m
+scale = 30
+
+# MODIS: 250m, 500m, or 1000m depending on product
+scale = 1000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="limit-area-size">
+<h3>2. Limit Area Size<a class="headerlink" href="#limit-area-size" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># For high resolution (10m), keep area &lt; 100 km²
+# For medium resolution (30m), keep area &lt; 500 km²
+# For coarse resolution (1000m), can handle larger areas
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="use-appropriate-crs">
+<h3>3. Use Appropriate CRS<a class="headerlink" href="#use-appropriate-crs" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># The global standard for geospatial data is geographic
+crs = &#39;EPSG:4326&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="handle-errors-gracefully">
+<h3>4. Handle Errors Gracefully<a class="headerlink" href="#handle-errors-gracefully" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>try:
+    geemap.download_ee_image(image, filename=output_file, ...)
+except Exception as e:
+    print(f&quot;Download failed: {str(e)}&quot;)
+    # Retry with smaller tiles or coarser resolution
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<p>!!! success “What You Learned”
+- geemap enables direct downloads without EECU usage
+- Automatic tiling handles large areas efficiently
+- Processing happens server-side in Earth Engine
+- Tiles are automatically merged into final GeoTIFF
+- Supports multi-band and time series downloads
+- Custom tiling strategies for maximum control
+- Progress tracking for long downloads
+- No export tasks or Drive storage needed</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>→ See <a class="reference internal" href="scaling-dask.html"><span class="std std-doc">Advanced Topics</span></a> for more optimization techniques</p>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://geemap.org/">geemap Documentation</a></p></li>
+<li><p><a class="reference external" href="https://geemap.org/notebooks/71_timelapse/">geemap Download Examples</a></p></li>
+<li><p><a class="reference external" href="https://developers.google.com/earth-engine/datasets">Earth Engine Data Catalog</a></p></li>
+<li><p><a class="reference external" href="https://github.com/gee-community/geemap">geemap GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\advanced"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="scaling-dask.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Scaling with Dask</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cloud-computing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Cloud Computing for Remote Sensing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-setup">Basic Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-tiled-download">Simple Tiled Download</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-sentinel-2-composite">Download Sentinel-2 Composite</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-tiled-download">Advanced Tiled Download</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#large-area-download-with-custom-tiling">Large Area Download with Custom Tiling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-with-processing">Download with Processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-and-download-ndvi">Calculate and Download NDVI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-band-download">Multi-band Download</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-multiple-indices">Download Multiple Indices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-download">Time Series Download</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-monthly-composites">Download Monthly Composites</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-from-featurecollection">Download from FeatureCollection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-data-for-administrative-boundaries">Download Data for Administrative Boundaries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-custom-tiling-strategy">Advanced: Custom Tiling Strategy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-tile-control">Manual Tile Control</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-with-visualization-parameters">Download with Visualization Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-color-palette-before-download">Apply Color Palette Before Download</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-download">Batch Download</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-multiple-regions">Download Multiple Regions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#progress-tracking">Progress Tracking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-with-progress-bar">Download with Progress Bar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-appropriate-scale">1. Choose Appropriate Scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limit-area-size">2. Limit Area Size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-appropriate-crs">3. Use Appropriate CRS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-errors-gracefully">4. Handle Errors Gracefully</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

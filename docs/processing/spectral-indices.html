@@ -1,0 +1,1201 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Calculating Spectral Indices &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/processing/spectral-indices';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Cloud Masking" href="cloud-masking.html" />
+    <link rel="prev" title="XEE for Earth Engine" href="../fundamentals/xee.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/water-quality.html">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/processing/spectral-indices.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/processing/spectral-indices.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/processing/spectral-indices.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Calculating Spectral Indices</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-spectral-indices">Common Spectral Indices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndvi-normalized-difference-vegetation-index">NDVI (Normalized Difference Vegetation Index)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndwi-normalized-difference-water-index">NDWI (Normalized Difference Water Index)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mndwi-modified-ndwi">MNDWI (Modified NDWI)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#savi-soil-adjusted-vegetation-index">SAVI (Soil Adjusted Vegetation Index)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evi-enhanced-vegetation-index">EVI (Enhanced Vegetation Index)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndbi-normalized-difference-built-up-index">NDBI (Normalized Difference Built-up Index)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-sentinel-2-scene">Get Sentinel-2 Scene</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-scene">Visualize the Scene</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-spectral-indices">Calculate Spectral Indices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndvi">NDVI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndwi">NDWI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mndwi">MNDWI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#savi">SAVI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evi">EVI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndbi">NDBI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-index-comparison">Multi-Index Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-computed-indices">Save Computed Indices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-as-netcdf">Save as NetCDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-as-geotiff">Save as GeoTIFF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-to-zarr">Save to Zarr</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-index-functions">Custom Index Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-of-indices">Time Series of Indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thresholding-and-classification">Thresholding and Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="calculating-spectral-indices">
+<h1>Calculating Spectral Indices<a class="headerlink" href="#calculating-spectral-indices" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/python_remote_sensing/03_calculating_indices.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>Spectral indices are core to many remote sensing analyses. They combine different spectral bands to highlight specific features or properties of the Earth’s surface.</p>
+<p>In this section, we’ll learn how to:</p>
+<ul class="simple">
+<li><p>Calculate common spectral indices (NDVI, NDWI, SAVI)</p></li>
+<li><p>Visualize index results</p></li>
+<li><p>Save computed indices</p></li>
+<li><p>Create custom indices</p></li>
+</ul>
+</section>
+<section id="common-spectral-indices">
+<h2>Common Spectral Indices<a class="headerlink" href="#common-spectral-indices" title="Link to this heading">#</a></h2>
+<section id="ndvi-normalized-difference-vegetation-index">
+<h3>NDVI (Normalized Difference Vegetation Index)<a class="headerlink" href="#ndvi-normalized-difference-vegetation-index" title="Link to this heading">#</a></h3>
+<p>Measures vegetation health and density:</p>
+<p>$$NDVI = \frac{NIR - Red}{NIR + Red}$$</p>
+<ul>
+<li><p><strong>Range</strong>: -1 to +1</p></li>
+<li><p><strong>Interpretation</strong>:</p>
+<ul>
+<li><p>&lt; 0: Water, snow, clouds</p></li>
+<li><p>0-0.2: Bare soil, rock</p></li>
+<li><p>0.2-0.5: Sparse vegetation</p></li>
+<li><p>0.5-0.8: Moderate vegetation</p></li>
+<li><blockquote>
+<div><p>0.8: Dense vegetation</p>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ndwi-normalized-difference-water-index">
+<h3>NDWI (Normalized Difference Water Index)<a class="headerlink" href="#ndwi-normalized-difference-water-index" title="Link to this heading">#</a></h3>
+<p>Detects water bodies and moisture:</p>
+<p>$$NDWI = \frac{Green - NIR}{Green + NIR}$$</p>
+<ul>
+<li><p><strong>Range</strong>: -1 to +1</p></li>
+<li><p><strong>Interpretation</strong>:</p>
+<ul>
+<li><blockquote>
+<div><p>0: Water</p>
+</div></blockquote>
+</li>
+<li><p>&lt; 0: Non-water</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mndwi-modified-ndwi">
+<h3>MNDWI (Modified NDWI)<a class="headerlink" href="#mndwi-modified-ndwi" title="Link to this heading">#</a></h3>
+<p>Better for urban areas:</p>
+<p>$$MNDWI = \frac{Green - SWIR}{Green + SWIR}$$</p>
+</section>
+<section id="savi-soil-adjusted-vegetation-index">
+<h3>SAVI (Soil Adjusted Vegetation Index)<a class="headerlink" href="#savi-soil-adjusted-vegetation-index" title="Link to this heading">#</a></h3>
+<p>Minimizes soil brightness influence:</p>
+<p>$$SAVI = \frac{(NIR - Red) \times (1 + L)}{NIR + Red + L}$$</p>
+<p>Where L = 0.5 (soil brightness correction factor)</p>
+</section>
+<section id="evi-enhanced-vegetation-index">
+<h3>EVI (Enhanced Vegetation Index)<a class="headerlink" href="#evi-enhanced-vegetation-index" title="Link to this heading">#</a></h3>
+<p>Improved sensitivity in high biomass regions:</p>
+<p>$$EVI = 2.5 \times \frac{NIR - Red}{NIR + 6 \times Red - 7.5 \times Blue + 1}$$</p>
+</section>
+<section id="ndbi-normalized-difference-built-up-index">
+<h3>NDBI (Normalized Difference Built-up Index)<a class="headerlink" href="#ndbi-normalized-difference-built-up-index" title="Link to this heading">#</a></h3>
+<p>Identifies built-up areas:</p>
+<p>$$NDBI = \frac{SWIR - NIR}{SWIR + NIR}$$</p>
+</section>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%%capture
+if &#39;google.colab&#39; in str(get_ipython()):
+    !pip install pystac-client odc-stac rioxarray dask jupyter-server-proxy
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import os
+import matplotlib.pyplot as plt
+import pandas as pd
+import pystac_client
+from odc import stac
+import xarray as xr
+import rioxarray as rxr
+from dask.distributed import Client
+
+client = Client()
+client
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="get-sentinel-2-scene">
+<h2>Get Sentinel-2 Scene<a class="headerlink" href="#get-sentinel-2-scene" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>latitude = 27.163
+longitude = 82.608
+year = 2023
+
+# Define bounding box
+km2deg = 1.0 / 111
+x, y = (longitude, latitude)
+r = 1 * km2deg
+bbox = (x - r, y - r, x + r, y + r)
+
+# Query STAC Catalog
+catalog = pystac_client.Client.open(
+    &#39;https://earth-search.aws.element84.com/v1&#39;)
+
+search = catalog.search(
+    collections=[&#39;sentinel-2-c1-l2a&#39;],
+    bbox=bbox,
+    datetime=f&#39;{year}&#39;,
+    query={
+        &#39;eo:cloud_cover&#39;: {&#39;lt&#39;: 30},
+        &#39;s2:nodata_pixel_percentage&#39;: {&#39;lt&#39;: 10}
+    },
+    sortby=[{
+        &#39;field&#39;: &#39;properties.eo:cloud_cover&#39;,
+        &#39;direction&#39;: &#39;asc&#39;
+    }]
+)
+items = search.item_collection()
+
+# Load data
+ds = stac.load(
+    items,
+    bands=[&#39;blue&#39;, &#39;green&#39;, &#39;red&#39;, &#39;nir&#39;, &#39;swir16&#39;],
+    resolution=10,
+    chunks={},
+    groupby=&#39;solar_day&#39;,
+    preserve_original_order=True
+)
+
+# Select least cloudy scene
+timestamp = pd.to_datetime(items[0].properties[&#39;datetime&#39;]).tz_convert(None)
+scene = ds.sel(time=timestamp).compute()
+
+# Apply scale and offset
+scale = 0.0001
+offset = -0.1
+scene = scene.where(scene != 0) * scale + offset
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualize-the-scene">
+<h2>Visualize the Scene<a class="headerlink" href="#visualize-the-scene" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>scene_da = scene.to_array(&#39;band&#39;)
+
+# Create RGB preview
+preview = scene_da.rio.reproject(scene_da.rio.crs, resolution=300)
+
+fig, ax = plt.subplots(1, 1, figsize=(8, 8))
+preview.sel(band=[&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]).plot.imshow(
+    ax=ax, robust=True)
+ax.set_title(&#39;True Color Composite&#39;)
+ax.set_axis_off()
+ax.set_aspect(&#39;equal&#39;)
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-spectral-indices">
+<h2>Calculate Spectral Indices<a class="headerlink" href="#calculate-spectral-indices" title="Link to this heading">#</a></h2>
+<section id="ndvi">
+<h3>NDVI<a class="headerlink" href="#ndvi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Calculate NDVI
+ndvi = (scene.nir - scene.red) / (scene.nir + scene.red)
+
+# Visualize
+fig, ax = plt.subplots(figsize=(10, 8))
+ndvi.plot(ax=ax, cmap=&#39;RdYlGn&#39;, vmin=-1, vmax=1, cbar_kwargs={&#39;label&#39;: &#39;NDVI&#39;})
+ax.set_title(&#39;NDVI - Normalized Difference Vegetation Index&#39;)
+ax.set_axis_off()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ndwi">
+<h3>NDWI<a class="headerlink" href="#ndwi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Calculate NDWI
+ndwi = (scene.green - scene.nir) / (scene.green + scene.nir)
+
+# Visualize
+fig, ax = plt.subplots(figsize=(10, 8))
+ndwi.plot(ax=ax, cmap=&#39;Blues&#39;, vmin=-1, vmax=1, cbar_kwargs={&#39;label&#39;: &#39;NDWI&#39;})
+ax.set_title(&#39;NDWI - Normalized Difference Water Index&#39;)
+ax.set_axis_off()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mndwi">
+<h3>MNDWI<a class="headerlink" href="#mndwi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Calculate MNDWI
+mndwi = (scene.green - scene.swir16) / (scene.green + scene.swir16)
+
+# Visualize
+fig, ax = plt.subplots(figsize=(10, 8))
+mndwi.plot(ax=ax, cmap=&#39;Blues&#39;, vmin=-1, vmax=1, cbar_kwargs={&#39;label&#39;: &#39;MNDWI&#39;})
+ax.set_title(&#39;MNDWI - Modified Normalized Difference Water Index&#39;)
+ax.set_axis_off()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="savi">
+<h3>SAVI<a class="headerlink" href="#savi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Calculate SAVI
+L = 0.5  # Soil brightness correction factor
+savi = ((scene.nir - scene.red) * (1 + L)) / (scene.nir + scene.red + L)
+
+# Visualize
+fig, ax = plt.subplots(figsize=(10, 8))
+savi.plot(ax=ax, cmap=&#39;RdYlGn&#39;, vmin=-1, vmax=1, cbar_kwargs={&#39;label&#39;: &#39;SAVI&#39;})
+ax.set_title(&#39;SAVI - Soil Adjusted Vegetation Index&#39;)
+ax.set_axis_off()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="evi">
+<h3>EVI<a class="headerlink" href="#evi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Calculate EVI
+evi = 2.5 * ((scene.nir - scene.red) / 
+             (scene.nir + 6 * scene.red - 7.5 * scene.blue + 1))
+
+# Visualize
+fig, ax = plt.subplots(figsize=(10, 8))
+evi.plot(ax=ax, cmap=&#39;RdYlGn&#39;, vmin=-1, vmax=1, cbar_kwargs={&#39;label&#39;: &#39;EVI&#39;})
+ax.set_title(&#39;EVI - Enhanced Vegetation Index&#39;)
+ax.set_axis_off()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ndbi">
+<h3>NDBI<a class="headerlink" href="#ndbi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Calculate NDBI
+ndbi = (scene.swir16 - scene.nir) / (scene.swir16 + scene.nir)
+
+# Visualize
+fig, ax = plt.subplots(figsize=(10, 8))
+ndbi.plot(ax=ax, cmap=&#39;YlOrRd&#39;, vmin=-1, vmax=1, cbar_kwargs={&#39;label&#39;: &#39;NDBI&#39;})
+ax.set_title(&#39;NDBI - Normalized Difference Built-up Index&#39;)
+ax.set_axis_off()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="multi-index-comparison">
+<h2>Multi-Index Comparison<a class="headerlink" href="#multi-index-comparison" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Create subplot for multiple indices
+fig, axes = plt.subplots(2, 3, figsize=(15, 10))
+
+# NDVI
+ndvi.plot(ax=axes[0, 0], cmap=&#39;RdYlGn&#39;, vmin=-1, vmax=1, add_colorbar=False)
+axes[0, 0].set_title(&#39;NDVI (Vegetation)&#39;)
+axes[0, 0].set_axis_off()
+
+# NDWI
+ndwi.plot(ax=axes[0, 1], cmap=&#39;Blues&#39;, vmin=-1, vmax=1, add_colorbar=False)
+axes[0, 1].set_title(&#39;NDWI (Water)&#39;)
+axes[0, 1].set_axis_off()
+
+# MNDWI
+mndwi.plot(ax=axes[0, 2], cmap=&#39;Blues&#39;, vmin=-1, vmax=1, add_colorbar=False)
+axes[0, 2].set_title(&#39;MNDWI (Water - Modified)&#39;)
+axes[0, 2].set_axis_off()
+
+# SAVI
+savi.plot(ax=axes[1, 0], cmap=&#39;RdYlGn&#39;, vmin=-1, vmax=1, add_colorbar=False)
+axes[1, 0].set_title(&#39;SAVI (Vegetation - Soil Adjusted)&#39;)
+axes[1, 0].set_axis_off()
+
+# EVI
+evi.plot(ax=axes[1, 1], cmap=&#39;RdYlGn&#39;, vmin=-1, vmax=1, add_colorbar=False)
+axes[1, 1].set_title(&#39;EVI (Enhanced Vegetation)&#39;)
+axes[1, 1].set_axis_off()
+
+# NDBI
+ndbi.plot(ax=axes[1, 2], cmap=&#39;YlOrRd&#39;, vmin=-1, vmax=1, add_colorbar=False)
+axes[1, 2].set_title(&#39;NDBI (Built-up)&#39;)
+axes[1, 2].set_axis_off()
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="save-computed-indices">
+<h2>Save Computed Indices<a class="headerlink" href="#save-computed-indices" title="Link to this heading">#</a></h2>
+<section id="save-as-netcdf">
+<h3>Save as NetCDF<a class="headerlink" href="#save-as-netcdf" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Combine indices into a dataset
+indices = xr.Dataset({
+    &#39;ndvi&#39;: ndvi,
+    &#39;ndwi&#39;: ndwi,
+    &#39;mndwi&#39;: mndwi,
+    &#39;savi&#39;: savi,
+    &#39;evi&#39;: evi,
+    &#39;ndbi&#39;: ndbi
+})
+
+# Add metadata
+indices.attrs[&#39;title&#39;] = &#39;Spectral Indices&#39;
+indices.attrs[&#39;source&#39;] = &#39;Sentinel-2&#39;
+indices.attrs[&#39;date&#39;] = str(timestamp)
+
+# Save to NetCDF
+output_file = &#39;spectral_indices.nc&#39;
+indices.to_netcdf(output_file)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="save-as-geotiff">
+<h3>Save as GeoTIFF<a class="headerlink" href="#save-as-geotiff" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Save individual indices
+ndvi.rio.to_raster(&#39;ndvi.tif&#39;)
+ndwi.rio.to_raster(&#39;ndwi.tif&#39;)
+mndwi.rio.to_raster(&#39;mndwi.tif&#39;)
+
+# Save multi-band GeoTIFF
+indices_da = indices.to_array(&#39;index&#39;)
+indices_da.rio.to_raster(&#39;all_indices.tif&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="save-to-zarr">
+<h3>Save to Zarr<a class="headerlink" href="#save-to-zarr" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Save to Zarr (cloud-optimized)
+indices.to_zarr(&#39;spectral_indices.zarr&#39;, mode=&#39;w&#39;, consolidated=True)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="custom-index-functions">
+<h2>Custom Index Functions<a class="headerlink" href="#custom-index-functions" title="Link to this heading">#</a></h2>
+<p>Create reusable functions for indices:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def calculate_ndvi(nir, red):
+    &quot;&quot;&quot;Calculate NDVI.&quot;&quot;&quot;
+    return (nir - red) / (nir + red)
+
+def calculate_ndwi(green, nir):
+    &quot;&quot;&quot;Calculate NDWI.&quot;&quot;&quot;
+    return (green - nir) / (green + nir)
+
+def calculate_savi(nir, red, L=0.5):
+    &quot;&quot;&quot;Calculate SAVI.&quot;&quot;&quot;
+    return ((nir - red) * (1 + L)) / (nir + red + L)
+
+def calculate_evi(nir, red, blue, G=2.5, C1=6, C2=7.5, L=1):
+    &quot;&quot;&quot;Calculate EVI.&quot;&quot;&quot;
+    return G * ((nir - red) / (nir + C1 * red - C2 * blue + L))
+
+# Use functions
+ndvi = calculate_ndvi(scene.nir, scene.red)
+ndwi = calculate_ndwi(scene.green, scene.nir)
+savi = calculate_savi(scene.nir, scene.red)
+evi = calculate_evi(scene.nir, scene.red, scene.blue)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="time-series-of-indices">
+<h2>Time Series of Indices<a class="headerlink" href="#time-series-of-indices" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load full time series
+ds_full = stac.load(
+    items,
+    bands=[&#39;red&#39;, &#39;nir&#39;],
+    resolution=20,  # Coarser for faster processing
+    chunks={&#39;time&#39;: 10}
+).compute()
+
+# Apply scale/offset
+ds_full = ds_full.where(ds_full != 0) * scale + offset
+
+# Calculate NDVI time series
+ndvi_ts = (ds_full.nir - ds_full.red) / (ds_full.nir + ds_full.red)
+
+# Calculate spatial mean
+ndvi_mean = ndvi_ts.mean(dim=[&#39;x&#39;, &#39;y&#39;])
+
+# Plot time series
+fig, ax = plt.subplots(figsize=(12, 6))
+ndvi_mean.plot(ax=ax, marker=&#39;o&#39;)
+ax.set_title(&#39;NDVI Time Series&#39;)
+ax.set_ylabel(&#39;Mean NDVI&#39;)
+ax.grid(True, alpha=0.3)
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="thresholding-and-classification">
+<h2>Thresholding and Classification<a class="headerlink" href="#thresholding-and-classification" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Classify NDVI into categories
+ndvi_classified = xr.where(ndvi &lt; 0, 0,  # Water/Non-vegetation
+                  xr.where(ndvi &lt; 0.2, 1,  # Bare soil
+                  xr.where(ndvi &lt; 0.5, 2,  # Sparse vegetation
+                  xr.where(ndvi &lt; 0.8, 3,  # Moderate vegetation
+                           4))))  # Dense vegetation
+
+# Define colors for each class
+colors = [&#39;blue&#39;, &#39;brown&#39;, &#39;yellow&#39;, &#39;lightgreen&#39;, &#39;darkgreen&#39;]
+labels = [&#39;Water&#39;, &#39;Bare Soil&#39;, &#39;Sparse Veg&#39;, &#39;Moderate Veg&#39;, &#39;Dense Veg&#39;]
+
+# Visualize
+fig, ax = plt.subplots(figsize=(10, 8))
+im = ax.imshow(ndvi_classified, cmap=plt.cm.colors.ListedColormap(colors))
+ax.set_title(&#39;NDVI Classification&#39;)
+ax.set_axis_off()
+
+# Add legend
+from matplotlib.patches import Patch
+legend_elements = [Patch(facecolor=colors[i], label=labels[i]) 
+                   for i in range(len(colors))]
+ax.legend(handles=legend_elements, loc=&#39;upper right&#39;)
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
+<p>Calculate the Normalized Difference Snow Index (NDSI) using the formula:</p>
+<p>$$NDSI = \frac{Green - SWIR}{Green + SWIR}$$</p>
+<p>Then create a binary snow mask where NDSI &gt; 0.4 indicates snow.</p>
+<p><strong>Solution:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Calculate NDSI
+ndsi = (scene.green - scene.swir16) / (scene.green + scene.swir16)
+
+# Create snow mask
+snow_mask = ndsi &gt; 0.4
+
+# Visualize
+fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+
+# NDSI
+ndsi.plot(ax=axes[0], cmap=&#39;Blues&#39;, vmin=-1, vmax=1)
+axes[0].set_title(&#39;NDSI - Normalized Difference Snow Index&#39;)
+axes[0].set_axis_off()
+
+# Snow mask
+snow_mask.plot(ax=axes[1], cmap=&#39;Blues&#39;, add_colorbar=False)
+axes[1].set_title(&#39;Snow Mask (NDSI &gt; 0.4)&#39;)
+axes[1].set_axis_off()
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<p>!!! success “What You Learned”
+- Spectral indices combine bands to highlight specific features
+- NDVI measures vegetation health and density
+- NDWI and MNDWI detect water bodies
+- SAVI adjusts for soil brightness
+- EVI provides enhanced sensitivity in dense vegetation
+- NDBI identifies built-up areas
+- XArray makes index calculation straightforward
+- Indices can be saved in multiple formats
+- Time series analysis reveals temporal patterns
+- Thresholding enables simple classification</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>→ Continue to <a class="reference internal" href="cloud-masking.html"><span class="std std-doc">Cloud Masking</span></a></p>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.indexdatabase.de/">Index Database</a></p></li>
+<li><p><a class="reference external" href="https://github.com/awesome-spectral-indices/awesome-spectral-indices">Awesome Spectral Indices</a></p></li>
+<li><p><a class="reference external" href="https://www.usgs.gov/landsat-missions/landsat-surface-reflectance-derived-spectral-indices">USGS Spectral Indices</a></p></li>
+<li><p><a class="reference external" href="https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/indexdb/">Sentinel-2 Indices</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\processing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../fundamentals/xee.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">XEE for Earth Engine</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cloud-masking.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Cloud Masking</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-spectral-indices">Common Spectral Indices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndvi-normalized-difference-vegetation-index">NDVI (Normalized Difference Vegetation Index)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndwi-normalized-difference-water-index">NDWI (Normalized Difference Water Index)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mndwi-modified-ndwi">MNDWI (Modified NDWI)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#savi-soil-adjusted-vegetation-index">SAVI (Soil Adjusted Vegetation Index)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evi-enhanced-vegetation-index">EVI (Enhanced Vegetation Index)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndbi-normalized-difference-built-up-index">NDBI (Normalized Difference Built-up Index)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-sentinel-2-scene">Get Sentinel-2 Scene</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-scene">Visualize the Scene</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-spectral-indices">Calculate Spectral Indices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndvi">NDVI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndwi">NDWI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mndwi">MNDWI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#savi">SAVI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evi">EVI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndbi">NDBI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-index-comparison">Multi-Index Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-computed-indices">Save Computed Indices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-as-netcdf">Save as NetCDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-as-geotiff">Save as GeoTIFF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-to-zarr">Save to Zarr</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-index-functions">Custom Index Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-of-indices">Time Series of Indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thresholding-and-classification">Thresholding and Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

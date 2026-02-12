@@ -1,0 +1,1043 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Water Quality Monitoring with XEE &#8212; Open GIS - Python-based Cloud Native Geospatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/examples/water-quality';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Python-First Data Access &amp; Local Processing" href="data-access-download.html" />
+    <link rel="prev" title="NDVI Analysis using XEE" href="ndvi-analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Open GIS - Python-based Cloud Native Geospatial Analysis</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Open GIS - Python-based Cloud Native Geospatial Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/introduction.html">Introduction to Cloud Native Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/setup.html">Setup Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/colab-basics.html">Google Colab Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xarray-basics.html">XArray Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/stac-dask.html">STAC and Dask Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/zarr.html">Working with Zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/xee.html">XEE for Earth Engine</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../processing/spectral-indices.html">Calculating Spectral Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/cloud-masking.html">Cloud Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/time-series.html">Time Series Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/aggregation.html">Data Aggregation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../advanced/scaling-dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/geemap-tiled-download.html">Geemap Tiled Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/cloud-computing.html">Cloud Computing for Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/planetary-computer.html">Microsoft Planetary Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/optimization.html">Optimization Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practical Examples</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ndvi-analysis.html">NDVI Analysis using XEE</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Water Quality Monitoring with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-access-download.html">Python-First Data Access &amp; Local Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indices-enhancement.html">Remote Sensing Indices and Enhancement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clustering-methods.html">Clustering Methods in Geospatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification-methods.html">Classification Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcdm-methods.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timeseries-phenology.html">Time Series and Phenological Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-flow.html">Python-First Network and Flow Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deep-learning-spatial.html">Deep Learning Architectures in Spatial Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vegetation-vcf.html">Vegetation Continuous Fields (VCF) Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="change-detection.html">Change Detection with XEE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complete-timeseries-workflow.html">Complete Time Series Workflow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/xarray-api.html">XArray API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/stac-spec.html">STAC Specification Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/dask-practices.html">Dask Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/zarr-format.html">Zarr Format Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/xee-usage.html">Google Earth Engine Reference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/tools.html">Tools and Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/reading.html">Further Reading</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/edit/main/docs/docs/examples/water-quality.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pulakeshpradhan/cloudgis/issues/new?title=Issue%20on%20page%20%2Fdocs/examples/water-quality.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/examples/water-quality.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Water Quality Monitoring with XEE</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-initialize-and-define-study-area">Step 1: Initialize and Define Study Area</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-load-and-process-sentinel-2-data">Step 2: Load and Process Sentinel-2 Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-water-body-detection">Step 3: Water Body Detection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-water-quality-parameters">Step 4: Calculate Water Quality Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-visualize-water-quality">Step 5: Visualize Water Quality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-temporal-analysis">Step 6: Temporal Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-water-quality-classification">Step 7: Water Quality Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-multi-lake-comparison">Step 8: Multi-Lake Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-export-results">Step 9: Export Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="water-quality-monitoring-with-xee">
+<h1>Water Quality Monitoring with XEE<a class="headerlink" href="#water-quality-monitoring-with-xee" title="Link to this heading">#</a></h1>
+<p>Monitor water quality parameters using satellite imagery and Earth Engine data accessed through XEE.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>This example demonstrates:</p>
+<ul class="simple">
+<li><p>Water body detection and masking</p></li>
+<li><p>Turbidity estimation</p></li>
+<li><p>Chlorophyll-a concentration</p></li>
+<li><p>Temporal water quality trends</p></li>
+<li><p>Multi-lake comparison</p></li>
+</ul>
+<p><strong>Dataset</strong>: Sentinel-2 for water quality parameters</p>
+</section>
+<section id="step-1-initialize-and-define-study-area">
+<h2>Step 1: Initialize and Define Study Area<a class="headerlink" href="#step-1-initialize-and-define-study-area" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import ee
+import xarray as xr
+import xee
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from matplotlib.colors import LinearSegmentedColormap
+
+# Initialize Earth Engine
+ee.Initialize(project=&#39;spatialgeography&#39;)
+
+# Define lake region (example: Dal Lake, Kashmir)
+lake_center = ee.Geometry.Point([74.8723, 34.1083])
+lake_roi = lake_center.buffer(2000)  # 2km buffer
+
+# Time period
+start_date = &#39;2023-01-01&#39;
+end_date = &#39;2023-12-31&#39;
+
+print(&quot;Study area defined&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-load-and-process-sentinel-2-data">
+<h2>Step 2: Load and Process Sentinel-2 Data<a class="headerlink" href="#step-2-load-and-process-sentinel-2-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def mask_s2_clouds(image):
+    &quot;&quot;&quot;Mask clouds and cirrus.&quot;&quot;&quot;
+    qa = image.select(&#39;QA60&#39;)
+    cloud_mask = qa.bitwiseAnd(1 &lt;&lt; 10).eq(0).And(
+                 qa.bitwiseAnd(1 &lt;&lt; 11).eq(0))
+    return image.updateMask(cloud_mask)
+
+# Load Sentinel-2 collection
+collection = ee.ImageCollection(&#39;COPERNICUS/S2_SR_HARMONIZED&#39;) \
+    .filterBounds(lake_roi) \
+    .filterDate(start_date, end_date) \
+    .filter(ee.Filter.lt(&#39;CLOUDY_PIXEL_PERCENTAGE&#39;, 20)) \
+    .map(mask_s2_clouds)
+
+print(f&quot;Found {collection.size().getInfo()} images&quot;)
+
+# Create median composite
+composite = collection.median().clip(lake_roi)
+
+# Load with XEE
+ds = xr.open_dataset(
+    composite,
+    engine=&#39;ee&#39;,
+    geometry=lake_roi,
+    scale=20,
+    crs=&#39;EPSG:4326&#39;
+).compute()
+
+print(&quot;Data loaded&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-water-body-detection">
+<h2>Step 3: Water Body Detection<a class="headerlink" href="#step-3-water-body-detection" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Calculate NDWI (Normalized Difference Water Index)
+ndwi = (ds.B3 - ds.B8) / (ds.B3 + ds.B8)
+
+# Calculate MNDWI (Modified NDWI)
+mndwi = (ds.B3 - ds.B11) / (ds.B3 + ds.B11)
+
+# Water mask (MNDWI &gt; 0 indicates water)
+water_mask = mndwi &gt; 0
+
+# Apply water mask to dataset
+ds_water = ds.where(water_mask)
+
+# Visualize water detection
+fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+
+# RGB
+rgb = np.stack([
+    ds.B4.values / 3000,
+    ds.B3.values / 3000,
+    ds.B2.values / 3000
+], axis=-1)
+rgb = np.clip(rgb, 0, 1)
+axes[0].imshow(rgb)
+axes[0].set_title(&#39;True Color&#39;)
+axes[0].axis(&#39;off&#39;)
+
+# MNDWI
+mndwi.plot(ax=axes[1], cmap=&#39;RdYlBu&#39;, vmin=-1, vmax=1)
+axes[1].set_title(&#39;MNDWI (Water Index)&#39;)
+axes[1].set_axis_off()
+
+# Water mask
+water_mask.plot(ax=axes[2], cmap=&#39;Blues&#39;)
+axes[2].set_title(&#39;Water Mask&#39;)
+axes[2].set_axis_off()
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4-calculate-water-quality-parameters">
+<h2>Step 4: Calculate Water Quality Parameters<a class="headerlink" href="#step-4-calculate-water-quality-parameters" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Turbidity estimation using Red/Blue ratio
+# Higher values indicate more turbidity
+turbidity_index = ds_water.B4 / ds_water.B2
+
+# Chlorophyll-a estimation using band ratios
+# Based on OC2 algorithm (simplified)
+chl_a = ds_water.B3 / ds_water.B4
+
+# Suspended sediment index
+ssi = ds_water.B4 + ds_water.B3
+
+# Total Suspended Matter (TSM) - empirical relationship
+tsm = 3.0 * ds_water.B4 - 0.5  # Simplified model
+
+print(&quot;Water quality parameters calculated&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-5-visualize-water-quality">
+<h2>Step 5: Visualize Water Quality<a class="headerlink" href="#step-5-visualize-water-quality" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fig, axes = plt.subplots(2, 2, figsize=(14, 12))
+
+# Turbidity
+im1 = turbidity_index.plot(ax=axes[0, 0], cmap=&#39;YlOrBr&#39;, vmin=0, vmax=2)
+axes[0, 0].set_title(&#39;Turbidity Index (Red/Blue Ratio)&#39;)
+axes[0, 0].set_axis_off()
+
+# Chlorophyll-a
+im2 = chl_a.plot(ax=axes[0, 1], cmap=&#39;YlGn&#39;, vmin=0, vmax=3)
+axes[0, 1].set_title(&#39;Chlorophyll-a Proxy&#39;)
+axes[0, 1].set_axis_off()
+
+# Suspended Sediment
+im3 = ssi.plot(ax=axes[1, 0], cmap=&#39;copper&#39;, vmin=0, vmax=2000)
+axes[1, 0].set_title(&#39;Suspended Sediment Index&#39;)
+axes[1, 0].set_axis_off()
+
+# TSM
+im4 = tsm.plot(ax=axes[1, 1], cmap=&#39;RdYlBu_r&#39;, vmin=0, vmax=100)
+axes[1, 1].set_title(&#39;Total Suspended Matter (mg/L)&#39;)
+axes[1, 1].set_axis_off()
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-6-temporal-analysis">
+<h2>Step 6: Temporal Analysis<a class="headerlink" href="#step-6-temporal-analysis" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Load time series for temporal analysis
+def calculate_water_quality(image):
+    &quot;&quot;&quot;Calculate water quality for a single image.&quot;&quot;&quot;
+    # Mask water
+    mndwi = image.normalizedDifference([&#39;B3&#39;, &#39;B11&#39;])
+    water = image.updateMask(mndwi.gt(0))
+    
+    # Calculate parameters
+    turbidity = water.select(&#39;B4&#39;).divide(water.select(&#39;B2&#39;))
+    chl_a = water.select(&#39;B3&#39;).divide(water.select(&#39;B4&#39;))
+    
+    return image.addBands([
+        turbidity.rename(&#39;turbidity&#39;),
+        chl_a.rename(&#39;chl_a&#39;)
+    ])
+
+# Apply to collection
+wq_collection = collection.map(calculate_water_quality)
+
+# Load time series
+ds_ts = xr.open_dataset(
+    wq_collection,
+    engine=&#39;ee&#39;,
+    geometry=lake_roi,
+    scale=100,  # Lower resolution for faster processing
+    crs=&#39;EPSG:4326&#39;
+)
+
+ds_ts = ds_ts.sortby(&#39;time&#39;).compute()
+
+# Calculate mean values over lake
+turbidity_ts = ds_ts.turbidity.mean(dim=[&#39;lon&#39;, &#39;lat&#39;])
+chl_a_ts = ds_ts.chl_a.mean(dim=[&#39;lon&#39;, &#39;lat&#39;])
+
+# Plot time series
+fig, axes = plt.subplots(2, 1, figsize=(14, 10))
+
+# Turbidity over time
+turbidity_ts.plot(ax=axes[0], marker=&#39;o&#39;, linestyle=&#39;-&#39;, color=&#39;brown&#39;)
+axes[0].set_title(&#39;Lake Turbidity Over Time&#39;)
+axes[0].set_ylabel(&#39;Turbidity Index&#39;)
+axes[0].grid(True, alpha=0.3)
+
+# Chlorophyll-a over time
+chl_a_ts.plot(ax=axes[1], marker=&#39;o&#39;, linestyle=&#39;-&#39;, color=&#39;green&#39;)
+axes[1].set_title(&#39;Chlorophyll-a Proxy Over Time&#39;)
+axes[1].set_ylabel(&#39;Chl-a Index&#39;)
+axes[1].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-7-water-quality-classification">
+<h2>Step 7: Water Quality Classification<a class="headerlink" href="#step-7-water-quality-classification" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Classify water quality based on turbidity and chlorophyll
+def classify_water_quality(turbidity, chl_a):
+    &quot;&quot;&quot;Classify water quality into categories.&quot;&quot;&quot;
+    quality = np.zeros_like(turbidity.values)
+    
+    # Good: Low turbidity, low chlorophyll
+    good = (turbidity &lt; 1.0) &amp; (chl_a &lt; 1.5)
+    quality[good.values] = 1
+    
+    # Moderate: Medium turbidity or chlorophyll
+    moderate = ((turbidity &gt;= 1.0) &amp; (turbidity &lt; 1.5)) | \
+               ((chl_a &gt;= 1.5) &amp; (chl_a &lt; 2.0))
+    quality[moderate.values] = 2
+    
+    # Poor: High turbidity or chlorophyll
+    poor = (turbidity &gt;= 1.5) | (chl_a &gt;= 2.0)
+    quality[poor.values] = 3
+    
+    return quality
+
+# Classify
+wq_class = classify_water_quality(turbidity_index, chl_a)
+
+# Visualize classification
+from matplotlib.colors import ListedColormap
+
+colors = [&#39;white&#39;, &#39;green&#39;, &#39;yellow&#39;, &#39;red&#39;]
+labels = [&#39;No Data&#39;, &#39;Good&#39;, &#39;Moderate&#39;, &#39;Poor&#39;]
+cmap = ListedColormap(colors)
+
+fig, ax = plt.subplots(figsize=(10, 8))
+im = ax.imshow(wq_class, cmap=cmap, vmin=0, vmax=3)
+ax.set_title(&#39;Water Quality Classification&#39;)
+ax.set_axis_off()
+
+# Add legend
+from matplotlib.patches import Patch
+legend_elements = [Patch(facecolor=colors[i], label=labels[i]) 
+                   for i in range(len(labels))]
+ax.legend(handles=legend_elements, loc=&#39;upper right&#39;)
+
+plt.tight_layout()
+plt.show()
+
+# Calculate statistics
+total_pixels = np.sum(wq_class &gt; 0)
+for i, label in enumerate(labels[1:], 1):
+    count = np.sum(wq_class == i)
+    percentage = (count / total_pixels) * 100 if total_pixels &gt; 0 else 0
+    print(f&quot;{label}: {percentage:.1f}%&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-8-multi-lake-comparison">
+<h2>Step 8: Multi-Lake Comparison<a class="headerlink" href="#step-8-multi-lake-comparison" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Define multiple lakes
+lakes = [
+    {&#39;name&#39;: &#39;Lake A&#39;, &#39;lon&#39;: 74.87, &#39;lat&#39;: 34.11, &#39;buffer&#39;: 2000},
+    {&#39;name&#39;: &#39;Lake B&#39;, &#39;lon&#39;: 74.90, &#39;lat&#39;: 34.08, &#39;buffer&#39;: 1500},
+    {&#39;name&#39;: &#39;Lake C&#39;, &#39;lon&#39;: 74.85, &#39;lat&#39;: 34.13, &#39;buffer&#39;: 1000}
+]
+
+# Compare water quality across lakes
+comparison_results = []
+
+for lake in lakes:
+    roi = ee.Geometry.Point([lake[&#39;lon&#39;], lake[&#39;lat&#39;]]).buffer(lake[&#39;buffer&#39;])
+    
+    # Get composite
+    lake_composite = collection.median().clip(roi)
+    
+    # Load data
+    lake_ds = xr.open_dataset(
+        lake_composite,
+        engine=&#39;ee&#39;,
+        geometry=roi,
+        scale=50,
+        crs=&#39;EPSG:4326&#39;
+    ).compute()
+    
+    # Calculate indices
+    lake_mndwi = (lake_ds.B3 - lake_ds.B11) / (lake_ds.B3 + lake_ds.B11)
+    lake_water = lake_ds.where(lake_mndwi &gt; 0)
+    
+    lake_turbidity = (lake_water.B4 / lake_water.B2).mean().values.item()
+    lake_chl_a = (lake_water.B3 / lake_water.B4).mean().values.item()
+    
+    comparison_results.append({
+        &#39;Lake&#39;: lake[&#39;name&#39;],
+        &#39;Turbidity&#39;: lake_turbidity,
+        &#39;Chl-a&#39;: lake_chl_a
+    })
+
+# Create comparison DataFrame
+comparison_df = pd.DataFrame(comparison_results)
+print(&quot;\nLake Comparison:&quot;)
+print(comparison_df)
+
+# Visualize comparison
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+# Turbidity comparison
+axes[0].bar(comparison_df[&#39;Lake&#39;], comparison_df[&#39;Turbidity&#39;], color=&#39;brown&#39;, alpha=0.7)
+axes[0].set_ylabel(&#39;Turbidity Index&#39;)
+axes[0].set_title(&#39;Turbidity Comparison&#39;)
+axes[0].grid(True, alpha=0.3, axis=&#39;y&#39;)
+
+# Chlorophyll comparison
+axes[1].bar(comparison_df[&#39;Lake&#39;], comparison_df[&#39;Chl-a&#39;], color=&#39;green&#39;, alpha=0.7)
+axes[1].set_ylabel(&#39;Chl-a Index&#39;)
+axes[1].set_title(&#39;Chlorophyll-a Comparison&#39;)
+axes[1].grid(True, alpha=0.3, axis=&#39;y&#39;)
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-9-export-results">
+<h2>Step 9: Export Results<a class="headerlink" href="#step-9-export-results" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Create comprehensive water quality dataset
+wq_results = xr.Dataset({
+    &#39;turbidity&#39;: ([&#39;y&#39;, &#39;x&#39;], turbidity_index.values),
+    &#39;chl_a&#39;: ([&#39;y&#39;, &#39;x&#39;], chl_a.values),
+    &#39;tsm&#39;: ([&#39;y&#39;, &#39;x&#39;], tsm.values),
+    &#39;water_mask&#39;: ([&#39;y&#39;, &#39;x&#39;], water_mask.values.astype(int)),
+    &#39;quality_class&#39;: ([&#39;y&#39;, &#39;x&#39;], wq_class)
+}, coords={
+    &#39;y&#39;: ds.lat.values,
+    &#39;x&#39;: ds.lon.values
+})
+
+# Add CRS
+wq_results = wq_results.rio.write_crs(&#39;EPSG:4326&#39;)
+
+# Save as NetCDF
+wq_results.to_netcdf(&#39;water_quality_results.nc&#39;)
+print(&quot;Results saved to water_quality_results.nc&quot;)
+
+# Export individual parameters as GeoTIFF
+turbidity_da = xr.DataArray(
+    turbidity_index.values,
+    dims=[&#39;y&#39;, &#39;x&#39;],
+    coords={&#39;y&#39;: ds.lat.values, &#39;x&#39;: ds.lon.values}
+)
+turbidity_da = turbidity_da.rio.write_crs(&#39;EPSG:4326&#39;)
+turbidity_da.rio.to_raster(&#39;turbidity.tif&#39;)
+
+# Save time series
+ts_df = pd.DataFrame({
+    &#39;date&#39;: pd.to_datetime(ds_ts.time.values),
+    &#39;turbidity&#39;: turbidity_ts.values,
+    &#39;chl_a&#39;: chl_a_ts.values
+})
+ts_df.to_csv(&#39;water_quality_timeseries.csv&#39;, index=False)
+
+# Save comparison
+comparison_df.to_csv(&#39;lake_comparison.csv&#39;, index=False)
+
+print(&quot;All results exported successfully&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<p>!!! success “What You Learned”
+- Water body detection using MNDWI
+- Turbidity estimation from band ratios
+- Chlorophyll-a proxy calculation
+- Total Suspended Matter estimation
+- Temporal water quality monitoring
+- Water quality classification
+- Multi-lake comparison
+- Comprehensive result export</p>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.sciencedirect.com/topics/earth-and-planetary-sciences/water-quality">Water Quality Remote Sensing</a></p></li>
+<li><p><a class="reference external" href="https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/water_quality/">Sentinel-2 for Water Quality</a></p></li>
+<li><p><a class="reference external" href="https://developers.google.com/earth-engine/tutorials/community/water-detection">Earth Engine Water Detection</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\examples"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ndvi-analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">NDVI Analysis using XEE</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="data-access-download.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python-First Data Access &amp; Local Processing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-initialize-and-define-study-area">Step 1: Initialize and Define Study Area</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-load-and-process-sentinel-2-data">Step 2: Load and Process Sentinel-2 Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-water-body-detection">Step 3: Water Body Detection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-water-quality-parameters">Step 4: Calculate Water Quality Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-visualize-water-quality">Step 5: Visualize Water Quality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-temporal-analysis">Step 6: Temporal Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-water-quality-classification">Step 7: Water Quality Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-multi-lake-comparison">Step 8: Multi-Lake Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-export-results">Step 9: Export Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Open Geospatial Hub
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
