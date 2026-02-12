@@ -130,6 +130,7 @@ nav:
   - Practical Examples:
       - NDVI Analysis: examples/ndvi-analysis.md
       - Water Quality Monitoring: examples/water-quality.md
+      - Data Access & Tiled Downloading: examples/data-access-download.md
       - 1. Remote Sensing Indices and Enhancement: examples/indices-enhancement.md
       - 2. Clustering Methods in Geospatial Analysis: examples/clustering-methods.md
       - 3. Classification Methods: examples/classification-methods.md
