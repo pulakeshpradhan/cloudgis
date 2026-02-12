@@ -89,7 +89,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#data-access-and-tiled-downloading" class="md-skip">
+        <a href="#python-first-data-access-local-processing" class="md-skip">
           Skip to content
         </a>
       
@@ -1437,10 +1437,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-initialize-and-load-data-with-xee" class="md-nav__link">
+  <a href="#step-1-initialize-and-preview-with-xee" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: Initialize and Load Data with XEE
+        Step 1: Initialize and Preview with XEE
       
     </span>
   </a>
@@ -1448,10 +1448,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-openstreetmap-osm-data-access" class="md-nav__link">
+  <a href="#step-2-advanced-osm-data-with-osmnx" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: OpenStreetMap (OSM) Data Access
+        Step 2: Advanced OSM Data with OSMnx
       
     </span>
   </a>
@@ -1459,10 +1459,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-tiled-downloading-with-geemap" class="md-nav__link">
+  <a href="#step-3-tiled-downloading-the-escape-hatch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3: Tiled Downloading with geemap
+        Step 3: Tiled Downloading (The Escape Hatch)
       
     </span>
   </a>
@@ -1470,10 +1470,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-verify-downloaded-data-locally" class="md-nav__link">
+  <a href="#step-4-full-local-analysis-with-xarray-dask" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4: Verify Downloaded Data Locally
+        Step 4: Full Local Analysis with Xarray &amp; Dask
       
     </span>
   </a>
@@ -1481,10 +1481,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-use-this-workflow" class="md-nav__link">
+  <a href="#why-this-matters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why Use This Workflow?
+        Why This Matters
       
     </span>
   </a>
@@ -2197,136 +2197,130 @@
   
 
 
-<h1 id="data-access-and-tiled-downloading">Data Access and Tiled Downloading</h1>
-<p>Explore Earth Engine data interactively with XEE and download large datasets (Satellite &amp; OSM) locally using geemap and OSMnx.</p>
+<h1 id="python-first-data-access-local-processing">Python-First Data Access &amp; Local Processing</h1>
+<p>Break free from cloud-only sandboxes. Learn how to use Google Earth Engine purely as a data provider, while performing all your analysis, modeling, and visualization in a local, open-source Python environment.</p>
 <h2 id="overview">Overview</h2>
-<p>This example demonstrates the complete workflow for:</p>
+<p>Total dependence on a single proprietary cloud platform (like GEE) carries significant risks, including vendor lock-in and potential loss of work. This workflow demonstrates a <strong>"Cloud-Hybrid"</strong> approach:</p>
 <ol>
-<li><strong>Direct Data Access</strong>: Load Earth Engine data into an XArray dataset using XEE.</li>
-<li><strong>OSM Data Retrieval</strong>: Get OpenStreetMap vector data (buildings, roads, etc.) using geemap.</li>
-<li><strong>Tiled Downloading</strong>: Use <code>geemap</code> to download high-resolution raster data in chunks.</li>
+<li><strong>GEE as a Data Source</strong>: Use XEE to interactively explore and select data.</li>
+<li><strong>Advanced Vector Data</strong>: Use <code>OSMnx</code> to fetch and analyze complex OpenStreetMap networks locally.</li>
+<li><strong>Tiled Download</strong>: Use <code>geemap</code> to export large-scale raster data to your local machine.</li>
+<li><strong>Local Analysis</strong>: Perform all subsequent processing using <code>Xarray</code>, <code>Dask</code>, and <code>Rioxarray</code>.</li>
 </ol>
-<h2 id="step-1-initialize-and-load-data-with-xee">Step 1: Initialize and Load Data with XEE</h2>
-<p>We'll start by loading Sentinel-2 data for a region of interest (ROI) to perform some quick analysis.</p>
+<h2 id="step-1-initialize-and-preview-with-xee">Step 1: Initialize and Preview with XEE</h2>
+<p>We'll use XEE for a quick preview. Note that we are only using it to <em>see</em> what we want before we download it for real work.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">ee</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">xee</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">geemap</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Initialize Earth Engine</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="s1">'spatialgeography'</span><span class="p">)</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Define a Region of Interest (ROI)</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">roi</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">([</span><span class="mf">77.1025</span><span class="p">,</span> <span class="mf">28.7041</span><span class="p">])</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span><span class="o">.</span><span class="n">bounds</span><span class="p">()</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># Load Sentinel-2 SR data</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">s2</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">"COPERNICUS/S2_SR_HARMONIZED"</span><span class="p">)</span> \
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">roi</span><span class="p">)</span> \
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s1">'2023-01-01'</span><span class="p">,</span> <span class="s1">'2023-06-30'</span><span class="p">)</span> \
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="s1">'CLOUDY_PIXEL_PERCENTAGE'</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> \
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="o">.</span><span class="n">median</span><span class="p">()</span> \
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">roi</span><span class="p">)</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1"># Load with XEE for interactive analysis</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1"># This allows you to work with the data as an XArray object</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">osmnx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ox</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># Initialize Earth Engine</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="s1">'spatialgeography'</span><span class="p">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># Define a Region of Interest (ROI)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">roi_point</span> <span class="o">=</span> <span class="p">[</span><span class="mf">77.1025</span><span class="p">,</span> <span class="mf">28.7041</span><span class="p">]</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">roi</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="n">roi_point</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span><span class="o">.</span><span class="n">bounds</span><span class="p">()</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># Preview Sentinel-2 data</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">s2</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">"COPERNICUS/S2_SR_HARMONIZED"</span><span class="p">)</span> \
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">roi</span><span class="p">)</span> \
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s1">'2023-01-01'</span><span class="p">,</span> <span class="s1">'2023-06-30'</span><span class="p">)</span> \
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="s1">'CLOUDY_PIXEL_PERCENTAGE'</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> \
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1"># Quick interactive peek</span>
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">'ee'</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">roi</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="step-2-openstreetmap-osm-data-access">Step 2: OpenStreetMap (OSM) Data Access</h2>
-<p><code>geemap</code> provides a convenient way to fetch OSM vector data directly into your notebook.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Get buildings in the area</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">buildings</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">osm_to_gdf</span><span class="p">(</span><span class="n">roi</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">{</span><span class="s1">'building'</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Get roads/highways</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">roads</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">osm_to_gdf</span><span class="p">(</span><span class="n">roi</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">{</span><span class="s1">'highway'</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Number of buildings found: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">buildings</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Number of road segments: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">roads</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Visualize on a Map</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">Map</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">Map</span><span class="o">.</span><span class="n">centerObject</span><span class="p">(</span><span class="n">roi</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">Map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="p">{</span><span class="s1">'bands'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'B4'</span><span class="p">,</span> <span class="s1">'B3'</span><span class="p">,</span> <span class="s1">'B2'</span><span class="p">],</span> <span class="s1">'min'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">:</span> <span class="mi">3000</span><span class="p">},</span> <span class="s1">'Satellite'</span><span class="p">)</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">Map</span><span class="o">.</span><span class="n">add_gdf</span><span class="p">(</span><span class="n">buildings</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s1">'Buildings'</span><span class="p">,</span> <span class="n">fill_color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">Map</span><span class="o">.</span><span class="n">add_gdf</span><span class="p">(</span><span class="n">roads</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s1">'Roads'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">)</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">Map</span>
+<h2 id="step-2-advanced-osm-data-with-osmnx">Step 2: Advanced OSM Data with OSMnx</h2>
+<p>While <code>geemap</code> is great for quick OSM fetches, <code>OSMnx</code> is the gold standard for Python-based street network analysis. It allows you to download and model street networks as <code>NetworkX</code> graphs.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Download the street network for a building-centric analysis</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># We'll use the same coordinates as our ROI</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">location_point</span> <span class="o">=</span> <span class="p">(</span><span class="mf">28.7041</span><span class="p">,</span> <span class="mf">77.1025</span><span class="p">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">G</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">graph_from_point</span><span class="p">(</span><span class="n">location_point</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">network_type</span><span class="o">=</span><span class="s1">'drive'</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># Plot the network locally (no cloud needed!)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># Fetch specialized POIs (e.g., hospitals)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">hospitals</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">features_from_point</span><span class="p">(</span><span class="n">location_point</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">{</span><span class="s1">'amenity'</span><span class="p">:</span> <span class="s1">'hospital'</span><span class="p">},</span> <span class="n">dist</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Number of hospitals found: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hospitals</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="step-3-tiled-downloading-with-geemap">Step 3: Tiled Downloading with geemap</h2>
-<p>When you need the actual GeoTIFF files on your disk for local processing or inclusion in a GIS, <code>geemap</code>'s <code>download_ee_image</code> is the most efficient way to get high-resolution data without using Earth Engine's standard export tasks.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Create an output directory</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">output_dir</span> <span class="o">=</span> <span class="s1">'downloads'</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_dir</span><span class="p">):</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># Define the output file path</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">'delhi_sentinel2_10m.tif'</span><span class="p">)</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># Tiled Download</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># geemap automatically splits the large request into tiles, </span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># downloads them, and merges them into a single GeoTIFF.</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">geemap</span><span class="o">.</span><span class="n">download_ee_image</span><span class="p">(</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="n">s2</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'B4'</span><span class="p">,</span> <span class="s1">'B3'</span><span class="p">,</span> <span class="s1">'B2'</span><span class="p">,</span> <span class="s1">'B8'</span><span class="p">]),</span> <span class="c1"># Select essential bands</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">filename</span><span class="o">=</span><span class="n">output_file</span><span class="p">,</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="n">region</span><span class="o">=</span><span class="n">roi</span><span class="p">,</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>        <span class="c1"># 10m resolution</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="n">crs</span><span class="o">=</span><span class="s1">'EPSG:4326'</span><span class="p">,</span>  <span class="c1"># WGS 84</span>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="n">num_threads</span><span class="o">=</span><span class="mi">4</span>    <span class="c1"># Uses parallel downloads for speed</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="p">)</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dataset downloaded successfully to: </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<h2 id="step-3-tiled-downloading-the-escape-hatch">Step 3: Tiled Downloading (The Escape Hatch)</h2>
+<p>To ensure your work is portable and independent of Google's servers, download the raster data to your local disk.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">output_dir</span> <span class="o">=</span> <span class="s1">'local_data'</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_dir</span><span class="p">):</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">'study_area_s2.tif'</span><span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Tiled Download: Bypasses GEE's 5,000-pixel export limit</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">geemap</span><span class="o">.</span><span class="n">download_ee_image</span><span class="p">(</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">s2</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">'B4'</span><span class="p">,</span> <span class="s1">'B3'</span><span class="p">,</span> <span class="s1">'B2'</span><span class="p">,</span> <span class="s1">'B8'</span><span class="p">]),</span> <span class="c1"># Red, Green, Blue, NIR</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">filename</span><span class="o">=</span><span class="n">output_file</span><span class="p">,</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">region</span><span class="o">=</span><span class="n">roi</span><span class="p">,</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="n">num_threads</span><span class="o">=</span><span class="mi">8</span> <span class="c1"># Fast parallel downloading</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="step-4-verify-downloaded-data-locally">Step 4: Verify Downloaded Data Locally</h2>
-<p>Once downloaded, you can load the local file back into XArray using <code>rioxarray</code> to verify the content.</p>
+<h2 id="step-4-full-local-analysis-with-xarray-dask">Step 4: Full Local Analysis with Xarray &amp; Dask</h2>
+<p>Now that the data is on your disk, you are free to use any Python library (SciPy, Scikit-Learn, PyTorch) for your analysis.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">rioxarray</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Load the local GeoTIFF</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">local_ds</span> <span class="o">=</span> <span class="n">rioxarray</span><span class="o">.</span><span class="n">open_rasterio</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Local Dataset Shape: </span><span class="si">{</span><span class="n">local_ds</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Open the local file</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Dask enables out-of-core computation for files larger than RAM</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">local_ds</span> <span class="o">=</span> <span class="n">rioxarray</span><span class="o">.</span><span class="n">open_rasterio</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">'x'</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">:</span> <span class="mi">512</span><span class="p">})</span>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Plot a single band</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">local_ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">'viridis'</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Calculate NDVI locally</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">local_ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="n">local_ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">local_ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">local_ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># Save results locally</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">ndvi</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">to_raster</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">'local_ndvi.tif'</span><span class="p">))</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1"># Visualize</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="n">ndvi</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">'RdYlGn'</span><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="why-use-this-workflow">Why Use This Workflow?</h2>
+<h2 id="why-this-matters">Why This Matters</h2>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Feature</th>
-<th style="text-align: left;">XEE Access</th>
-<th style="text-align: left;">geemap Tiled Download</th>
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Proprietary (GEE Only)</th>
+<th style="text-align: left;">Python-First (Cloud-Hybrid)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Primary Use</strong></td>
-<td style="text-align: left;">Real-time analysis, visualization</td>
-<td style="text-align: left;">Local storage, GIS integration</td>
+<td style="text-align: left;"><strong>Sustainability</strong></td>
+<td style="text-align: left;">Dependent on Google's mercy</td>
+<td style="text-align: left;">Fully portable and independent</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Compute</strong></td>
-<td style="text-align: left;">Dynamic, on-the-fly</td>
-<td style="text-align: left;">Pre-computed, downloaded</td>
+<td style="text-align: left;"><strong>Innovation</strong></td>
+<td style="text-align: left;">Limited to GEE-supported functions</td>
+<td style="text-align: left;">Use any Python library (SciPy, AI)</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Advantages</strong></td>
-<td style="text-align: left;">No local storage needed</td>
-<td style="text-align: left;">Full resolution, offline access</td>
+<td style="text-align: left;"><strong>Patents</strong></td>
+<td style="text-align: left;">Hard to claim "Author" rights</td>
+<td style="text-align: left;">Direct claim on innovative code</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Scale</strong></td>
-<td style="text-align: left;">Best for smaller areas or coarse res</td>
-<td style="text-align: left;">Handles large areas via tiling</td>
+<td style="text-align: left;"><strong>Performance</strong></td>
+<td style="text-align: left;">Throttled by Google's servers</td>
+<td style="text-align: left;">Limited only by your hardware/Dask</td>
 </tr>
 </tbody>
 </table>
 <h2 id="key-takeaways">Key Takeaways</h2>
 <div class="admonition success">
-<p class="admonition-title">Summary</p>
+<p class="admonition-title">Independence is Power</p>
 <ul>
-<li><strong>XEE</strong> is your go-to for exploratory data analysis directly in your Python notebook.</li>
-<li><strong>geemap</strong> provides the bridge for getting high-quality data out of the cloud and onto your local machine.</li>
-<li><strong>Tiling</strong> bypasses the standard 5,000-pixel limit of the Earth Engine GetThumbURL/Download API.</li>
-<li><strong>OSM Integration</strong> allows you to seamlessly combine satellite imagery with vector ground-truth data.</li>
+<li>Use <strong>XEE</strong> for discovery, but <strong>geemap/OSMnx</strong> for extraction.</li>
+<li>Treat <strong>Local Storage</strong> as your primary workspace for proprietary research.</li>
+<li><strong>Python</strong> is the real engine; cloud platforms are just the fuel.</li>
 </ul>
 </div>
 <p>→ Next: <a href="../indices-enhancement/">Indices and Enhancement</a></p>
