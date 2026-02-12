@@ -10,10 +10,10 @@
       
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../indices-enhancement/">
       
       
-        <link rel="next" href="../setup/">
+        <link rel="next" href="../classification-methods/">
       
       
         
@@ -24,7 +24,7 @@
     
     
       
-        <title>Introduction - Cloud Native Remote Sensing with Python</title>
+        <title>Clustering Methods - Cloud Native Remote Sensing with Python</title>
       
     
     
@@ -89,7 +89,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#introduction-to-cloud-native-remote-sensing" class="md-skip">
+        <a href="#clustering-methods-in-geospatial-analysis" class="md-skip">
           Skip to content
         </a>
       
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Introduction
+              Clustering Methods
             
           </span>
         </div>
@@ -254,13 +254,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../getting-started/introduction/" class="md-tabs__link">
           
   
   
@@ -344,11 +342,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../examples/ndvi-analysis/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../ndvi-analysis/" class="md-tabs__link">
           
   
   
@@ -490,10 +490,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -507,22 +505,21 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -540,7 +537,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -555,37 +552,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Introduction
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../getting-started/introduction/" class="md-nav__link">
         
   
   
@@ -601,403 +571,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-evolution-of-remote-sensing-workflows" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Evolution of Remote Sensing Workflows
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The Evolution of Remote Sensing Workflows">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#traditional-approach" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Traditional Approach
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cloud-native-approach" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cloud-Native Approach
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Concepts
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Core Concepts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-analysis-ready-data-ard" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Analysis-Ready Data (ARD)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-cloud-optimized-formats" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Cloud-Optimized Formats
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Cloud-Optimized Formats">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cloud-optimized-geotiff-cog" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cloud Optimized GeoTIFF (COG)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#zarr" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Zarr
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-stac-spatiotemporal-asset-catalog" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. STAC (SpatioTemporal Asset Catalog)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-lazy-evaluation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Lazy Evaluation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-technologies-stack" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Technologies Stack
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Key Technologies Stack">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#data-discovery" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data Discovery
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#data-access" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data Access
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#computation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Computation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Storage
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#visualization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Visualization
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Use Cases
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Use Cases">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-time-series-analysis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Time Series Analysis
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-large-area-mapping" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Large Area Mapping
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-multi-sensor-fusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Multi-sensor Fusion
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#advantages-of-cloud-native-approach" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Advantages of Cloud-Native Approach
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Advantages of Cloud-Native Approach">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#performance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scalability" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Scalability
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#collaboration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Collaboration
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cost-effectiveness" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cost-Effectiveness
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-started-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Getting Started Checklist
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning Objectives
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-resources" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Resources
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1010,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/" class="md-nav__link">
+      <a href="../../getting-started/setup/" class="md-nav__link">
         
   
   
@@ -1038,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../colab-basics/" class="md-nav__link">
+      <a href="../../getting-started/colab-basics/" class="md-nav__link">
         
   
   
@@ -1649,8 +1222,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1676,21 +1251,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6">
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -1708,7 +1284,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1726,7 +1302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/ndvi-analysis/" class="md-nav__link">
+      <a href="../ndvi-analysis/" class="md-nav__link">
         
   
   
@@ -1754,7 +1330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/water-quality/" class="md-nav__link">
+      <a href="../water-quality/" class="md-nav__link">
         
   
   
@@ -1782,7 +1358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/indices-enhancement/" class="md-nav__link">
+      <a href="../indices-enhancement/" class="md-nav__link">
         
   
   
@@ -1807,10 +1383,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../examples/clustering-methods/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clustering Methods
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1826,6 +1429,114 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-load-multi-spectral-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Load Multi-Spectral Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-feature-engineering-and-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Feature Engineering and Scaling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-traditional-statistical-clustering-k-means" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Traditional &amp; Statistical Clustering (K-Means)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-machine-learning-based-clustering-gmm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Machine Learning Based Clustering (GMM)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-spatially-constrained-clustering-skater" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Spatially Constrained Clustering (SKATER)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-evaluation-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Evaluation Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1838,7 +1549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/classification-methods/" class="md-nav__link">
+      <a href="../classification-methods/" class="md-nav__link">
         
   
   
@@ -1866,7 +1577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/mcdm-methods/" class="md-nav__link">
+      <a href="../mcdm-methods/" class="md-nav__link">
         
   
   
@@ -1894,7 +1605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/timeseries-phenology/" class="md-nav__link">
+      <a href="../timeseries-phenology/" class="md-nav__link">
         
   
   
@@ -1922,7 +1633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/network-flow/" class="md-nav__link">
+      <a href="../network-flow/" class="md-nav__link">
         
   
   
@@ -1950,7 +1661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/deep-learning-spatial/" class="md-nav__link">
+      <a href="../deep-learning-spatial/" class="md-nav__link">
         
   
   
@@ -2361,7 +2072,7 @@
 
 
   
-    <a href="https://github.com/yourusername/cloud-native-remote-sensing/edit/master/docs/getting-started/introduction.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/yourusername/cloud-native-remote-sensing/edit/master/docs/examples/clustering-methods.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
     </a>
@@ -2370,222 +2081,136 @@
     
       
     
-    <a href="https://github.com/yourusername/cloud-native-remote-sensing/raw/master/docs/getting-started/introduction.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/yourusername/cloud-native-remote-sensing/raw/master/docs/examples/clustering-methods.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
     </a>
   
 
 
-<h1 id="introduction-to-cloud-native-remote-sensing">Introduction to Cloud Native Remote Sensing</h1>
+<h1 id="clustering-methods-in-geospatial-analysis">Clustering Methods in Geospatial Analysis</h1>
+<p>Explore unsupervised learning techniques for grouping spatial data using XEE, Scikit-Learn, and Dask.</p>
 <h2 id="overview">Overview</h2>
-<p>Cloud-native remote sensing represents a paradigm shift in how we work with Earth observation data. This approach leverages modern cloud computing infrastructure and optimized data formats to enable efficient processing of massive satellite imagery datasets.</p>
-<h2 id="the-evolution-of-remote-sensing-workflows">The Evolution of Remote Sensing Workflows</h2>
-<h3 id="traditional-approach">Traditional Approach</h3>
-<pre class="mermaid"><code>graph LR
-    A[Data Provider] --&gt; B[Download Data]
-    B --&gt; C[Local Storage]
-    C --&gt; D[Local Processing]
-    D --&gt; E[Results]</code></pre>
-<p><strong>Challenges:</strong></p>
-<ul>
-<li>Large download times (hours to days)</li>
-<li>Significant storage requirements (terabytes)</li>
-<li>Limited by local compute resources</li>
-<li>Difficult to share and reproduce</li>
-</ul>
-<h3 id="cloud-native-approach">Cloud-Native Approach</h3>
-<pre class="mermaid"><code>graph LR
-    A[Cloud Data Catalog] --&gt; B[Query via STAC]
-    B --&gt; C[Stream Data]
-    C --&gt; D[Cloud Processing]
-    D --&gt; E[Results]</code></pre>
-<p><strong>Benefits:</strong></p>
-<ul>
-<li>Instant data access</li>
-<li>Minimal storage needs</li>
-<li>Scalable compute</li>
-<li>Easy sharing and collaboration</li>
-</ul>
-<h2 id="core-concepts">Core Concepts</h2>
-<h3 id="1-analysis-ready-data-ard">1. Analysis-Ready Data (ARD)</h3>
-<p>Analysis-ready data is satellite imagery that has been processed to a minimum set of requirements and organized so it can be analyzed immediately:</p>
-<ul>
-<li><strong>Geometric Correction</strong>: Orthorectified and georeferenced</li>
-<li><strong>Radiometric Calibration</strong>: Converted to surface reflectance</li>
-<li><strong>Cloud Masking</strong>: Quality flags included</li>
-<li><strong>Tiled and Indexed</strong>: Organized for efficient access</li>
-</ul>
-<h3 id="2-cloud-optimized-formats">2. Cloud-Optimized Formats</h3>
-<h4 id="cloud-optimized-geotiff-cog">Cloud Optimized GeoTIFF (COG)</h4>
-<ul>
-<li>Regular GeoTIFF with internal tiling</li>
-<li>Supports HTTP range requests</li>
-<li>Enables partial file reading</li>
-</ul>
-<h4 id="zarr">Zarr</h4>
-<ul>
-<li>Chunked, compressed N-dimensional arrays</li>
-<li>Cloud-native storage format</li>
-<li>Parallel read/write operations</li>
-<li>Works seamlessly with Dask</li>
-</ul>
-<h3 id="3-stac-spatiotemporal-asset-catalog">3. STAC (SpatioTemporal Asset Catalog)</h3>
-<p>STAC provides a common language to describe geospatial information:</p>
-<p><strong>Core Components:</strong></p>
-<ul>
-<li><strong>Items</strong>: Individual assets (e.g., a single satellite scene)</li>
-<li><strong>Catalogs</strong>: Collections of items</li>
-<li><strong>Collections</strong>: Groups of related items</li>
-<li><strong>API</strong>: RESTful interface for searching</li>
-</ul>
-<h3 id="4-lazy-evaluation">4. Lazy Evaluation</h3>
-<p>Process data only when needed:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># This doesn't load data into memory</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">'large_file.nc'</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">'time'</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Computation is lazy</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">result</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">'time'</span><span class="p">)</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Data is loaded and processed only when needed</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">result</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</span></code></pre></div>
-<h2 id="key-technologies-stack">Key Technologies Stack</h2>
-<h3 id="data-discovery">Data Discovery</h3>
-<ul>
-<li><strong>STAC</strong>: Find and access data</li>
-<li><strong>pystac-client</strong>: Python client for STAC APIs</li>
-</ul>
-<h3 id="data-access">Data Access</h3>
-<ul>
-<li><strong>XArray</strong>: Multi-dimensional labeled arrays</li>
-<li><strong>rioxarray</strong>: Geospatial extensions for XArray</li>
-<li><strong>XEE</strong>: Earth Engine integration</li>
-</ul>
-<h3 id="computation">Computation</h3>
-<ul>
-<li><strong>Dask</strong>: Parallel computing</li>
-<li><strong>NumPy</strong>: Array operations</li>
-<li><strong>Pandas</strong>: Tabular data</li>
-</ul>
-<h3 id="storage">Storage</h3>
-<ul>
-<li><strong>Zarr</strong>: Cloud-optimized arrays</li>
-<li><strong>COG</strong>: Cloud-optimized GeoTIFF</li>
-<li><strong>NetCDF</strong>: Self-describing data format</li>
-</ul>
-<h3 id="visualization">Visualization</h3>
-<ul>
-<li><strong>Matplotlib</strong>: Static plots</li>
-<li><strong>Hvplot</strong>: Interactive visualizations</li>
-<li><strong>Folium</strong>: Interactive maps</li>
-</ul>
-<h2 id="common-use-cases">Common Use Cases</h2>
-<h3 id="1-time-series-analysis">1. Time Series Analysis</h3>
-<p>Monitor changes over time across large areas:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Load multi-year Sentinel-2 data</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">'s2_timeseries.zarr'</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">)</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Calculate monthly NDVI</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">nir</span> <span class="o">-</span> <span class="n">ds</span><span class="o">.</span><span class="n">red</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">nir</span> <span class="o">+</span> <span class="n">ds</span><span class="o">.</span><span class="n">red</span><span class="p">)</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">monthly_ndvi</span> <span class="o">=</span> <span class="n">ndvi</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">'1M'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># Compute trends</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">trend</span> <span class="o">=</span> <span class="n">monthly_ndvi</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">'time'</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="2-large-area-mapping">2. Large Area Mapping</h3>
-<p>Process continental or global datasets:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Process data in parallel using Dask</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dask.distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>  <span class="c1"># Start local cluster</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># Load data with chunking</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="s1">'global_landcover.zarr'</span><span class="p">)</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># Process in parallel</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">result</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'time.year'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</span></code></pre></div>
-<h3 id="3-multi-sensor-fusion">3. Multi-sensor Fusion</h3>
-<p>Combine data from different satellites:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Load Sentinel-2 optical data</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">s2</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">'sentinel2.nc'</span><span class="p">)</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Load Sentinel-1 radar data</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">s1</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">'sentinel1.nc'</span><span class="p">)</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Align and combine</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">combined</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">s2</span><span class="p">,</span> <span class="n">s1</span><span class="p">],</span> <span class="n">join</span><span class="o">=</span><span class="s1">'inner'</span><span class="p">)</span>
-</span></code></pre></div>
-<h2 id="advantages-of-cloud-native-approach">Advantages of Cloud-Native Approach</h2>
-<h3 id="performance">Performance</h3>
-<ul>
-<li><strong>Parallel Processing</strong>: Utilize multiple cores/machines</li>
-<li><strong>Lazy Evaluation</strong>: Process only what's needed</li>
-<li><strong>Optimized I/O</strong>: Read only required chunks</li>
-</ul>
-<h3 id="scalability">Scalability</h3>
-<ul>
-<li><strong>Elastic Compute</strong>: Scale up/down as needed</li>
-<li><strong>Distributed Processing</strong>: Handle datasets larger than memory</li>
-<li><strong>Cloud Storage</strong>: Unlimited storage capacity</li>
-</ul>
-<h3 id="collaboration">Collaboration</h3>
-<ul>
-<li><strong>Reproducible</strong>: Share code and environment</li>
-<li><strong>Accessible</strong>: Run anywhere with internet</li>
-<li><strong>Version Control</strong>: Track changes with Git</li>
-</ul>
-<h3 id="cost-effectiveness">Cost-Effectiveness</h3>
-<ul>
-<li><strong>Pay-per-use</strong>: Only pay for what you use</li>
-<li><strong>No Infrastructure</strong>: No need for local servers</li>
-<li><strong>Shared Resources</strong>: Leverage public datasets</li>
-</ul>
-<h2 id="getting-started-checklist">Getting Started Checklist</h2>
-<ul>
-<li>[ ] Understand basic Python programming</li>
-<li>[ ] Familiarize yourself with NumPy and Pandas</li>
-<li>[ ] Learn basic remote sensing concepts</li>
-<li>[ ] Set up Google Colab account (free)</li>
-<li>[ ] Review coordinate systems and projections</li>
-<li>[ ] Understand raster data structures</li>
-</ul>
-<h2 id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this course, you will be able to:</p>
+<p>This example covers:</p>
 <ol>
-<li><strong>Discover</strong> satellite imagery using STAC catalogs</li>
-<li><strong>Access</strong> cloud-hosted datasets efficiently</li>
-<li><strong>Process</strong> large-scale Earth observation data</li>
-<li><strong>Analyze</strong> time series and multi-temporal datasets</li>
-<li><strong>Visualize</strong> results effectively</li>
-<li><strong>Scale</strong> your analysis from local to cloud</li>
-<li><strong>Optimize</strong> workflows for performance</li>
-<li><strong>Share</strong> reproducible analysis</li>
+<li><strong>Statistical Clustering</strong>: K-Means.</li>
+<li><strong>Machine Learning Clustering</strong>: DBSCAN and Gaussian Mixture Models (GMM).</li>
+<li><strong>Deep Learning-derived Clustering</strong>: Using Autoencoders for dimensionality reduction before clustering.</li>
+<li><strong>Spatially Constrained Clustering</strong>: Regionalization techniques.</li>
+<li><strong>Evaluation Metrics</strong>: Silhouette and Calinski-Harabasz.</li>
 </ol>
-<h2 id="next-steps">Next Steps</h2>
-<p>Now that you understand the fundamentals, let's set up your environment:</p>
-<p>→ Continue to <a href="../setup/">Setup Environment</a></p>
-<h2 id="additional-resources">Additional Resources</h2>
-<ul>
-<li><a href="https://docs.xarray.dev/">XArray Documentation</a></li>
-<li><a href="https://stacspec.org/">STAC Specification</a></li>
-<li><a href="https://docs.dask.org/">Dask Documentation</a></li>
-<li><a href="https://zarr.readthedocs.io/">Zarr Documentation</a></li>
-<li><a href="https://pangeo.io/">Pangeo Community</a></li>
-</ul>
+<h2 id="step-1-load-multi-spectral-data">Step 1: Load Multi-Spectral Data</h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">ee</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">xee</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span><span class="p">,</span> <span class="n">DBSCAN</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.mixture</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianMixture</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">silhouette_score</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># Initialize Earth Engine</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="s1">'spatialgeography'</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># Load Sentinel-2 median composite</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">roi</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">([</span><span class="mf">77.0</span><span class="p">,</span> <span class="mf">28.5</span><span class="p">,</span> <span class="mf">77.2</span><span class="p">,</span> <span class="mf">28.7</span><span class="p">])</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">image</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">"COPERNICUS/S2_SR_HARMONIZED"</span><span class="p">)</span> \
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">roi</span><span class="p">)</span> \
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s1">'2023-01-01'</span><span class="p">,</span> <span class="s1">'2023-03-31'</span><span class="p">)</span> \
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">roi</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1"># Load into XArray</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">'ee'</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">roi</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</span></code></pre></div>
+<h2 id="step-2-feature-engineering-and-scaling">Step 2: Feature Engineering and Scaling</h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Create a feature stack</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">ds</span><span class="o">.</span><span class="n">B2</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">B3</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">B4</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">B8</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">B11</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">B8</span> <span class="o">-</span> <span class="n">ds</span><span class="o">.</span><span class="n">B4</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">B8</span> <span class="o">+</span> <span class="n">ds</span><span class="o">.</span><span class="n">B4</span><span class="p">)</span> <span class="c1"># NDVI</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Flatten for clustering</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">bands</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">bands</span><span class="p">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1"># Remove NaNs</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">X_clean</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># Scale</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_clean</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="step-3-traditional-statistical-clustering-k-means">Step 3: Traditional &amp; Statistical Clustering (K-Means)</h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">labels_km</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Reshape back to image</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">result_km</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">result_km</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels_km</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">result_km</span> <span class="o">=</span> <span class="n">result_km</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result_km</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'terrain'</span><span class="p">)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'K-Means Clustering (k=5)'</span><span class="p">)</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<h2 id="step-4-machine-learning-based-clustering-gmm">Step 4: Machine Learning Based Clustering (GMM)</h2>
+<p>Gaussian Mixture Models provide probabilistic cluster assignments.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">gmm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">labels_gmm</span> <span class="o">=</span> <span class="n">gmm</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">result_gmm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">result_gmm</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels_gmm</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">result_gmm</span> <span class="o">=</span> <span class="n">result_gmm</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result_gmm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'terrain'</span><span class="p">)</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Gaussian Mixture Model'</span><span class="p">)</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<h2 id="step-5-spatially-constrained-clustering-skater">Step 5: Spatially Constrained Clustering (SKATER)</h2>
+<p>In geospatial analysis, we often want to ensure that clusters are spatially contiguous. The <a href="https://pysal.org/spopt/notebooks/skater.html">SKATER</a> (Spatial K'luster Analysis by Tree Edge Removal) algorithm from the <code>spopt</code> library is the scientific standard for this.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">libpysal.weights</span><span class="w"> </span><span class="kn">import</span> <span class="n">lat2W</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">spopt.region</span><span class="w"> </span><span class="kn">import</span> <span class="n">Skater</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># 1. Create a spatial weights matrix (contiguity)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">w</span> <span class="o">=</span> <span class="n">lat2W</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># 2. Initialize and fit SKATER</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># n_clusters=8, floor=None</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">model</span> <span class="o">=</span> <span class="n">Skater</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="c1"># 3. Reshape labels back to image</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="n">result_skater</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="n">result_skater</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">labels_</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="n">result_skater</span> <span class="o">=</span> <span class="n">result_skater</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result_skater</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'tab20'</span><span class="p">)</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'SKATER Spatially Constrained Clustering'</span><span class="p">)</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<h2 id="step-6-evaluation-metrics">Step 6: Evaluation Metrics</h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Silhouette Score (Computationally intensive, use sample)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">sample_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">),</span> <span class="mi">5000</span><span class="p">)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">score</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">],</span> <span class="n">labels_km</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">])</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Silhouette Score (K-Means): </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span></code></pre></div>
 <h2 id="key-takeaways">Key Takeaways</h2>
 <div class="admonition success">
-<p class="admonition-title">Remember</p>
+<p class="admonition-title">Summary</p>
 <ul>
-<li>Cloud-native workflows enable analysis at unprecedented scales</li>
-<li>STAC standardizes data discovery across providers</li>
-<li>XArray provides intuitive interfaces for N-dimensional data</li>
-<li>Dask enables parallel and distributed computing</li>
-<li>Zarr optimizes data storage and access in the cloud</li>
-<li>Lazy evaluation minimizes data transfer and computation</li>
+<li><strong>Feature Selection</strong>: Adding NDVI or texture improves cluster separation.</li>
+<li><strong>Scaling</strong>: Essential for distance-based methods like K-Means.</li>
+<li><strong>Spatial Constraints</strong>: Helps in creating regions rather than just spectral groupings.</li>
+<li><strong>Evaluation</strong>: Use scores to determine the "elbow" for optimal cluster count.</li>
 </ul>
 </div>
+<p>→ Next: <a href="../classification-methods/">Classification Methods</a></p>
 
 
 
@@ -2675,7 +2300,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer">
         
           
-          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+          <a href="../indices-enhancement/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Remote Sensing Indices &amp; Enhancement">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
@@ -2685,20 +2310,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Home
+                Remote Sensing Indices &amp; Enhancement
               </div>
             </div>
           </a>
         
         
           
-          <a href="../setup/" class="md-footer__link md-footer__link--next" aria-label="Next: Setup Environment">
+          <a href="../classification-methods/" class="md-footer__link md-footer__link--next" aria-label="Next: Classification Methods">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Setup Environment
+                Classification Methods
               </div>
             </div>
             <div class="md-footer__button md-icon">
