@@ -2,7 +2,7 @@
 
 Welcome to the comprehensive guide on **Open GIS** and cloud-native remote sensing! This curriculum moves beyond proprietary platforms, focusing on the power of Python, open-source standards, and distributed cloud computing.
 
-## ⚠️ The proprietary "GEE" Vendor Lock-in Risk
+## <span style="color:red">🛑 STOP</span> relying solely on proprietary "GEE"
 
 While Google Earth Engine (GEE) is a powerful tool, relying solely on it for groundbreaking geospatial research carries significant professional and intellectual risks:
 
