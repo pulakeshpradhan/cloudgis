@@ -1,0 +1,40 @@
+# Jupyter Book configuration
+title: "Open GIS - Python-based Cloud Native Geospatial Analysis"
+author: "Open Geospatial Hub"
+copyright: "2024"
+# logo: "docs/logo.png" # Need to check if this exists or just comment out if not
+
+# Execution settings
+execute:
+  execute_notebooks: off # For now, off to avoid long builds, user can enable it
+
+# HTML specific settings
+html:
+  favicon: "" # Add favicon if available
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+  extra_navbar: Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+  google_analytics_id: "" # Placeholder or remove
+  home_page_in_toc: true
+
+# Repository settings for edit button
+repository:
+  url: "https://github.com/pulakeshpradhan/cloudgis"
+  path_to_book: "docs"
+  branch: "main"
+
+# Parse settings
+parse:
+  myst_enable_extensions:
+    - admonition
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - linkify
+    - replacements
+    - smartquotes
+    - substitution
+    - tasklist

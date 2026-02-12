@@ -1,5 +1,6 @@
-# MkDocs
-site/
+# Jupyter Book
+_build/
+.jupyter_cache/
 
 # Python
 __pycache__/

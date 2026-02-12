@@ -1,0 +1,54 @@
+format: jb-book
+root: docs/index
+parts:
+  - caption: Getting Started
+    chapters:
+      - file: docs/getting-started/introduction
+      - file: docs/getting-started/setup
+      - file: docs/getting-started/colab-basics
+  - caption: Fundamentals
+    chapters:
+      - file: docs/fundamentals/xarray-basics
+      - file: docs/fundamentals/stac-dask
+      - file: docs/fundamentals/zarr
+      - file: docs/fundamentals/xee
+  - caption: Data Processing
+    chapters:
+      - file: docs/processing/spectral-indices
+      - file: docs/processing/cloud-masking
+      - file: docs/processing/time-series
+      - file: docs/processing/aggregation
+  - caption: Advanced Topics
+    chapters:
+      - file: docs/advanced/scaling-dask
+      - file: docs/advanced/geemap-tiled-download
+      - file: docs/advanced/cloud-computing
+      - file: docs/advanced/planetary-computer
+      - file: docs/advanced/optimization
+  - caption: Practical Examples
+    chapters:
+      - file: docs/examples/ndvi-analysis
+      - file: docs/examples/water-quality
+      - file: docs/examples/data-access-download
+      - file: docs/examples/indices-enhancement
+      - file: docs/examples/clustering-methods
+      - file: docs/examples/classification-methods
+      - file: docs/examples/mcdm-methods
+      - file: docs/examples/timeseries-phenology
+      - file: docs/examples/network-flow
+      - file: docs/examples/deep-learning-spatial
+      - file: docs/examples/vegetation-vcf
+      - file: docs/examples/change-detection
+      - file: docs/examples/complete-timeseries-workflow
+  - caption: Reference
+    chapters:
+      - file: docs/reference/xarray-api
+      - file: docs/reference/stac-spec
+      - file: docs/reference/dask-practices
+      - file: docs/reference/zarr-format
+      - file: docs/reference/xee-usage
+  - caption: Resources
+    chapters:
+      - file: docs/resources/datasets
+      - file: docs/resources/tools
+      - file: docs/resources/reading
