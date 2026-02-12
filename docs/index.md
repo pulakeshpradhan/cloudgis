@@ -1,5 +1,8 @@
 # Open GIS - Python-based Cloud Native Geospatial Analysis
 
+!!! danger "🛑 STOP: Are you locked into GEE?"
+    Don't be a victim of **vendor lock-in**. Relying solely on Google Earth Engine (GEE) as a "black box" is a risk to your **Intellectual Property** and **Patentability**. This course teaches you a **Python-First** approach—where you use GEE only as a data source and perform all analysis in an open, portable ecosystem.
+
 Welcome to the comprehensive guide on **Open GIS** and cloud-native remote sensing! This curriculum moves beyond proprietary platforms, focusing on the power of Python, open-source standards, and distributed cloud computing.
 
 ## <span style="color:red">🛑 STOP</span> relying solely on proprietary "GEE"
