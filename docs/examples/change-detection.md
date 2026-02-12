@@ -371,7 +371,7 @@ plt.show()
 
 ## Next Steps
 
-→ Continue to [Multi-temporal Analysis](multi-temporal.md)
+→ Continue to [Time Series and Phenological Methods](timeseries-phenology.md)
 
 ## Additional Resources
 

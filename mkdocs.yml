@@ -130,13 +130,15 @@ nav:
   - Practical Examples:
       - NDVI Analysis: examples/ndvi-analysis.md
       - Water Quality Monitoring: examples/water-quality.md
-      - Remote Sensing Indices & Enhancement: examples/indices-enhancement.md
-      - Clustering Methods: examples/clustering-methods.md
-      - Classification Methods: examples/classification-methods.md
-      - MCDM Methods: examples/mcdm-methods.md
-      - Time Series & Phenology: examples/timeseries-phenology.md
-      - Network & Flow Analysis: examples/network-flow.md
-      - Deep Learning Architectures: examples/deep-learning-spatial.md
+      - 1. Remote Sensing Indices and Enhancement: examples/indices-enhancement.md
+      - 2. Clustering Methods in Geospatial Analysis: examples/clustering-methods.md
+      - 3. Classification Methods: examples/classification-methods.md
+      - 4. Multi-Criteria Decision Making Methods: examples/mcdm-methods.md
+      - 5. Time Series and Phenological Methods: examples/timeseries-phenology.md
+      - 6. Network and Flow Analysis: examples/network-flow.md
+      - 7. Deep Learning Architectures in Spatial Analysis: examples/deep-learning-spatial.md
+      - Change Detection Workflow: examples/change-detection.md
+      - Complete Time Series Workflow: examples/complete-timeseries-workflow.md
   - Reference:
       - XArray API: reference/xarray-api.md
       - STAC Specification: reference/stac-spec.md

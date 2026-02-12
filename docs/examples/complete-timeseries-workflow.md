@@ -632,9 +632,9 @@ if __name__ == '__main__':
 
 ## Next Steps
 
-- Explore [Multi-temporal Analysis](multi-temporal.md) for change detection
+- Next: [Time Series and Phenological Methods](timeseries-phenology.md)
 - Learn [Optimization Techniques](../advanced/optimization.md) for better performance
-- Try [Land Cover Classification](land-cover.md) with time series features
+- Back: [Classification Methods](classification-methods.md)
 
 ## Additional Resources
 
