@@ -83,9 +83,23 @@ Essential tools and libraries for cloud-native remote sensing with Python.
 - **Purpose**: Google Cloud Storage
 - **Installation**: `pip install gcsfs`
 
+## Advanced Analysis
+
+| Library | Purpose | Installation |
+| :--- | :--- | :--- |
+| [spyndex](https://github.com/awesome-spectral-indices/spyndex) | Standard spectral indices | `pip install spyndex` |
+| [pymcdm](https://github.com/aimms/pymcdm) | Decision making models | `pip install pymcdm` |
+| [tslearn](https://tslearn.readthedocs.io/) | Time series analysis | `pip install tslearn` |
+| [libpysal](https://pysal.org/libpysal/) | Spatial weights & stats | `pip install libpysal` |
+| [spopt](https://pysal.org/spopt/) | Spatial optimization | `pip install spopt` |
+| [scikit-learn](https://scikit-learn.org/) | Machine learning | `pip install scikit-learn` |
+| [osmnx](https://osmnx.readthedocs.io/) | OpenStreetMap networks | `pip install osmnx` |
+| [tensorflow](https://www.tensorflow.org/) | Deep learning | `pip install tensorflow` |
+
 ## Complete Installation
 
 ```bash
 pip install xarray dask[complete] rioxarray pystac-client odc-stac xee \
-    matplotlib hvplot geemap zarr netcdf4 s3fs gcsfs earthengine-api
+    matplotlib hvplot geemap zarr netcdf4 s3fs gcsfs earthengine-api \
+    spyndex pymcdm tslearn libpysal spopt scikit-learn osmnx tensorflow
 ```

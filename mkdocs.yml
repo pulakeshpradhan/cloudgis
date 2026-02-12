@@ -129,14 +129,14 @@ nav:
       - Optimization Techniques: advanced/optimization.md
   - Practical Examples:
       - NDVI Analysis: examples/ndvi-analysis.md
-      - Complete Time Series Workflow: examples/complete-timeseries-workflow.md
-      - Land Cover Classification: examples/land-cover.md
-      - Change Detection: examples/change-detection.md
-      - Multi-temporal Analysis: examples/multi-temporal.md
       - Water Quality Monitoring: examples/water-quality.md
-      - Clustering Analysis: examples/clustering-analysis.md
-  - Advanced Analysis:
-      - Deep Learning with CNNs: advanced-analysis/deep-learning-cnn.md
+      - Remote Sensing Indices & Enhancement: examples/indices-enhancement.md
+      - Clustering Methods: examples/clustering-methods.md
+      - Classification Methods: examples/classification-methods.md
+      - MCDM Methods: examples/mcdm-methods.md
+      - Time Series & Phenology: examples/timeseries-phenology.md
+      - Network & Flow Analysis: examples/network-flow.md
+      - Deep Learning Architectures: examples/deep-learning-spatial.md
   - Reference:
       - XArray API: reference/xarray-api.md
       - STAC Specification: reference/stac-spec.md
