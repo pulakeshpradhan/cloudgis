@@ -80,13 +80,15 @@ The primary use case for XEE, allowing you to work with multi-temporal data.
 
 ```python
 # Open an Earth Engine ImageCollection (Sentinel-2)
+collection = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED') \
+    .filterDate('2023-01-01', '2023-03-31') \
+    .filterBounds(roi)
+
 ds_coll = xr.open_dataset(
-    'ee://COPERNICUS/S2_SR_HARMONIZED',
+    collection,
     engine='ee',
     geometry=roi,
     scale=10,
-    start_time='2023-01-01',
-    end_time='2023-03-31',
     variables=['B4', 'B8'] # Select bands to save memory
 )
 print(ds_coll)
@@ -115,16 +117,21 @@ print(ds_fc)
 
 ### Specifying Time Range
 
+The most robust way to filter by time is to filter the Earth Engine collection **before** passing it to XArray.
+
 ```python
+# Filter in Earth Engine first
+collection = ee.ImageCollection('COPERNICUS/S2_SR') \
+    .filterDate('2023-01-01', '2023-12-31') \
+    .filterBounds(roi)
+
+# Open the filtered collection
 ds = xr.open_dataset(
-    'ee://COPERNICUS/S2_SR',
+    collection,
     engine='ee',
-    geometry=ee.Geometry.Point([82.6, 27.2]).buffer(10000),
+    geometry=roi,
     scale=10,
-    ee_mask_value=-9999,
-    # Time range
-    start_time='2023-01-01',
-    end_time='2023-12-31'
+    ee_mask_value=-9999
 )
 ```
 

@@ -28,14 +28,18 @@ ee.Initialize(project='spatialgeography')
 # Define a Region of Interest (ROI) - a forested area or transition zone
 roi = ee.Geometry.Point([83.277, 17.7009]).buffer(10000).bounds()
 
-# Open the MODIS VCF collection
+# Filter the collection in Earth Engine first
+# This is the most reliable way to handle time filtering in XEE
+collection = ee.ImageCollection('MODIS/061/MOD44B') \
+    .filterDate('2000-01-01', '2023-12-31') \
+    .filterBounds(roi)
+
+# Open the collection
 ds = xr.open_dataset(
-    'ee://MODIS/061/MOD44B',
+    collection,
     engine='ee',
     geometry=roi,
-    scale=250, # MODIS native resolution is ~250m
-    start_time='2000-01-01',
-    end_time='2023-12-31'
+    scale=250 # MODIS native resolution is ~250m
 )
 
 # Crucial: Sort by time for correct charting
