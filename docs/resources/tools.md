@@ -87,7 +87,6 @@ Essential tools and libraries for cloud-native remote sensing with Python.
 
 | Library | Purpose | Installation |
 | :--- | :--- | :--- |
-| [spyndex](https://github.com/awesome-spectral-indices/spyndex) | Standard spectral indices | `pip install spyndex` |
 | [pymcdm](https://github.com/aimms/pymcdm) | Decision making models | `pip install pymcdm` |
 | [tslearn](https://tslearn.readthedocs.io/) | Time series analysis | `pip install tslearn` |
 | [libpysal](https://pysal.org/libpysal/) | Spatial weights & stats | `pip install libpysal` |
@@ -101,5 +100,5 @@ Essential tools and libraries for cloud-native remote sensing with Python.
 ```bash
 pip install xarray dask[complete] rioxarray pystac-client odc-stac xee \
     matplotlib hvplot geemap zarr netcdf4 s3fs gcsfs earthengine-api \
-    spyndex pymcdm tslearn libpysal spopt scikit-learn osmnx tensorflow
+    pymcdm tslearn libpysal spopt scikit-learn osmnx tensorflow
 ```

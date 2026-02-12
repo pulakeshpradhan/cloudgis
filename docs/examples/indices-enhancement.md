@@ -40,32 +40,26 @@ ds = xr.open_dataset(s2, engine='ee', geometry=roi, scale=10)
 ds = ds.compute() # Bring into memory for local enhancement
 ```
 
-## Step 2: Comprehensive Spectral Indices with Spyndex
+## Step 2: Custom Index Calculation (Standard Method)
 
-While manual calculations work, using the [spyndex](https://github.com/awesome-spectral-indices/spyndex) library is the scientifically standard approach as it leverages the [Awesome Spectral Indices](https://github.com/awesome-spectral-indices/awesome-spectral-indices) database.
+Directly calculating indices using Xarray arithmetic is the most transparent method. This ensures you own the logic, making it suitable for scientific publications and patent applications.
 
 ```python
-import spyndex
+# Calculate common indices using Xarray's vectorized arithmetic
+# NDVI: Normalized Difference Vegetation Index
+ds['NDVI'] = (ds.B8 - ds.B4) / (ds.B8 + ds.B4)
 
-# Calculate multiple indices at once
-# spyndex automatically handles the constants and formulas
-indices = spyndex.computeIndex(
-    index = ["NDVI", "EVI", "SAVI", "NDWI", "MNDWI", "NDBI", "NBR"],
-    params = {
-        "N": ds.B8,   # NIR
-        "R": ds.B4,   # Red
-        "G": ds.B3,   # Green
-        "B": ds.B2,   # Blue
-        "S1": ds.B11, # SWIR1
-        "S2": ds.B12, # SWIR2
-        "L": 0.5      # Soil adjustment factor for SAVI
-    }
-)
+# NDWI: Normalized Difference Water Index (McFeeters, 1996)
+ds['NDWI'] = (ds.B3 - ds.B8) / (ds.B3 + ds.B8)
 
-# Merge back into our main dataset
-ds = xr.merge([ds, indices])
+# NDBI: Normalized Difference Built-Up Index
+ds['NDBI'] = (ds.B11 - ds.B8) / (ds.B11 + ds.B8)
 
-print("Indices calculated via spyndex.")
+# EVI: Enhanced Vegetation Index (Requires constants)
+L = 1; C1 = 6; C2 = 7.5; G = 2.5
+ds['EVI'] = G * ((ds.B8 - ds.B4) / (ds.B8 + C1 * ds.B4 - C2 * ds.B2 + L))
+
+print("Indices calculated using standard Xarray arithmetic.")
 ```
 
 ## Step 3: Image Enhancement Techniques
