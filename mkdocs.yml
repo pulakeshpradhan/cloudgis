@@ -138,6 +138,7 @@ nav:
       - 5. Time Series and Phenological Methods: examples/timeseries-phenology.md
       - 6. Network and Flow Analysis: examples/network-flow.md
       - 7. Deep Learning Architectures in Spatial Analysis: examples/deep-learning-spatial.md
+      - 8. Vegetation Continuous Fields (VCF) Analysis: examples/vegetation-vcf.md
       - Change Detection Workflow: examples/change-detection.md
       - Complete Time Series Workflow: examples/complete-timeseries-workflow.md
   - Reference:
