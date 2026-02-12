@@ -46,25 +46,71 @@ ee.Initialize(project='spatialgeography')
 !pip install xee earthengine-api
 ```
 
-## Basic Usage
+## Basic Usage: Opening Different EE Types
 
-### Opening an ImageCollection
+XEE allows you to open various Earth Engine objects directly into XArray.
+
+### 1. Opening an ee.Image (Single Band/Multi-band Image)
+
+Useful for static datasets like DEMs or single composites.
 
 ```python
 import xarray as xr
+import xee
 import ee
 
 ee.Initialize(project='spatialgeography')
 
-# Open Sentinel-2 as XArray dataset
-ds = xr.open_dataset(
-    'ee://COPERNICUS/S2_SR',
-    engine='ee',
-    geometry=ee.Geometry.Point([lon, lat]).buffer(10000),
-    scale=10
-)
+# Define geometry
+roi = ee.Geometry.Point([83.277, 17.7009]).buffer(10000)
 
-ds
+# Open an Earth Engine Image (SRTM DEM)
+ds_image = xr.open_dataset(
+    'ee://CGIAR/SRTM90_V4',
+    engine='ee',
+    geometry=roi,
+    scale=30
+)
+print(ds_image)
+```
+
+### 2. Opening an ee.ImageCollection (Time Series)
+
+The primary use case for XEE, allowing you to work with multi-temporal data.
+
+```python
+# Open an Earth Engine ImageCollection (Sentinel-2)
+ds_coll = xr.open_dataset(
+    'ee://COPERNICUS/S2_SR_HARMONIZED',
+    engine='ee',
+    geometry=roi,
+    scale=10,
+    start_time='2023-01-01',
+    end_time='2023-03-31',
+    variables=['B4', 'B8'] # Select bands to save memory
+)
+print(ds_coll)
+```
+
+### 3. Using ee.FeatureCollection (Spatial Filtering)
+
+While XEE focuses on raster data, you often use `FeatureCollections` to define the spatial bounds for your XArray.
+
+```python
+# Load administrative boundaries
+districts = ee.FeatureCollection('FAO/GAUL/2015/level2')
+vizag = districts.filter(ee.Filter.eq('ADM2_NAME', 'Visakhapatnam'))
+
+# Use the FeatureCollection geometry to clip the XArray
+ds_fc = xr.open_dataset(
+    'ee://COPERNICUS/S2_SR_HARMONIZED',
+    engine='ee',
+    geometry=vizag.geometry(),
+    scale=100,
+    start_time='2023-01-01',
+    end_time='2023-01-31'
+)
+print(ds_fc)
 ```
 
 ### Specifying Time Range
