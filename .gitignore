@@ -1,0 +1,38 @@
+# MkDocs
+site/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+dist/
+build/
+*.egg-info/
+
+# Data Files (Local results from examples)
+*.tif
+*.nc
+*.zarr
+*.csv
+*.h5
+*.nc4
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Internal Verification/Summary Files
+XEE_EXAMPLES_SUMMARY.md
+FINAL_DOCUMENTATION_SUMMARY.md
+ADVANCED_ANALYSIS_PLAN.md
+SITE_VERIFICATION.md
+ADVANCED_TOPICS_VERIFICATION.md
+NAVIGATION_FIX.md
